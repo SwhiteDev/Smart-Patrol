@@ -1,0 +1,47 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BYTE	com.c	/^typedef unsigned char			BYTE;$/;"	t	file:
+COMM_ATTR	com.c	/^} COMM_ATTR;$/;"	t	typeref:struct:tagCOMM_ATTR	file:
+COMM_EVENPARITY	com.c	/^	COMM_EVENPARITY,$/;"	e	enum:comm_parity_t	file:
+COMM_MARK	com.c	/^	COMM_MARK,$/;"	e	enum:comm_parity_t	file:
+COMM_NOPARITY	com.c	/^	COMM_NOPARITY,$/;"	e	enum:comm_parity_t	file:
+COMM_ODDPARITY	com.c	/^	COMM_ODDPARITY,$/;"	e	enum:comm_parity_t	file:
+COMM_ONE5STOPBITS	com.c	/^	COMM_ONE5STOPBITS,$/;"	e	enum:comm_stopbits_t	file:
+COMM_ONESTOPBIT	com.c	/^	COMM_ONESTOPBIT,$/;"	e	enum:comm_stopbits_t	file:
+COMM_PURGE_RXABORT	com.c	44;"	d	file:
+COMM_PURGE_RXCLEAR	com.c	46;"	d	file:
+COMM_PURGE_TXABORT	com.c	43;"	d	file:
+COMM_PURGE_TXCLEAR	com.c	45;"	d	file:
+COMM_SPACE	com.c	/^	COMM_SPACE,$/;"	e	enum:comm_parity_t	file:
+COMM_TWOSTOPBITS	com.c	/^	COMM_TWOSTOPBITS,$/;"	e	enum:comm_stopbits_t	file:
+CommDestory	com.c	/^int CommDestory(int fd)$/;"	f
+CommOpen	com.c	/^int CommOpen(char *DEV_COM)$/;"	f
+CommPurge	com.c	/^int CommPurge(int fd,DWORD dw_flags)$/;"	f
+CommRead	com.c	/^int CommRead(int fd,void *pdata, DWORD nbytes)$/;"	f
+CommWrite	com.c	/^int CommWrite(int fd,void *pdata, DWORD len)$/;"	f
+DEV_COM	com.c	/^char *DEV_COM = NULL;$/;"	v
+DWORD	com.c	/^typedef unsigned int			DWORD;$/;"	t	file:
+ERR_PRINT	com.c	51;"	d	file:
+GetAttribute	com.c	/^int GetAttribute(int fd)$/;"	f
+LIBDVR_PRINT	com.c	52;"	d	file:
+LONG	com.c	/^typedef signed int			LONG;$/;"	t	file:
+MAX	com.c	49;"	d	file:
+SetAttribute	com.c	/^int SetAttribute(int fd,COMM_ATTR *pattr)$/;"	f
+WORD	com.c	/^typedef unsigned short			WORD;$/;"	t	file:
+__COM_TEST_H__	com.h	2;"	d
+baudrate	com.c	/^	DWORD	baudrate;		$/;"	m	struct:tagCOMM_ATTR	file:
+comm_parity_t	com.c	/^enum comm_parity_t $/;"	g	file:
+comm_stopbits_t	com.c	/^enum comm_stopbits_t $/;"	g	file:
+databits	com.c	/^	BYTE	databits;$/;"	m	struct:tagCOMM_ATTR	file:
+fd_gprs	com.c	/^static int fd_gprs = -1;$/;"	v	file:
+fd_rfid	com.c	/^static int fd_rfid = -1;$/;"	v	file:
+main	com.c	/^int main()$/;"	f
+parity	com.c	/^	BYTE	parity;$/;"	m	struct:tagCOMM_ATTR	file:
+reserved	com.c	/^	BYTE	reserved;$/;"	m	struct:tagCOMM_ATTR	file:
+rfid	com.c	/^void rfid(void)$/;"	f
+stopbits	com.c	/^	BYTE	stopbits;	$/;"	m	struct:tagCOMM_ATTR	file:
+tagCOMM_ATTR	com.c	/^typedef struct tagCOMM_ATTR$/;"	s	file:
