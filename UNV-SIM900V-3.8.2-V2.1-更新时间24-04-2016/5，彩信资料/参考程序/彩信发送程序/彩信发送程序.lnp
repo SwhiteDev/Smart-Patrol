@@ -1,7 +1,0 @@
-"STARTUP.obj",
-"gprs.obj",
-"gps.obj",
-"main.obj",
-"timer.obj" 
-TO "²ÊÐÅ·¢ËÍ³ÌÐò" 
-RAMSIZE(256) 
