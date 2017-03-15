@@ -1,0 +1,6 @@
+$,read message,*
++CMTI:"SM",12
++CMGR: "REC UNREAD","+8618045171367","","13/06/17,18:09:35+32"@adgjmptxm789123./+-OK
+
+OK
++CMGR:"UNREAD,151,JJJ,13/,002

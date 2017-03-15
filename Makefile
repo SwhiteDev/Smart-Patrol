@@ -1,2 +1,2 @@
-Smart-Patrol:com.c
-	gcc -o Smart-Smart com.c
+Smart-Patrol:main.c
+	gcc -o Smart-Patrol main.c

@@ -1,0 +1,326 @@
+#include <avr/io.h>
+#include <avr/signal.h>
+#include <avr/interrupt.h>
+#include <stdlib.h>
+#include <inttypes.h>
+#define sbi(sfr,bit) (_SFR_BYTE(sfr)|=_BV(bit)) 
+#define cbi(sfr,bit) (_SFR_BYTE(sfr)&=~_BV(bit))
+//----------------------------------------------------------
+//变量定义区
+uint8_t temp0_data[200];//存放中间变量
+uint8_t temp1_data[200];//存放中间变量
+uint8_t temp2_data[200];//存放中间变量
+uint8_t temp3_data[200];//存放中间变量
+uint8_t rec0_num;
+uint8_t rec1_num;
+uint8_t time0_num;
+uint8_t error_num1;
+uint8_t restart_flag;
+uint8_t reset_flag;
+uint8_t uart0_rec_flag;
+uint8_t send_message_flag;
+uint8_t gprs_flag;
+uint8_t data_type[20];
+uint8_t data_number[20];
+uint8_t data_ip[20];
+uint8_t data_content[200];
+uint8_t com_send_message_numb[30];
+uint8_t size_of_temp2_data;
+
+
+//----------------------------------------------------------
+//延时程序
+
+void delay_ms(uint8_t xtal)
+{
+	uint8_t i;
+	for(i=1;i<(uint8_t)(xtal*143-2);i++)
+    {;}
+}
+//延时1s
+void delay_s(void)
+{
+	time0_num=0;
+	while(!(time0_num>=50))  //时间可在此处修改 50对应1s
+	{}
+	
+	return 1;
+
+}
+void delay_10s(void)
+{
+	uint8_t i;
+	for(i=0;i<3;i++)
+		delay_s();
+
+}
+
+//----------------------------------------------------------
+//----------------------------------------------------------
+//----------------------------------------------------------
+//初始化TIME0
+void init_time0(void)
+{
+	TCNT0=0X70;
+	TCCR0=0X07;
+	TIMSK=0X01;
+	//sei(); 
+
+}
+//----------------------------------------------------------
+//TIM0溢出中断服务程序
+SIGNAL(SIG_OVERFLOW0)
+{
+	time0_num++;
+	TCNT0=0X70;
+	
+}
+//----------------------------------------------------------
+//-------------------------------------------------------
+//-------------------------------------------------------
+//串口0初始化
+void UART0_SETTING(int baud_rate, long fosc)
+{
+	UBRR0L=(fosc/16/(baud_rate+1))%256;
+	UBRR0H=(fosc/16/(baud_rate+1))/256;
+	UCSR0B|=(1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);//允许发送和接收,并允许接收中断
+	UCSR0C|=(1<<UCSZ01)|(1<<UCSZ00);//8位数据+1位STOP位
+}
+//----------------------------------------------------------
+//串口0发送单字节
+void UART0_DATA_BYTE_SEND(uint8_t data)
+{
+	if(!(UCSR0A&(1<<UDRE0)))//等待UDRD被置位，否则对数据寄存器UDR的写操作将被忽略
+	{
+		UCSR0A|=(1<<UDRE0);
+	}
+	while(!(UCSR0A&(1<<UDRE0)))
+	;
+	UDR0=data;//发送数据
+	loop_until_bit_is_set(UCSR0A,TXC0);//查询发送是否结束
+	UCSR0A=UCSR0A|(1<<TXC0);//没有使用发送结束中断，通过置数将TXC清零
+	delay_ms(200);
+}
+//----------------------------------------------------------
+//串口0接收中断服务程序
+SIGNAL(SIG_UART0_RECV)
+{
+	uart0_rec_flag=1;
+	uint8_t data;
+	loop_until_bit_is_set(UCSR0A,RXC0);
+	data=UDR0;
+	UCSR0A|=1<<RXC0;//清零标志位
+
+	temp0_data[rec0_num]=data;//保存接收数据
+	rec0_num++;
+	if(rec0_num>=200)
+		rec0_num=0;
+
+}
+//----------------------------------------------------------
+//串口0发送数据包服务程序
+void send0_data(uint8_t lengh,uint8_t *ptr)
+{
+    uint8_t i;
+	i=0;
+	
+	while(i<lengh)
+	{
+		UART0_DATA_BYTE_SEND(*(ptr++));
+		i++;
+	};
+}
+//----------------------------------------------------------
+void clear_temp_data(uint8_t str[])
+{
+	uint8_t i;
+	for(i=0;i<strlen(str);i++)
+		str[i]='\0';
+
+
+}
+//----------------------------------------------------------
+//拆包
+void chaibao(void)
+{
+	uint8_t i,j,k,douhao[10];
+	uint8_t com_send_message[30]="AT+CMGS=\"";
+	
+	if(uart0_rec_flag==1)//串口0接受到数据
+	{
+		delay_s();//等待接收完毕
+		uart0_rec_flag=0;//清标志位
+		send0_data(strlen(temp0_data),temp0_data);//返回收到的内容
+		send0_data(strlen("\r\n"),"\r\n");
+		delay_s();
+		i=0;
+		j=0;
+		k=0;
+		while(temp0_data[i]!='*')//去头去尾，重新排序
+		{
+			
+			if(temp0_data[i]=='$')
+			{
+				j=0;
+				i++;
+			}
+			temp2_data[j]=temp0_data[i];
+			temp0_data[i]='\0';//清空temp0_data
+			j++;
+			i++;
+		}
+		//clear_temp_data(temp0_data);
+		for(i=0;i<200;i++)//清空temp0_data
+			temp0_data[i]='\0';
+		size_of_temp2_data=strlen(temp2_data);//获得temp2-data的size
+		rec0_num=0;//temp0_data 从初始位置接受
+		send0_data(strlen(temp2_data),temp2_data);
+		send0_data(strlen("\r\n"),"\r\n");
+		delay_s();
+		for(i=0;i<10;i++)
+			douhao[i]='\0';
+		for(i=0;i<strlen(temp2_data);i++)//找到','所在位置
+		{
+			if(temp2_data[i]==',')
+			{
+				douhao[k]=i;
+				k++;
+			}
+		
+		}
+		send0_data(strlen(douhao),douhao);
+		send0_data(strlen("\r\n"),"\r\n");
+		delay_s();
+		//************************** 以下分包
+		
+		k=0;
+		j=0;
+		//clear_temp_data(data_type);
+		for(i=0;i<20;i++)//清数据形式
+			data_type[i]='\0';
+		for(i=douhao[0]+1;i<douhao[1];i++)//数据形式
+		{
+			data_type[j]=temp2_data[i];
+			temp2_data[i]='\0';//清空temp2_data
+			j++;
+		
+		}
+		send0_data(strlen("data_type"),"data_type");
+		send0_data(strlen(data_type),data_type);
+		send0_data(strlen("\r\n"),"\r\n");
+		j=0;
+		//clear_temp_data(data_number);
+
+		
+		if(strstr(data_type,"send message")!=NULL)// 如果命令是要发短信
+		{
+		
+			send_message_flag=1;
+			for(i=0;i<20;i++)//清电话号
+			data_number[i]='\0';
+			for(i=douhao[1]+1;i<douhao[2];i++)//得到电话号
+			{
+				data_number[j]=temp2_data[i];
+				temp2_data[i]='\0';//清空temp2_data
+				j++;
+		
+			}
+			data_number[j]='"';
+			data_number[++j]='\\';
+			data_number[++j]='r';//添加"\r
+		//	clear_temp_data(com_send_message_numb);
+			for(i=0;i<30;i++)//清电话号命令
+				com_send_message_numb[i]='\0';
+			strcat(com_send_message,data_number);//获得电话号命令
+			strcpy(com_send_message_numb,com_send_message);
+			send0_data(strlen("data_number"),"data_number");
+			send0_data(strlen(data_number),data_number);
+			send0_data(strlen("\r\n"),"\r\n");
+			send0_data(strlen(com_send_message_numb),com_send_message_numb);
+			send0_data(strlen("\r\n"),"\r\n");
+			j=0;
+		//	clear_temp_data(data_content);
+			for(i=0;i<200;i++)//清发送的内容
+				data_content[i]='\0';
+			for(i=douhao[2]+1;i<size_of_temp2_data;i++)//得到发送的内容
+			{
+				data_content[j]=temp2_data[i];
+				temp2_data[i]='\0';//清空temp2_data
+				j++;
+			
+			}
+			send0_data(strlen("data_content"),"data_content");
+			send0_data(strlen(data_content),data_content);
+			send0_data(strlen("\r\n"),"\r\n");
+			j=0;
+			rec0_num=0;
+		                            
+		}
+	
+		if(strstr(data_type,"gprs")!=NULL)// 命令是要GPRS
+		{
+		
+			gprs_flag=1;
+			for(i=(douhao[1]+1);i<douhao[2];i++)
+			{
+				data_ip[j]=temp2_data[i];
+				j++;
+		
+			}
+			data_ip[j]='\\';  //此处添加固定端口号
+			data_ip[j+1]='r';
+			send0_data(strlen(data_ip),data_ip);
+			delay_10s();
+			j=0;
+			for(i=(douhao[2]+1);i<douhao[3];i++)
+			{
+				data_content[j]=temp2_data[i];
+				j++;
+		
+			}	
+			send0_data(strlen(data_content),data_content);
+	
+		}
+		clear_temp_data(temp2_data);
+
+	}
+}
+
+
+void main()
+{
+	uint8_t i;
+	uint8_t com_send_message_form[20]="AT+CMGF=1\r";
+	uint8_t com_send_message_end=0x1a;
+	cli(); //关中断
+	UART0_SETTING(9600,7372800);//设置波特率、允许发送和接收,8位数据+1位STOP位
+//	UART1_SETTING(9600,7372800);//设置波特率、允许发送和接收,8位数据+1位STOP位	
+	init_time0();
+	sei();
+	while(1)
+	{
+		chaibao();
+		if(send_message_flag==1)
+		{
+			send_message_flag=0;
+			
+			send0_data(strlen("AT+CMGF=1\r")+2,"AT+CMGF=1\r");
+			delay_s();
+			send0_data(strlen(com_send_message_numb),com_send_message_numb);
+			delay_s();
+			send0_data(strlen(data_content),data_content);
+			UART0_DATA_BYTE_SEND(com_send_message_end);
+			
+		
+		}
+		if(gprs_flag==1)
+		{
+
+			gprs_flag=0;
+			
+			
+		}
+	}
+}
+
+

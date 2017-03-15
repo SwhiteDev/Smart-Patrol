@@ -1,0 +1,446 @@
+//----------------------------------------------------------
+//功能描述：配合SIM900A 发送一条英文短信
+
+//----------------------------------------------------------
+//头函数
+#include <avr/io.h>
+#include <avr/signal.h>
+#include <avr/interrupt.h>
+#include <stdlib.h>
+#include <inttypes.h>
+#define sbi(sfr,bit) (_SFR_BYTE(sfr)|=_BV(bit)) 
+#define cbi(sfr,bit) (_SFR_BYTE(sfr)&=~_BV(bit))
+//----------------------------------------------------------
+//变量定义区
+uint8_t temp0_data[200];//串口0存放中间变量
+uint8_t temp1_data[200];//串口1存放中间变量
+uint8_t rec0_num;
+uint8_t rec1_num;
+uint8_t time0_num;
+uint8_t error_num1;
+uint8_t error_num2;
+//----------------------------------------------------------
+//延时程序
+
+void delay_ms(uint8_t xtal)
+{
+	uint8_t i;
+	for(i=1;i<(uint8_t)(xtal*143-2);i++)
+    {;}
+}
+//延时1s
+void delay_s(void)
+{
+	time0_num=0;
+	while(!(time0_num>=50))  //时间可在此处修改 50对应1s
+	{}
+	
+	return 1;
+
+}
+//----------------------------------------------------------
+//----------------------------------------------------------
+//----------------------------------------------------------
+//初始化TIME0
+void init_time0(void)
+{
+	TCNT0=0X70;
+	TCCR0=0X07;
+	TIMSK=0X01;
+	//sei(); 
+
+}
+//----------------------------------------------------------
+//TIM0溢出中断服务程序
+SIGNAL(SIG_OVERFLOW0)
+{
+	time0_num++;
+	TCNT0=0X70;
+	
+}
+//----------------------------------------------------------
+//-------------------------------------------------------
+//-------------------------------------------------------
+//串口0初始化
+void UART0_SETTING(int baud_rate, long fosc)
+{
+	UBRR0L=(fosc/16/(baud_rate+1))%256;
+	UBRR0H=(fosc/16/(baud_rate+1))/256;
+	UCSR0B|=(1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);//允许发送和接收,并允许接收中断
+	UCSR0C|=(1<<UCSZ01)|(1<<UCSZ00);//8位数据+1位STOP位
+}
+//----------------------------------------------------------
+//串口0发送单字节
+void UART0_DATA_BYTE_SEND(uint8_t data)
+{
+	if(!(UCSR0A&(1<<UDRE0)))//等待UDRD被置位，否则对数据寄存器UDR的写操作将被忽略
+	{
+		UCSR0A|=(1<<UDRE0);
+	}
+	while(!(UCSR0A&(1<<UDRE0)))
+	;
+	UDR0=data;//发送数据
+	loop_until_bit_is_set(UCSR0A,TXC0);//查询发送是否结束
+	UCSR0A=UCSR0A|(1<<TXC0);//没有使用发送结束中断，通过置数将TXC清零
+	delay_ms(200);
+}
+//----------------------------------------------------------
+//串口0接收中断服务程序
+SIGNAL(SIG_UART0_RECV)
+{
+	uint8_t data;
+	loop_until_bit_is_set(UCSR0A,RXC0);
+	data=UDR0;
+	UCSR0A|=1<<RXC0;//清零标志位
+
+	temp0_data[rec0_num]=data;//保存接收数据
+	rec0_num++;
+	if(rec0_num>=200)
+		rec0_num=0;
+
+}
+//----------------------------------------------------------
+//串口0发送数据包服务程序
+void send0_data(uint8_t lengh,uint8_t *ptr)
+{
+    uint8_t i;
+	i=0;
+	
+	while(i<lengh)
+	{
+		UART0_DATA_BYTE_SEND(*(ptr++));
+		i++;
+	};
+}
+//----------------------------------------------------------
+//----------------------------------------------------------
+//-------------------------------------------------------
+//串口1初始化
+void UART1_SETTING(int baud_rate, long fosc)
+{
+	UBRR1L=(fosc/16/(baud_rate+1))%256;
+	UBRR1H=(fosc/16/(baud_rate+1))/256;
+	UCSR1B|=(1<<RXEN1)|(1<<TXEN1)|(1<<RXCIE1);//允许发送和接收,并允许接收中断
+	UCSR1C|=(1<<UCSZ11)|(1<<UCSZ10);//8位数据+1位STOP位
+}
+//----------------------------------------------------------
+//串口1发送单字节
+void UART1_DATA_BYTE_SEND(uint8_t data)
+{
+	if(!(UCSR1A&(1<<UDRE1)))//等待UDRD被置位，否则对数据寄存器UDR的写操作将被忽略
+	{
+		UCSR1A|=(1<<UDRE1);
+	}
+	while(!(UCSR1A&(1<<UDRE1)))
+	;
+	UDR1=data;//发送数据
+	loop_until_bit_is_set(UCSR1A,TXC1);//查询发送是否结束
+	UCSR1A=UCSR1A|(1<<TXC1);//没有使用发送结束中断，通过置数将TXC清零
+	delay_ms(200);
+}
+//----------------------------------------------------------
+//串口1接收中断服务程序
+SIGNAL(SIG_UART1_RECV)
+{
+	uint8_t data;
+	loop_until_bit_is_set(UCSR1A,RXC1);
+	data=UDR1;
+	UCSR1A|=1<<RXC1;//清零标志位
+
+	temp1_data[rec1_num]=data;//保存接收数据
+	rec1_num++;
+	if(rec1_num>=200)
+		rec1_num=0;
+
+}
+//----------------------------------------------------------
+//串口1发送数据包服务程序
+void send1_data(uint8_t lengh,uint8_t *ptr)
+{
+    uint8_t i;
+	i=0;
+	
+	while(i<lengh)
+	{
+		UART1_DATA_BYTE_SEND(*(ptr++));
+		i++;
+	};
+}
+//----------------------------------------------------------
+//----------------------------------------------------------
+//----------------------------------------------------------
+//sim900开机
+void sim_open(void)
+{
+	sbi(DDRB,PB6);//高大于1s
+	sbi(PORTB,PB6);
+	delay_s();
+	delay_ms(200);
+	cbi(PORTB,PB6);//低大于2.2s
+	delay_s();
+	delay_s();
+	delay_ms(200);	
+
+}
+//----------------------------------------------------------
+//sim900复位
+void sim_rst(void)
+{
+	sbi(DDRB,PB5);
+	sbi(PORTB,PB5);//高
+	cbi(PORTB,PB5);//高低50us
+	delay_ms(200);
+	sbi(PORTB,PB5);//高大于1.2s
+	delay_s();
+	delay_s();
+	//sbi(DDRB,PB6);
+
+}
+//----------------------------------------------------------
+//sim900a 防重写五次后复位重写十次后重启
+void sim_die(void)
+{
+		
+		error_num1++;
+		//error_num2++;
+		if((error_num1==5))
+		{
+			
+			sim_rst();
+
+		}
+		else;
+		if(error_num1==10)//如果错误次数大于10重启
+		{
+			sim_open();
+			delay_s();
+			delay_s();
+			sim_open();
+			delay_s();	
+			delay_s();
+			delay_s();
+			error_num1=0;
+			//error_num2=0;
+		
+		}
+		else;
+
+}
+//----------------------------------------------------------
+//握手
+uint8_t hand(uint8_t *ptr)
+{
+	if(strstr(temp1_data,ptr)!=NULL)
+		return 1;
+	else
+		return 0;
+}
+
+//----------------------------------------------------------
+//开机检测SIM900A开机如果一开机则执行空，如果未开机执行开机
+void sim_open_test()
+{
+	
+	send1_data(strlen("ATE1\r"),"ATE1\r");
+	delay_s();
+	if((hand("OK")));
+	else
+	sim_open();
+
+
+}
+//----------------------------------------------------------
+//清除temp1数据
+void clear_data(void)
+{
+	uint8_t i;
+	//i=strlen(temp_data);
+	for(i=0;i<strlen(temp1_data);i++)
+	{
+		temp1_data[i]='0';
+	
+	}
+	rec1_num=0;
+
+}
+
+//----------------------------------------------------------
+//sim900a初始化
+void sim_hand(void)
+{
+	begin:clear_data();
+	
+	while(!hand("OK"))//打开SIMcard 检测
+	{
+	
+		send1_data(strlen("AT+CSDT=1\r"),"AT+CSDT=1\r");
+		delay_s();
+
+	}
+
+	clear_data();
+	delay_s();
+	while(!hand("OK"))//打开SIMcard检测显示
+	{
+	
+		send1_data(strlen("AT+CSMINS=1\r"),"AT+CSMINS=1\r");
+		delay_s();
+
+	}
+
+	clear_data();
+	delay_s();
+	while(!hand("OK"))//查询SIMcard 
+	{
+	
+		send1_data(strlen("AT+CSMINS?\r"),"AT+CSMINS?\r");
+		delay_s();
+
+	}
+	if(hand("1,1"))//如果无SIM卡 串口0发送SIM CARD ERROR 否则发送SIM CARD OK
+		send0_data(strlen("SIM CARD OK\n"),"sim card ok\n");
+	else 
+		{	
+			send0_data(strlen("SIM CARD ERROR\n"),"sim card error\n");
+			sim_die();
+			goto begin;
+		}
+	
+	error_num1=0;
+	//error_num2=0;
+
+	clear_data();
+	delay_s();
+	while(!hand("OK"))
+	{
+	
+		send1_data(strlen("ATE1\r"),"ATE1\r");
+		delay_s();
+		sim_die();
+		
+
+	}
+	//send0_data(strlen("open display ok\n"),"open display ok\n");
+	clear_data();
+	delay_s();
+	while(!hand("OK"))
+	{
+			
+		send1_data(strlen("AT+CGMM\r"),"AT+CGMM\r");
+		delay_s();
+		sim_die();	
+
+	}
+	
+	error_num1=0;
+	clear_data();
+	delay_s();
+	while(!hand("OK"))
+	{
+	
+		send1_data(strlen("ATI\r"),"ATI\r");//握手
+		delay_s();
+		sim_die();
+		
+
+	}
+	
+	error_num1=0;
+	clear_data();
+	delay_s();	
+	while(!hand("1"))
+	{
+		send1_data(strlen("AT+CREG?\r"),"AT+CREG?\r");//注册
+		delay_s();
+		sim_die();
+	}
+
+}
+
+//----------------------------------------------------------
+//----------------------------------------------------------
+//----------------------------------------------------------
+//主程序
+int main(void)
+{
+	
+	uint8_t i;
+	error_num1=0;
+	error_num2=0;
+	cli(); //关中断
+	UART0_SETTING(9600,7372800);//设置波特率、允许发送和接收,8位数据+1位STOP位
+	UART1_SETTING(9600,7372800);//设置波特率、允许发送和接收,8位数据+1位STOP位	
+	init_time0();
+	sei();
+	delay_s();
+	delay_s();
+	delay_s();
+	sim_open_test();//3s后检测sim900a开机
+	for(i=0;i<10;i++)//等待10s用于sim900a内部初始化
+	{
+		delay_s();
+	
+	}
+	sim_hand();
+	clear_data();
+	delay_s();
+
+	//以下为GPRS 功能**********************************
+
+	while(!hand("OK"))
+	{
+		send1_data(strlen("AT+CIPHEAD=1\r"),"AT+CIPHEAD=1\r");
+		delay_s();
+	}
+	clear_data();
+	delay_s();
+	while(!hand("OK"))
+	{
+		send1_data(strlen("AT+CIPMODE=1\r"),"AT+CIPMODE=1\r");
+		delay_s();
+	}
+
+	clear_data();
+	delay_s();
+	send1_data(strlen("AT+CIPSHUT\r"),"AT+CIPSHUT\r");
+	delay_s();
+	send1_data(strlen("AT+CLPORT=\"TCP\",\"8080\"\r"),"AT+CLPORT=\"TCP\",\"8080\"\r");
+	delay_s();					
+	clear_data();
+	delay_s();
+	send1_data(strlen("AT+CIPSTART=\"TCP\",\"1.58.84.115\",\"8080\"\r"),"AT+CIPSTART=\"TCP\",\"1.58.84.115\",\"8080\"\r");
+	while(!hand("OK"))
+	{
+		sim_die();
+	}
+	clear_data();
+	delay_s();
+	delay_s();
+	delay_s();
+	delay_s();
+	delay_s();
+	delay_s();
+
+	send1_data(strlen("AT+CIPSEND\r"),"AT+CIPSEND\r");
+	//while(!hand(">"))
+	{
+		sim_die();
+	}
+	delay_s();
+	delay_s();
+	delay_s();
+	delay_s();
+	delay_s();
+
+	clear_data();
+	delay_s();
+	send1_data(strlen("发送LED0或者111111111111"),"发送LED0或者11111111111111");
+	delay_s();
+	delay_s();
+	delay_s();
+	delay_s();
+	delay_s();
+	UART1_DATA_BYTE_SEND(0x1a);
+	
+
+}

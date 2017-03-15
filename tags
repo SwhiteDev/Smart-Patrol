@@ -4,44 +4,479 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-BYTE	com.c	/^typedef unsigned char			BYTE;$/;"	t	file:
-COMM_ATTR	com.c	/^} COMM_ATTR;$/;"	t	typeref:struct:tagCOMM_ATTR	file:
-COMM_EVENPARITY	com.c	/^	COMM_EVENPARITY,$/;"	e	enum:comm_parity_t	file:
-COMM_MARK	com.c	/^	COMM_MARK,$/;"	e	enum:comm_parity_t	file:
-COMM_NOPARITY	com.c	/^	COMM_NOPARITY,$/;"	e	enum:comm_parity_t	file:
-COMM_ODDPARITY	com.c	/^	COMM_ODDPARITY,$/;"	e	enum:comm_parity_t	file:
-COMM_ONE5STOPBITS	com.c	/^	COMM_ONE5STOPBITS,$/;"	e	enum:comm_stopbits_t	file:
-COMM_ONESTOPBIT	com.c	/^	COMM_ONESTOPBIT,$/;"	e	enum:comm_stopbits_t	file:
-COMM_PURGE_RXABORT	com.c	44;"	d	file:
-COMM_PURGE_RXCLEAR	com.c	46;"	d	file:
-COMM_PURGE_TXABORT	com.c	43;"	d	file:
-COMM_PURGE_TXCLEAR	com.c	45;"	d	file:
-COMM_SPACE	com.c	/^	COMM_SPACE,$/;"	e	enum:comm_parity_t	file:
-COMM_TWOSTOPBITS	com.c	/^	COMM_TWOSTOPBITS,$/;"	e	enum:comm_stopbits_t	file:
-CommDestory	com.c	/^int CommDestory(int fd)$/;"	f
-CommOpen	com.c	/^int CommOpen(char *DEV_COM)$/;"	f
-CommPurge	com.c	/^int CommPurge(int fd,DWORD dw_flags)$/;"	f
-CommRead	com.c	/^int CommRead(int fd,void *pdata, DWORD nbytes)$/;"	f
-CommWrite	com.c	/^int CommWrite(int fd,void *pdata, DWORD len)$/;"	f
-DEV_COM	com.c	/^char *DEV_COM = NULL;$/;"	v
-DWORD	com.c	/^typedef unsigned int			DWORD;$/;"	t	file:
-ERR_PRINT	com.c	51;"	d	file:
-GetAttribute	com.c	/^int GetAttribute(int fd)$/;"	f
-LIBDVR_PRINT	com.c	52;"	d	file:
-LONG	com.c	/^typedef signed int			LONG;$/;"	t	file:
-MAX	com.c	49;"	d	file:
-SetAttribute	com.c	/^int SetAttribute(int fd,COMM_ATTR *pattr)$/;"	f
-WORD	com.c	/^typedef unsigned short			WORD;$/;"	t	file:
-__COM_TEST_H__	com.h	2;"	d
-baudrate	com.c	/^	DWORD	baudrate;		$/;"	m	struct:tagCOMM_ATTR	file:
-comm_parity_t	com.c	/^enum comm_parity_t $/;"	g	file:
-comm_stopbits_t	com.c	/^enum comm_stopbits_t $/;"	g	file:
-databits	com.c	/^	BYTE	databits;$/;"	m	struct:tagCOMM_ATTR	file:
-fd_gprs	com.c	/^static int fd_gprs = -1;$/;"	v	file:
-fd_rfid	com.c	/^static int fd_rfid = -1;$/;"	v	file:
-main	com.c	/^int main()$/;"	f
-parity	com.c	/^	BYTE	parity;$/;"	m	struct:tagCOMM_ATTR	file:
-reserved	com.c	/^	BYTE	reserved;$/;"	m	struct:tagCOMM_ATTR	file:
-rfid	com.c	/^void rfid(void)$/;"	f
-stopbits	com.c	/^	BYTE	stopbits;	$/;"	m	struct:tagCOMM_ATTR	file:
-tagCOMM_ATTR	com.c	/^typedef struct tagCOMM_ATTR$/;"	s	file:
+$NOMOD51	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^$NOMOD51$/;"	l
+AC	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit AC         =   PSW^6;      \/\/������λ��־$/;"	v
+ACC	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^ACC     DATA    0E0H$/;"	l
+ACC	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  ACC        =   0xe0;       \/\/�ۼ���                Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+ACC0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC0       =   ACC^0;      \/\/�ۼ�����0λ$/;"	v
+ACC1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC1       =   ACC^1;      \/\/�ۼ�����1λ$/;"	v
+ACC2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC2       =   ACC^2;      \/\/�ۼ�����2λ$/;"	v
+ACC3	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC3       =   ACC^3;      \/\/�ۼ�����3λ$/;"	v
+ACC4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC4       =   ACC^4;      \/\/�ۼ�����4λ$/;"	v
+ACC5	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC5       =   ACC^5;      \/\/�ۼ�����5λ$/;"	v
+ACC6	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC6       =   ACC^6;      \/\/�ۼ�����6λ$/;"	v
+ACC7	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ACC7       =   ACC^7;      \/\/�ۼ�����7λ$/;"	v
+ADCIN0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN0     =   P1^0;       \/\/ADCͨ��0��ģ���ź������$/;"	v
+ADCIN1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN1     =   P1^1;       \/\/ADCͨ��1��ģ���ź������$/;"	v
+ADCIN2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN2     =   P1^2;       \/\/ADCͨ��2��ģ���ź������$/;"	v
+ADCIN3	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN3     =   P1^3;       \/\/ADCͨ��3��ģ���ź������$/;"	v
+ADCIN4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN4     =   P1^4;       \/\/ADCͨ��4��ģ���ź������$/;"	v
+ADCIN5	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN5     =   P1^5;       \/\/ADCͨ��5��ģ���ź������$/;"	v
+ADCIN6	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN6     =   P1^6;       \/\/ADCͨ��6��ģ���ź������$/;"	v
+ADCIN7	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ADCIN7     =   P1^7;       \/\/ADCͨ��7��ģ���ź������$/;"	v
+ADC_CHS0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	603;"	d
+ADC_CHS1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	602;"	d
+ADC_CHS2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	601;"	d
+ADC_CONTR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  ADC_CONTR  =   0xbc;       \/\/ADC���ƼĴ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+ADC_FLAG	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	599;"	d
+ADC_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	425;"	d
+ADC_POWER	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	594;"	d
+ADC_RES	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  ADC_RES    =   0xbd;       \/\/ADC������ֽ�         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+ADC_RESL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  ADC_RESL   =   0xbe;       \/\/ADC������ֽ�         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+ADC_SPEEDH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	597;"	d
+ADC_SPEEDHH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	598;"	d
+ADC_SPEEDL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	596;"	d
+ADC_SPEEDLL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	595;"	d
+ADC_START	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	600;"	d
+ADRJ	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	162;"	d
+ALES0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	120;"	d
+ALES1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	119;"	d
+AUXR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  AUXR       =   0x8e;       \/\/�����Ĵ���            Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+AUXR1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  AUXR1      =   0xa2;       \/\/�����Ĵ���1           Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+B	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^B       DATA    0F0H$/;"	l
+B	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  B          =   0xf0;       \/\/B�Ĵ���               Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+BRT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  BRT        =   0x9c;       \/\/���������ʷ���������ֵBit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+BRTCLKO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit BRTCLKO    =   P1^0;       \/\/BRTʱ��������������$/;"	v
+BRTCLKOEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	94;"	d
+BRTR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	146;"	d
+BRTx12	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	148;"	d
+BUS_SPEED	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  BUS_SPEED  =   0xa1;       \/\/���������ٶȿ�����    Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+BYTE	com.h	/^typedef unsigned char			BYTE;$/;"	t
+CCAP0H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CCAP0H     =   0xfa;       \/\/PCAģ��0�Ĵ�����8λ   Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CCAP0L	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CCAP0L     =   0xea;       \/\/PCAģ��0�Ĵ�����8λ   Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CCAP1H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CCAP1H     =   0xfb;       \/\/PCAģ��1�Ĵ�����8λ   Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CCAP1L	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CCAP1L     =   0xeb;       \/\/PCAģ��1�Ĵ�����8λ   Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CCAPM0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CCAPM0     =   0xda;       \/\/PCAģ��0ģʽ�Ĵ���    Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CCAPM1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CCAPM1     =   0xdb;       \/\/PCAģ��1ģʽ�Ĵ���    Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CCF0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit CCF0       =   CCON^0;     \/\/PCAģ��0�жϱ�־,��Ҫ��������0$/;"	v
+CCF1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit CCF1       =   CCON^1;     \/\/PCAģ��1�жϱ�־,��Ҫ��������0$/;"	v
+CCON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CCON       =   0xd8;       \/\/PCA���ƼĴ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CEX0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit CEX0       =   P1^3;       \/\/�Ƚ�\/����\/PWM0�ⲿ����$/;"	v
+CEX1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit CEX1       =   P1^4;       \/\/�Ƚ�\/����\/PWM1�ⲿ����$/;"	v
+CF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit CF         =   CCON^7;     \/\/PCA�����������־,��PCA�ж�ʹ��ʱ�ᴥ��PCA�ж�����,��Ҫ��������0$/;"	v
+CH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CH         =   0xf9;       \/\/PCA��������8λ        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CIDL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	707;"	d
+CL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CL         =   0xe9;       \/\/PCA��������8λ        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CLK_DIV	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CLK_DIV    =   0x97;       \/\/ʱ�ӷ�Ƶ�Ĵ���        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+CLR_WDT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	134;"	d
+CMD_FAIL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	657;"	d
+CMOD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  CMOD       =   0xd9;       \/\/PCAģʽ�Ĵ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+COMM_ATTR	com.h	/^} COMM_ATTR;$/;"	t	typeref:struct:tagCOMM_ATTR
+COMM_EVENPARITY	com.h	/^	COMM_EVENPARITY,$/;"	e	enum:comm_parity_t
+COMM_MARK	com.h	/^	COMM_MARK,$/;"	e	enum:comm_parity_t
+COMM_NOPARITY	com.h	/^	COMM_NOPARITY,$/;"	e	enum:comm_parity_t
+COMM_ODDPARITY	com.h	/^	COMM_ODDPARITY,$/;"	e	enum:comm_parity_t
+COMM_ONE5STOPBITS	com.h	/^	COMM_ONE5STOPBITS,$/;"	e	enum:comm_stopbits_t
+COMM_ONESTOPBIT	com.h	/^	COMM_ONESTOPBIT,$/;"	e	enum:comm_stopbits_t
+COMM_PURGE_RXABORT	com.h	44;"	d
+COMM_PURGE_RXCLEAR	com.h	46;"	d
+COMM_PURGE_TXABORT	com.h	43;"	d
+COMM_PURGE_TXCLEAR	com.h	45;"	d
+COMM_SPACE	com.h	/^	COMM_SPACE,$/;"	e	enum:comm_parity_t
+COMM_TWOSTOPBITS	com.h	/^	COMM_TWOSTOPBITS,$/;"	e	enum:comm_stopbits_t
+CPHA	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	679;"	d
+CPOL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	678;"	d
+CR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit CR         =   CCON^6;     \/\/PCA��������������λ,д"1"������������$/;"	v
+CY	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit CY         =   PSW^7;      \/\/��λ��־$/;"	v
+C_T0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	506;"	d
+C_T1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	500;"	d
+CommDestory	main.c	/^int CommDestory(int fd)$/;"	f
+CommOpen	main.c	/^int CommOpen(char *DEV_COM)$/;"	f
+CommPurge	main.c	/^int CommPurge(int fd,DWORD dw_flags)$/;"	f
+CommRead	main.c	/^int CommRead(int fd,void *pdata, DWORD nbytes)$/;"	f
+CommWrite	main.c	/^int CommWrite(int fd,void *pdata, DWORD len)$/;"	f
+DEV_COM	com.h	/^char *DEV_COM = NULL;$/;"	v
+DORD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	676;"	d
+DPH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^DPH     DATA    83H$/;"	l
+DPH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  DPH        =   0x83;       \/\/����ָ����ֽ�        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+DPL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^DPL     DATA    82H$/;"	l
+DPL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  DPL        =   0x82;       \/\/����ָ����ֽ�        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+DPS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	163;"	d
+DWORD	com.h	/^typedef unsigned int			DWORD;$/;"	t
+DelaySec	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/timer.c	/^void DelaySec(unsigned char sec)$/;"	f
+EA	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit EA         =   IE^7;       \/\/���жϿ���$/;"	v
+EADC	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit EADC       =   IE^5;       \/\/ADC�ж�ʹ��λ$/;"	v
+ECF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	716;"	d
+ECI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ECI        =   P1^2;       \/\/�Ƚ�\/����\/PWMģ����ⲿʱ�������(���ֵΪFosc\/2)$/;"	v
+ELVD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ELVD       =   IE^6;       \/\/LVD�ж�ʹ��λ$/;"	v
+ENDIF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^ENDIF$/;"	l
+EN_WDT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	133;"	d
+ERR_PRINT	com.h	51;"	d
+ES	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ES         =   IE^4;       \/\/�����ж�ʹ��λ$/;"	v
+ES2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	416;"	d
+ESPI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	415;"	d
+ET0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ET0        =   IE^1;       \/\/��ʱ��0�ж�ʹ��λ$/;"	v
+ET1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit ET1        =   IE^3;       \/\/��ʱ��1�ж�ʹ��λ$/;"	v
+EX0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit EX0        =   IE^0;       \/\/�ⲿ�ж�0�ж�ʹ��λ$/;"	v
+EX1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit EX1        =   IE^2;       \/\/�ⲿ�ж�1�ж�ʹ��λ$/;"	v
+EXTRAM	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	149;"	d
+EXTRN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^EXTRN CODE (?B_SWITCH0)$/;"	l
+EXTRN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^EXTRN DATA (?C_IBP)$/;"	l
+EXTRN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^EXTRN DATA (?C_PBP)$/;"	l
+EXTRN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^EXTRN DATA (?C_XBP)$/;"	l
+EX_LVD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit EX_LVD     =   P4^6;       \/\/�ⲿ��ѹ�������$/;"	v
+F0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit F0         =   PSW^5;      \/\/�û���־$/;"	v
+FE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit FE         =   SCON^7;     \/\/֡������λ,������ģ���ڽ�������ʱû�м�⵽��ȷ��ֹͣλʱ,FE��Ӳ����1,��Ҫ����������0(��SMOD0Ϊ1ʱ,FE��Ч)$/;"	v
+FOSCD1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	104;"	d
+FOSCD128	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	111;"	d
+FOSCD16	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	108;"	d
+FOSCD2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	105;"	d
+FOSCD32	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	109;"	d
+FOSCD4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	106;"	d
+FOSCD64	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	110;"	d
+FOSCD8	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	107;"	d
+GATE0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	505;"	d
+GATE1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	499;"	d
+GF0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	79;"	d
+GF1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	78;"	d
+GF2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	161;"	d
+GPRS_RST	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	8;"	d
+GetAttribute	main.c	/^int GetAttribute(int fd)$/;"	f
+IAPEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	654;"	d
+IAP_ADDRH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IAP_ADDRH  =   0xc3;       \/\/IAP��ַ��λ�Ĵ���     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IAP_ADDRL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IAP_ADDRL  =   0xc4;       \/\/IAP��ַ��λ�Ĵ���     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IAP_CMD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IAP_CMD    =   0xc5;       \/\/IAP����Ĵ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IAP_CONTR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IAP_CONTR  =   0xc7;       \/\/IAP���ƼĴ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IAP_DATA	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IAP_DATA   =   0xc2;       \/\/IAP���ݼĴ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IAP_ERASE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	638;"	d
+IAP_IDLE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	635;"	d
+IAP_PROGRAM	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	637;"	d
+IAP_READ	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	636;"	d
+IAP_TRIG	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IAP_TRIG   =   0xc6;       \/\/IAP������Ĵ���     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IAP_TRIG0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	645;"	d
+IAP_TRIG1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	646;"	d
+IBPSTACK	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IBPSTACK        EQU     0       ; set to 1 if small reentrant is used.$/;"	d
+IBPSTACKTOP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IBPSTACKTOP     EQU     0xFF +1     ; default 0FFH+1  $/;"	d
+IDATALEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IDATALEN        EQU     80H$/;"	d
+IDATALOOP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IDATALOOP:      MOV     @R0,A$/;"	l
+IDL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	81;"	d
+IDLE_WDT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	135;"	d
+IE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IE         =   0xa8;       \/\/�ж�ʹ�ܼĴ���        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IE0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit IE0        = TCON^1;       \/\/�ⲿ�ж�0���ж�����λ,��Ӳ����1,����������0�������жϴ���������ɺ���Ӳ���Զ���0$/;"	v
+IE1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit IE1        = TCON^3;       \/\/�ⲿ�ж�1���ж�����λ,��Ӳ����1,����������0�������жϴ���������ɺ���Ӳ���Զ���0$/;"	v
+IE2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IE2        =   0xaf;       \/\/�ж�ʹ�ܼĴ���2       Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IF IBPSTACK <> 0$/;"	l
+IF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IF IDATALEN <> 0$/;"	l
+IF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IF PBPSTACK <> 0$/;"	l
+IF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IF PDATALEN <> 0$/;"	l
+IF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IF PPAGEENABLE <> 0$/;"	l
+IF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IF XBPSTACK <> 0$/;"	l
+IF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^IF XDATALEN <> 0$/;"	l
+INT0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit INT0       =   P3^2;       \/\/�ⲿ�ж�0���ź������$/;"	v
+INT1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit INT1       =   P3^3;       \/\/�ⲿ�ж�1���ź������$/;"	v
+IP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IP         =   0xb8;       \/\/�ж����ȼ��Ĵ���      Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IP2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IP2        =   0xb5;       \/\/�ж����ȼ��Ĵ���2     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IP2H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IP2H       =   0xb6;       \/\/�ж����ȼ��Ĵ���2��λ Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IPH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  IPH        =   0xb7;       \/\/�ж����ȼ��Ĵ�����λ  Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+IT0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit IT0        = TCON^0;       \/\/�ⲿ�ж�0�Ĵ�������,0:�͵�ƽ�����ⲿ�ж� 1:�½��ش����ⲿ�ж�$/;"	v
+IT1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit IT1        = TCON^2;       \/\/�ⲿ�ж�1�Ĵ�������,0:�͵�ƽ�����ⲿ�ж� 1:�½��ش����ⲿ�ж�$/;"	v
+KEY4_PRESS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	20;"	d
+KEY5_PRESS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	21;"	d
+KEY6_PRESS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	22;"	d
+LED5_OFF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	11;"	d
+LED5_ON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	10;"	d
+LED6_OFF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	13;"	d
+LED6_ON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	12;"	d
+LED7_OFF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	15;"	d
+LED7_ON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	14;"	d
+LED8_OFF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	17;"	d
+LED8_ON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	16;"	d
+LIBDVR_PRINT	com.h	52;"	d
+LONG	com.h	/^typedef signed int			LONG;$/;"	t
+LVDF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	76;"	d
+LVD_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	426;"	d
+LVD_WAKEUP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	93;"	d
+MAX	com.h	49;"	d
+MSTR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	677;"	d
+OV	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit OV         =   PSW^2;      \/\/�����־$/;"	v
+P	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P          =   PSW^0;      \/\/ACC��żУ��λ$/;"	v
+P0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P0         =   0x80;       \/\/I\/O�˿�0              Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P00	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P00        =   P0^0;       \/\/I\/O��P0.0$/;"	v
+P01	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P01        =   P0^1;       \/\/I\/O��P0.1$/;"	v
+P02	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P02        =   P0^2;       \/\/I\/O��P0.2$/;"	v
+P03	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P03        =   P0^3;       \/\/I\/O��P0.3$/;"	v
+P04	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P04        =   P0^4;       \/\/I\/O��P0.4$/;"	v
+P05	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P05        =   P0^5;       \/\/I\/O��P0.5$/;"	v
+P06	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P06        =   P0^6;       \/\/I\/O��P0.6$/;"	v
+P07	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P07        =   P0^7;       \/\/I\/O��P0.7$/;"	v
+P0M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P0M0       =   0x94;       \/\/I\/O��0ģʽ������0     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P0M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P0M1       =   0x93;       \/\/I\/O��0ģʽ������1     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P1         =   0x90;       \/\/I\/O�˿�0              Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P10	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P10        =   P1^0;       \/\/I\/O��P1.0$/;"	v
+P10ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	382;"	d
+P11	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P11        =   P1^1;       \/\/I\/O��P1.1$/;"	v
+P11ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	381;"	d
+P12	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P12        =   P1^2;       \/\/I\/O��P1.2$/;"	v
+P12ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	380;"	d
+P13	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P13        =   P1^3;       \/\/I\/O��P1.3$/;"	v
+P13ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	379;"	d
+P14	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P14        =   P1^4;       \/\/I\/O��P1.4$/;"	v
+P14ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	378;"	d
+P15	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P15        =   P1^5;       \/\/I\/O��P1.5$/;"	v
+P15ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	377;"	d
+P16	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P16        =   P1^6;       \/\/I\/O��P1.6$/;"	v
+P16ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	376;"	d
+P17	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P17        =   P1^7;       \/\/I\/O��P1.7$/;"	v
+P17ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	375;"	d
+P1ASF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P1ASF      =   0x9d;       \/\/P1��ģ�⹦�ܿ���λ    Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P1M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P1M0       =   0x92;       \/\/I\/O��1ģʽ������0     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P1M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P1M1       =   0x91;       \/\/I\/O��1ģʽ������1     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P2         =   0xa0;       \/\/I\/O�˿�2              Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P20	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P20        =   P2^0;       \/\/I\/O��P2.0$/;"	v
+P21	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P21        =   P2^1;       \/\/I\/O��P2.1$/;"	v
+P22	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P22        =   P2^2;       \/\/I\/O��P2.2$/;"	v
+P23	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P23        =   P2^3;       \/\/I\/O��P2.3$/;"	v
+P24	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P24        =   P2^4;       \/\/I\/O��P2.4$/;"	v
+P25	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P25        =   P2^5;       \/\/I\/O��P2.5$/;"	v
+P26	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P26        =   P2^6;       \/\/I\/O��P2.6$/;"	v
+P27	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P27        =   P2^7;       \/\/I\/O��P2.7$/;"	v
+P2M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P2M0       =   0x96;       \/\/I\/O��2ģʽ������0     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P2M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P2M1       =   0x95;       \/\/I\/O��2ģʽ������1     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P3	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P3         =   0xb0;       \/\/I\/O�˿�3              Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P30	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P30        =   P3^0;       \/\/I\/O��P3.0$/;"	v
+P31	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P31        =   P3^1;       \/\/I\/O��P3.1$/;"	v
+P32	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P32        =   P3^2;       \/\/I\/O��P3.2$/;"	v
+P33	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P33        =   P3^3;       \/\/I\/O��P3.3$/;"	v
+P34	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P34        =   P3^4;       \/\/I\/O��P3.4$/;"	v
+P35	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P35        =   P3^5;       \/\/I\/O��P3.5$/;"	v
+P36	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P36        =   P3^6;       \/\/I\/O��P3.6$/;"	v
+P37	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P37        =   P3^7;       \/\/I\/O��P3.7$/;"	v
+P3M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P3M0       =   0xb2;       \/\/I\/O��3ģʽ������0     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P3M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P3M1       =   0xb1;       \/\/I\/O��3ģʽ������1     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P4         =   0xc0;       \/\/I\/O�˿�4              Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P40	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P40        =   P4^0;       \/\/I\/O��P4.0$/;"	v
+P41	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P41        =   P4^1;       \/\/I\/O��P4.1$/;"	v
+P42	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P42        =   P4^2;       \/\/I\/O��P4.2$/;"	v
+P43	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P43        =   P4^3;       \/\/I\/O��P4.3$/;"	v
+P44	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P44        =   P4^4;       \/\/I\/O��P4.4$/;"	v
+P44EN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	392;"	d
+P45	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P45        =   P4^5;       \/\/I\/O��P4.5$/;"	v
+P45EN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	391;"	d
+P46	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P46        =   P4^6;       \/\/I\/O��P4.6$/;"	v
+P46EN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	390;"	d
+P47	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P47        =   P4^7;       \/\/I\/O��P4.7$/;"	v
+P4CEX0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4CEX0     =   P4^2;       \/\/�Ƚ�\/����\/PWM0�ⲿ����$/;"	v
+P4CEX1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4CEX1     =   P4^3;       \/\/�Ƚ�\/����\/PWM1�ⲿ����$/;"	v
+P4ECI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4ECI      =   P4^1;       \/\/�Ƚ�\/����\/PWMģ����ⲿʱ�������(���ֵΪFosc\/2)$/;"	v
+P4M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P4M0       =   0xb4;       \/\/I\/O��4ģʽ������0     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P4M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P4M1       =   0xb3;       \/\/I\/O��4ģʽ������1     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P4RXD2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4RXD2     =   P4^2;       \/\/����2���������$/;"	v
+P4SPIMISO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4SPIMISO  =   P4^2;       \/\/SPI���ߵ����������$/;"	v
+P4SPIMOSI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4SPIMOSI  =   P4^1;       \/\/SPI���ߵ�����ӳ���$/;"	v
+P4SPISCLK	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4SPISCLK  =   P4^3;       \/\/SPI���ߵ�ʱ�ӽ�$/;"	v
+P4SPISS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4SPISS    =   P4^0;       \/\/SPI���ߵĴӻ�ѡ���$/;"	v
+P4SW	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P4SW       =   0xbb;       \/\/P4�ڵĹ��ܿ���        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P4TXD2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P4TXD2     =   P4^3;       \/\/����2���������$/;"	v
+P5	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P5         =   0xc8;       \/\/I\/O�˿�5              Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P50	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P50        =   P5^0;       \/\/I\/O��P5.0$/;"	v
+P51	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P51        =   P5^1;       \/\/I\/O��P5.1$/;"	v
+P52	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P52        =   P5^2;       \/\/I\/O��P5.2$/;"	v
+P53	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit P53        =   P5^3;       \/\/I\/O��P5.3$/;"	v
+P5M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P5M0       =   0xca;       \/\/I\/O��5ģʽ������0     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+P5M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  P5M1       =   0xc9;       \/\/I\/O��5ģʽ������1     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+PADC	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PADC       =   IP^5;       \/\/ADC�ж����ȼ����Ƶ�λ$/;"	v
+PADCH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	456;"	d
+PBPSTACK	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PBPSTACK        EQU     0       ; set to 1 if compact reentrant is used.$/;"	d
+PBPSTACKTOP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PBPSTACKTOP     EQU     0xFF +1     ; default 0FFH+1  $/;"	d
+PCA0_CAPN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	726;"	d
+PCA0_CAPP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	725;"	d
+PCA0_ECCF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	730;"	d
+PCA0_ECOM	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	724;"	d
+PCA0_MAT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	727;"	d
+PCA0_PWM	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	729;"	d
+PCA0_TOG	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	728;"	d
+PCA1_CAPN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	740;"	d
+PCA1_CAPP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	739;"	d
+PCA1_ECCF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	744;"	d
+PCA1_ECOM	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	738;"	d
+PCA1_MAT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	741;"	d
+PCA1_PWM	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	743;"	d
+PCA1_TOG	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	742;"	d
+PCACLK0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	708;"	d
+PCACLK1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	709;"	d
+PCACLK2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	710;"	d
+PCACLK3	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	711;"	d
+PCACLK4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	712;"	d
+PCACLK5	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	713;"	d
+PCACLK6	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	714;"	d
+PCACLK7	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	715;"	d
+PCAWAKEUP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	89;"	d
+PCA_P4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	158;"	d
+PCA_PWM0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  PCA_PWM0   =   0xf2;       \/\/PCA0ģʽPWM�����Ĵ��� Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+PCA_PWM1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  PCA_PWM1   =   0xf3;       \/\/PCA1ģʽPWM�����Ĵ��� Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+PCON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  PCON       =   0x87;       \/\/��Դ���ƼĴ���        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+PD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	80;"	d
+PDATALEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PDATALEN        EQU     0H$/;"	d
+PDATALOOP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PDATALOOP:      MOVX    @R0,A$/;"	l
+PDATASTART	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PDATASTART      EQU     0H$/;"	d
+PLVD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PLVD       =   IP^6;       \/\/LVD�ж����ȼ����Ƶ�λ$/;"	v
+PLVDH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	455;"	d
+POF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	77;"	d
+PPAGE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PPAGE           EQU     0$/;"	d
+PPAGEENABLE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PPAGEENABLE     EQU     0       ; set to 1 if pdata object are used.$/;"	d
+PPAGE_SFR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^PPAGE_SFR       DATA    0A0H$/;"	l
+PPCA	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PPCA       =   IP^7;       \/\/PCA�ж����ȼ����Ƶ�λ$/;"	v
+PPCAH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	454;"	d
+PS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PS         =   IP^4;       \/\/�����ж����ȼ����Ƶ�λ$/;"	v
+PS2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	437;"	d
+PS2H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	446;"	d
+PSH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	457;"	d
+PSPI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	436;"	d
+PSPIH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	445;"	d
+PSW	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  PSW        =   0xd0;       \/\/����״̬��            Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+PT0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PT0        =   IP^1;       \/\/��ʱ��0�ж����ȼ����Ƶ�λ$/;"	v
+PT0H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	460;"	d
+PT1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PT1        =   IP^3;       \/\/��ʱ��1�ж����ȼ����Ƶ�λ$/;"	v
+PT1H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	458;"	d
+PX0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PX0        =   IP^0;       \/\/�ⲿ�ж�0�ж����ȼ����Ƶ�λ$/;"	v
+PX0H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	461;"	d
+PX1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit PX1        =   IP^2;       \/\/�ⲿ�ж�1�ж����ȼ����Ƶ�λ$/;"	v
+PX1H	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	459;"	d
+RB8	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RB8        =   SCON^2;     \/\/���յĵ�9λ����$/;"	v
+RD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RD         =   P3^7;       \/\/�ⲿ���ݴ洢���Ķ��ź�$/;"	v
+REN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit REN        =   SCON^4;     \/\/ʹ�ܴ��ڽ���ģ��$/;"	v
+RI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RI         =   SCON^0;     \/\/��������жϱ�־$/;"	v
+RS0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RS0        =   PSW^3;      \/\/�Ĵ�����ѡ��λ0$/;"	v
+RS1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RS1        =   PSW^4;      \/\/�Ĵ�����ѡ��λ1$/;"	v
+RST	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RST        =   P4^7;       \/\/��λ��,��ͨ�����������$/;"	v
+RWS0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	124;"	d
+RWS1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	123;"	d
+RWS2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	122;"	d
+RXD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RXD        =   P3^0;       \/\/����1�����ݽ��տ�$/;"	v
+RXD2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit RXD2       =   P1^2;       \/\/����2���������$/;"	v
+RXD_PIN_IE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	90;"	d
+S1BRS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	150;"	d
+S2BUF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  S2BUF      =   0x9b;       \/\/����2����\/��������    Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+S2CON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  S2CON      =   0x9a;       \/\/����2���ƼĴ���       Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+S2RB8	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	564;"	d
+S2REN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	562;"	d
+S2RI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	566;"	d
+S2SM0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	559;"	d
+S2SM1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	560;"	d
+S2SM2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	561;"	d
+S2SMOD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	147;"	d
+S2TB8	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	563;"	d
+S2TI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	565;"	d
+S2_P4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	160;"	d
+SADDR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SADDR      =   0xa9;       \/\/�����豸�ӵ�ַ�Ĵ���  Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SADEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SADEN      =   0xb9;       \/\/�����豸�ӵ�ַ����λ  Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SBUF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SBUF       =   0x99;       \/\/���ڽ���\/��������     Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SCON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SCON       =   0x98;       \/\/���ڿ��ƼĴ���        Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SM0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit SM0        =   SCON^7;     \/\/����ģʽ����λ$/;"	v
+SM1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit SM1        =   SCON^6;     \/\/SM0\/SM1=0\/0:��λ�Ĵ��� 0\/1:8λ�ɱ䲨���� 1\/0:9λ�̶������� 1\/1:9λ�ɱ䲨����$/;"	v
+SM2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit SM2        =   SCON^5;     \/\/�Զ���ַʶ��ʹ��λ$/;"	v
+SMOD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	74;"	d
+SMOD0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	75;"	d
+SP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^SP      DATA    81H$/;"	l
+SP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SP         =   0x81;       \/\/��ջָ��              Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SPCTL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SPCTL      =   0xce;       \/\/SPI���ƼĴ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SPDAT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SPDAT      =   0xcf;       \/\/SPI���ݼĴ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SPEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	675;"	d
+SPIF	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	665;"	d
+SPIMISO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit SPIMISO    =   P1^6;       \/\/SPI���ߵ����������$/;"	v
+SPIMOSI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit SPIMOSI    =   P1^5;       \/\/SPI���ߵ�����ӳ���$/;"	v
+SPISCLK	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit SPISCLK    =   P1^7;       \/\/SPI���ߵ�ʱ�ӽ�$/;"	v
+SPISS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit SPISS      =   P1^4;       \/\/SPI���ߵĴӻ�ѡ���$/;"	v
+SPI_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	428;"	d
+SPI_P4	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	159;"	d
+SPSPEEDH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	681;"	d
+SPSPEEDHH	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	680;"	d
+SPSPEEDL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	682;"	d
+SPSPEEDLL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	683;"	d
+SPSTAT	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  SPSTAT     =   0xcd;       \/\/SPI״̬�Ĵ���         Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+SSIG	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	674;"	d
+STARTUP1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^STARTUP1:$/;"	l
+SWBS	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	655;"	d
+SWRST	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	656;"	d
+SetAttribute	main.c	/^int SetAttribute(int fd,COMM_ATTR *pattr)$/;"	f
+T0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit T0         =   P3^4;       \/\/��ʱ��0���ⲿ�ź������$/;"	v
+T0CLKO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit T0CLKO     =   P3^4;       \/\/��ʱ��0��ʱ��������������$/;"	v
+T0CLKOEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	96;"	d
+T0_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	421;"	d
+T0_M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	507;"	d
+T0_M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	508;"	d
+T0_M2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	509;"	d
+T0_M3	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	510;"	d
+T0_PIN_IE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	92;"	d
+T0x12	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	143;"	d
+T1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit T1         =   P3^5;       \/\/��ʱ��1���ⲿ�ź������$/;"	v
+T1CLKO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit T1CLKO     =   P3^5;       \/\/��ʱ��1��ʱ��������������$/;"	v
+T1CLKOEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	95;"	d
+T1_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	423;"	d
+T1_M0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	501;"	d
+T1_M1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	502;"	d
+T1_M2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	503;"	d
+T1_M3	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	504;"	d
+T1_PIN_IE	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	91;"	d
+T1x12	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	144;"	d
+TB8	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TB8        =   SCON^3;     \/\/���͵ĵ�9λ����$/;"	v
+TCON	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  TCON       =   0x88;       \/\/��ʱ��0\/1���ƼĴ���   Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+TF0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TF0        = TCON^5;       \/\/��ʱ��0�����־,��Ӳ����1,����������0�������жϴ���������ɺ���Ӳ���Զ���0$/;"	v
+TF1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TF1        = TCON^7;       \/\/��ʱ��1�����־,��Ӳ����1,����������0�������жϴ���������ɺ���Ӳ���Զ���0$/;"	v
+TH0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  TH0        = 0x8c;         \/\/��ʱ��0�ĸ�8λ����ֵ  Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+TH1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  TH1        = 0x8d;         \/\/��ʱ��1�ĸ�8λ����ֵ  Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+TI	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TI         =   SCON^1;     \/\/��������жϱ�־$/;"	v
+TL0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  TL0        = 0x8a;         \/\/��ʱ��0�ĵ�8λ����ֵ  Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+TL1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  TL1        = 0x8b;         \/\/��ʱ��1�ĵ�8λ����ֵ  Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+TMOD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  TMOD       =   0x89;       \/\/��ʱ��0\/1ģʽ�Ĵ���   Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+TR0	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TR0        = TCON^4;       \/\/��ʱ��0����������λ,1:������ʱ�� 0:ֹͣ��ʱ��$/;"	v
+TR1	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TR1        = TCON^6;       \/\/��ʱ��1����������λ,1:������ʱ�� 0:ֹͣ��ʱ��$/;"	v
+TXD	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TXD        =   P3^1;       \/\/����1�����ݷ��Ϳ�$/;"	v
+TXD2	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit TXD2       =   P1^3;       \/\/����2���������$/;"	v
+Timer0Init	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/timer.c	/^void Timer0Init(void)$/;"	f
+UART2_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	427;"	d
+UART_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	424;"	d
+UR0x6	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	145;"	d
+Uart1Init	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gprs.c	/^char Uart1Init(char smod,char brtx12,unsigned char reload)$/;"	f
+Uart1Send	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gprs.c	/^void Uart1Send(uchar i)$/;"	f
+Uart1Sends	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gprs.c	/^void Uart1Sends(uchar* at)$/;"	f
+Uart2Init	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gprs.c	/^char Uart2Init(char s2smod,char brtx12,unsigned char reload)$/;"	f
+Uart2Send	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gprs.c	/^void Uart2Send(uchar i)$/;"	f
+Uart2Sends	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gprs.c	/^void Uart2Sends(uchar* data_at)$/;"	f
+WAKE_CLKO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  WAKE_CLKO  =   0x8f;       \/\/���绽��\/ʱ��������� Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+WCOL	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	666;"	d
+WDT_CONTR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sfr  WDT_CONTR  =   0xc1;       \/\/���Ź���ʱ��������    Bit7    Bit6    Bit5    Bit4    Bit3    Bit2    Bit1    Bit0$/;"	v
+WDT_FLAG	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	132;"	d
+WORD	com.h	/^typedef unsigned short			WORD;$/;"	t
+WR	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	/^sbit WR         =   P3^6;       \/\/�ⲿ���ݴ洢����д�ź�$/;"	v
+X0_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	420;"	d
+X1_INTNO	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	422;"	d
+XBPSTACK	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^XBPSTACK        EQU     0       ; set to 1 if large reentrant is used.$/;"	d
+XBPSTACKTOP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^XBPSTACKTOP     EQU     0xFFFF +1   ; default 0FFFFH+1 $/;"	d
+XDATALEN	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^XDATALEN        EQU     0      $/;"	d
+XDATALOOP	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^XDATALOOP:      MOVX    @DPTR,A$/;"	l
+XDATASTART	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STARTUP.A51	/^XDATASTART      EQU     0     $/;"	d
+_GPRS_H_	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gprs.h	2;"	d
+_GPS_H_	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/gps.h	2;"	d
+_TIMER_H_	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/timer.h	2;"	d
+__STC12C5A_H__	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/STC12C5A.h	18;"	d
+__SYSTERM_H__	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	2;"	d
+baudrate	com.h	/^	DWORD	baudrate;		$/;"	m	struct:tagCOMM_ATTR
+comm_parity_t	com.h	/^enum comm_parity_t $/;"	g
+comm_stopbits_t	com.h	/^enum comm_stopbits_t $/;"	g
+databits	com.h	/^	BYTE	databits;$/;"	m	struct:tagCOMM_ATTR
+fd_gprs	com.h	/^static int fd_gprs = -1;$/;"	v
+fd_rfid	com.h	/^static int fd_rfid = -1;$/;"	v
+hua	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/picture.h	/^code uchar hua[] = {0xFF,$/;"	v
+i	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/main.c	/^uint i = 0;$/;"	v
+main	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/main.c	/^void main()$/;"	f
+main	main.c	/^int main()$/;"	f
+parity	com.h	/^	BYTE	parity;$/;"	m	struct:tagCOMM_ATTR
+reserved	com.h	/^	BYTE	reserved;$/;"	m	struct:tagCOMM_ATTR
+rfid	main.c	/^void rfid(void)$/;"	f
+sec_cnt	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/timer.c	/^volatile int data sec_cnt = 0;$/;"	v
+stopbits	com.h	/^	BYTE	stopbits;	$/;"	m	struct:tagCOMM_ATTR
+tagCOMM_ATTR	com.h	/^typedef struct tagCOMM_ATTR$/;"	s
+timer0_cnt	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/timer.c	/^volatile unsigned char data timer0_cnt = 0;$/;"	v
+uchar	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	5;"	d
+uint	UNV-SIM900V-3.8.2-V2.1-更新时间24-04-2016/5，彩信资料/参考程序/彩信发送程序/systerm.h	6;"	d

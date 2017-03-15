@@ -1,0 +1,79 @@
+VERSION 5.00
+Begin {AC0714F6-3D04-11D1-AE7D-00A0C90F26F4} Wizard 
+   ClientHeight    =   3690
+   ClientLeft      =   1740
+   ClientTop       =   1545
+   ClientWidth     =   4005
+   _ExtentX        =   7064
+   _ExtentY        =   6509
+   _Version        =   393216
+   DisplayName     =   "Wizard Template"
+   AppName         =   "Visual Basic"
+   AppVer          =   "Visual Basic 98 (ver 6.0)"
+   LoadName        =   "None"
+   LoadBehavior    =   2
+   RegLocation     =   "HKEY_CURRENT_USER\Software\Microsoft\Visual Basic\6.0"
+   CmdLineSupport  =   -1  'True
+End
+Attribute VB_Name = "Wizard"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+
+Dim mcbMenuCommandBar         As Office.CommandBarControl  '命令栏对象
+Public WithEvents MenuHandler As CommandBarEvents          '命令栏事件句柄
+Attribute MenuHandler.VB_VarHelpID = -1
+Dim mfrmWizard As frmWizard
+Dim VBInstance As VBIDE.VBE
+
+
+'------------------------------------------------------
+'这个方法添加外接程序到 VB 菜单
+'它被 VB 外接程序管理器所调用
+'------------------------------------------------------
+Private Sub AddinInstance_OnConnection(ByVal Application As Object, ByVal ConnectMode As AddInDesignerObjects.ext_ConnectMode, ByVal AddInInst As Object, custom() As Variant)
+   On Error GoTo error_handler
+   
+   Set VBInstance = Application
+   
+   If ConnectMode = ext_cm_External Then
+       '被向导工具栏用来启动向导
+       LoadMe
+   Else
+       Set mcbMenuCommandBar = AddToAddInCommandBar(VBInstance, LoadResString(15), LoadResPicture(5000, 0))
+       '吸取事件
+       Set Me.MenuHandler = VBInstance.Events.CommandBarEvents(mcbMenuCommandBar)
+   End If
+  
+   Exit Sub
+     
+error_handler:
+   MsgBox Err.Description
+End Sub
+
+'------------------------------------------------------
+'这个方法从 VB 菜单中删除外接程序
+'它被 VB 外接程序管理器所调用
+'------------------------------------------------------
+Private Sub AddinInstance_OnDisconnection(ByVal RemoveMode As AddInDesignerObjects.ext_DisconnectMode, custom() As Variant)
+    '删除命令栏条目
+    mcbMenuCommandBar.Delete
+End Sub
+
+'当在 IDE 中单击菜单时,这个事件被激活
+Private Sub MenuHandler_Click(ByVal CommandBarControl As Object, handled As Boolean, CancelDefault As Boolean)
+    LoadMe
+End Sub
+
+Private Sub LoadMe()
+    Set mfrmWizard = New frmWizard
+    '传递 vb 实例到向导模块
+    Set mfrmWizard.VBInst = VBInstance
+    '加载并显示窗体
+    mfrmWizard.Show vbModal
+    Set mfrmWizard = Nothing
+End Sub
+
+

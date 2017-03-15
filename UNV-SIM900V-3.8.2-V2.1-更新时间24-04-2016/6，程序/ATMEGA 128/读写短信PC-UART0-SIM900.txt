@@ -1,0 +1,784 @@
+//----------------------------------------------------------
+//功能描述：通过串口调试助手向串口0发送符合相应协议的数据包，128解包并通过串口1控制sim900a发送相应的内容（协议为$,send message,tele number,content*）
+	//配合SIM900A 发送一条英文短信 永远在线 自动重拨、
+//头函数
+#include <avr/io.h>
+#include <avr/signal.h>
+#include <avr/interrupt.h>
+#include <stdlib.h>
+#include <inttypes.h>
+#define sbi(sfr,bit) (_SFR_BYTE(sfr)|=_BV(bit)) 
+#define cbi(sfr,bit) (_SFR_BYTE(sfr)&=~_BV(bit))
+//----------------------------------------------------------
+//变量定义区
+uint8_t temp0_data[200];//存放中间变量
+uint8_t temp1_data[200];//存放中间变量
+uint8_t temp2_data[200];//存放中间变量
+uint8_t temp3_data[200];//存放中间变量
+uint8_t rec0_num;
+uint8_t rec1_num;
+uint8_t time0_num;
+uint8_t error_num1;
+uint8_t restart_flag;
+uint8_t reset_flag;
+uint8_t uart0_rec_flag;
+uint8_t send_message_flag;
+uint8_t read_message_flag;
+uint8_t gprs_flag;
+uint8_t data_type[20];
+uint8_t data_number[20];
+uint8_t data_ip[20];
+uint8_t data_content[200];
+uint8_t data_time[50];
+uint8_t data_read_message_place[10];
+uint8_t state_message[15];
+//uint8_t str_enter[5]="\r";
+uint8_t com_send_message_numb[30];
+uint8_t backup_temp0_data[200];
+uint8_t size_of_temp2_data;
+//延时程序
+
+void delay_ms(uint8_t xtal)
+{
+	uint8_t i;
+	for(i=1;i<(uint8_t)(xtal*143-2);i++)
+    {;}
+}
+//延时1s
+void delay_s(void)
+{
+	time0_num=0;
+	while(!(time0_num>=50))  //时间可在此处修改 50对应1s
+	{}
+	
+	return 1;
+
+}
+void delay_10s(void)
+{
+	uint8_t i;
+	for(i=0;i<3;i++)
+		delay_s();
+
+}
+//----------------------------------------------------------
+//----------------------------------------------------------
+//----------------------------------------------------------
+//初始化TIME0
+void init_time0(void)
+{
+	TCNT0=0X70;
+	TCCR0=0X07;
+	TIMSK=0X01;
+	//sei(); 
+
+}
+//----------------------------------------------------------
+//TIM0溢出中断服务程序
+SIGNAL(SIG_OVERFLOW0)
+{
+	time0_num++;
+	TCNT0=0X70;
+	
+}
+//----------------------------------------------------------
+//-------------------------------------------------------
+//-------------------------------------------------------
+//串口0初始化
+void UART0_SETTING(int baud_rate, long fosc)
+{
+	UBRR0L=(fosc/16/(baud_rate+1))%256;
+	UBRR0H=(fosc/16/(baud_rate+1))/256;
+	UCSR0B|=(1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);//允许发送和接收,并允许接收中断
+	UCSR0C|=(1<<UCSZ01)|(1<<UCSZ00);//8位数据+1位STOP位
+}
+//----------------------------------------------------------
+//串口0发送单字节
+void UART0_DATA_BYTE_SEND(uint8_t data)
+{
+	if(!(UCSR0A&(1<<UDRE0)))//等待UDRD被置位，否则对数据寄存器UDR的写操作将被忽略
+	{
+		UCSR0A|=(1<<UDRE0);
+	}
+	while(!(UCSR0A&(1<<UDRE0)))
+	;
+	UDR0=data;//发送数据
+	loop_until_bit_is_set(UCSR0A,TXC0);//查询发送是否结束
+	UCSR0A=UCSR0A|(1<<TXC0);//没有使用发送结束中断，通过置数将TXC清零
+	delay_ms(200);
+}
+//----------------------------------------------------------
+//串口0接收中断服务程序
+SIGNAL(SIG_UART0_RECV)
+{
+	uart0_rec_flag=1;
+	uint8_t data;
+	loop_until_bit_is_set(UCSR0A,RXC0);
+	data=UDR0;
+	UCSR0A|=1<<RXC0;//清零标志位
+
+	temp0_data[rec0_num]=data;//保存接收数据
+	rec0_num++;
+	if(rec0_num>=200)
+		rec0_num=0;
+
+}
+//----------------------------------------------------------
+//串口0发送数据包服务程序
+void send0_data(uint8_t lengh,uint8_t *ptr)
+{
+    uint8_t i;
+	i=0;
+	
+	while(i<lengh)
+	{
+		UART0_DATA_BYTE_SEND(*(ptr++));
+		i++;
+	};
+}
+//----------------------------------------------------------
+//----------------------------------------------------------
+//-------------------------------------------------------
+//串口1初始化
+void UART1_SETTING(int baud_rate, long fosc)
+{
+	UBRR1L=(fosc/16/(baud_rate+1))%256;
+	UBRR1H=(fosc/16/(baud_rate+1))/256;
+	UCSR1B|=(1<<RXEN1)|(1<<TXEN1)|(1<<RXCIE1);//允许发送和接收,并允许接收中断
+	UCSR1C|=(1<<UCSZ11)|(1<<UCSZ10);//8位数据+1位STOP位
+}
+//----------------------------------------------------------
+//串口1发送单字节
+void UART1_DATA_BYTE_SEND(uint8_t data)
+{
+	if(!(UCSR1A&(1<<UDRE1)))//等待UDRD被置位，否则对数据寄存器UDR的写操作将被忽略
+	{
+		UCSR1A|=(1<<UDRE1);
+	}
+	while(!(UCSR1A&(1<<UDRE1)))
+	;
+	UDR1=data;//发送数据
+	loop_until_bit_is_set(UCSR1A,TXC1);//查询发送是否结束
+	UCSR1A=UCSR1A|(1<<TXC1);//没有使用发送结束中断，通过置数将TXC清零
+	delay_ms(200);
+}
+//----------------------------------------------------------
+//串口1接收中断服务程序
+SIGNAL(SIG_UART1_RECV)
+{
+	uint8_t data;
+	loop_until_bit_is_set(UCSR1A,RXC1);
+	data=UDR1;
+	UCSR1A|=1<<RXC1;//清零标志位
+
+	temp1_data[rec1_num]=data;//保存接收数据
+	rec1_num++;
+	if(rec1_num>=200)
+		rec1_num=0;
+
+}
+//----------------------------------------------------------
+//串口1发送数据包服务程序
+void send1_data(uint8_t lengh,uint8_t *ptr)
+{
+    uint8_t i;
+	i=0;
+	
+	while(i<lengh)
+	{
+		UART1_DATA_BYTE_SEND(*(ptr++));
+		i++;
+	};
+}
+//----------------------------------------------------------
+//----------------------------------------------------------
+//----------------------------------------------------------
+//sim900开机
+void sim_open(void)
+{
+	sbi(DDRB,PB6);//高大于1s
+	sbi(PORTB,PB6);
+	delay_s();
+	delay_ms(200);
+	cbi(PORTB,PB6);//低大于2.2s
+	delay_s();
+	delay_s();
+	delay_ms(200);	
+
+}
+//----------------------------------------------------------
+//sim900复位
+void sim_rst(void)
+{
+	sbi(DDRB,PB4);
+	sbi(PORTB,PB4);//高
+	cbi(PORTB,PB4);//高低50us
+	delay_ms(200);
+	sbi(PORTB,PB4);//高大于1.2s
+	delay_s();
+	delay_s();
+	reset_flag=1;
+	send0_data(strlen("SIM 900A RESET\r\n"),"SIM 900A RESET\r\n");
+
+	//sbi(DDRB,PB6);
+
+}
+//----------------------------------------------------------
+//sim restart
+sim_restart(void)
+{
+
+	sim_open();
+	delay_s();
+	delay_s();
+	sim_open();
+	delay_s();	
+	delay_s();
+	delay_s();
+	error_num1=0;
+	restart_flag=1;
+	send0_data(strlen("SIM 900A RESTART\r\n"),"SIM 900A RESTART\r\n");
+
+}
+//----------------------------------------------------------
+//sim900a 防重写五次后复位重写十次后重启
+void sim_die(void)
+{
+		
+		error_num1++;
+		//error_num2++;
+		if((error_num1==5))
+		{
+			
+			sim_rst();
+
+		}
+		else;
+		if(error_num1==10)//如果错误次数大于10重启
+		{
+			
+			sim_restart();
+			error_num1=0;
+			//error_num2=0;
+		}
+		else;
+
+}
+//----------------------------------------------------------
+//握手
+uint8_t hand(uint8_t *ptr)
+{
+	if(strstr(temp1_data,ptr)!=NULL)
+		return 1;
+	else
+		return 0;
+}
+
+//----------------------------------------------------------
+//开机检测SIM900A开机如果一开机则执行空，如果未开机执行开机
+void sim_open_test()
+{
+	
+	send1_data(strlen("ATE1\r"),"ATE1\r");
+	delay_s();
+	if((hand("OK")));
+	else
+	sim_open();
+
+
+}
+//----------------------------------------------------------
+//清除temp1数据
+void clear_data(void)
+{
+	uint8_t i;
+	//i=strlen(temp_data);
+	for(i=0;i<strlen(temp1_data);i++)
+	{
+		temp1_data[i]='0';
+	
+	}
+	rec1_num=0;
+
+}
+
+//----------------------------------------------------------
+//sim900a初始化
+void sim_hand(void)
+{
+	error_num1=0;
+	begin:
+	clear_data();
+	delay_s();
+	while(!hand("OK"))
+	{
+	
+		send1_data(strlen("ATE1\r"),"ATE1\r");
+		delay_s();
+
+	}
+	
+	while(!hand("OK"))//打开SIMcard 检测
+	{
+	
+		send1_data(strlen("AT+CSDT=1\r"),"AT+CSDT=1\r");
+		delay_s();
+
+	}
+
+	clear_data();
+	delay_s();
+	while(!hand("OK"))//打开SIMcard检测显示
+	{
+	
+		send1_data(strlen("AT+CSMINS=1\r"),"AT+CSMINS=1\r");
+		delay_s();
+
+	}
+
+	clear_data();
+	delay_s();
+	while(!hand("OK"))//查询SIMcard 
+	{
+	
+		send1_data(strlen("AT+CSMINS?\r"),"AT+CSMINS?\r");
+		delay_s();
+
+	}
+	if(hand("1,1"))//如果无SIM卡 串口0发送SIM CARD ERROR 否则发送SIM CARD OK
+		send0_data(strlen("SIM CARD OK\r\n"),"SIM CARD OK\r\n");
+	else 
+		{	
+			send0_data(strlen("SIM CARD ERROR,PLEASE CHECK SIM CARD\r\n"),"SIM CARD ERROR,PLEASE CHECK SIM CARD\r\n");
+			sim_die();
+			goto begin;
+		}
+	
+	error_num1=0;
+	clear_data();
+	delay_s();
+	
+	send0_data(strlen("open display ok\r\n"),"OPEN DISPLAY OK\r\n");
+	clear_data();
+	delay_s();
+	while(!hand("OK"))
+	{
+			
+		send1_data(strlen("AT+CGMM\r"),"AT+CGMM\r");
+		delay_s();
+		sim_die();	
+
+	}
+	
+	error_num1=0;
+	clear_data();
+	delay_s();
+	while(!hand("OK"))
+	{
+	
+		send1_data(strlen("ATI\r"),"ATI\r");//握手
+		delay_s();
+		sim_die();
+		
+
+	}
+	
+	error_num1=0;
+	clear_data();
+	delay_s();	
+	while(!hand("0,1"))
+	{
+		send1_data(strlen("AT+CREG?\r"),"AT+CREG?\r");//注册
+		delay_s();
+		sim_die();
+		if(restart_flag==1)
+		{
+			restart_flag=0;
+			goto begin;
+		}
+	}
+	send0_data(strlen("REGISTION OK\r\n"),"REGISTION OK\r\n");
+
+}
+//----------------------------------------------------------
+//拆包
+void chaibao(void)
+{
+	uint8_t i,j,k,douhao[10];
+	uint8_t com_send_message[30]="AT+CMGS=\"";
+	
+	if(uart0_rec_flag==1)//串口0接受到数据
+	{
+		delay_s();//等待接收完毕
+		uart0_rec_flag=0;//清标志位
+		send0_data(strlen(temp0_data),temp0_data);//返回收到的内容
+		send0_data(strlen("\r\n"),"\r\n");
+		delay_s();
+		i=0;
+		j=0;
+		k=0;
+		while((temp0_data[i]!='*')&&(j<198))//去头去尾，重新排序
+		{
+			
+			if(temp0_data[i]=='$')
+			{
+				j=0;
+				i++;
+			}
+			temp2_data[j]=temp0_data[i];
+			temp0_data[i]='\0';//清空temp0_data
+			j++;
+			i++;
+		}
+		size_of_temp2_data=strlen(temp2_data);//获得temp2-data的size
+		rec0_num=0;//temp0_data 从初始位置接受
+		send0_data(strlen(temp2_data),temp2_data);
+		send0_data(strlen("\r\n"),"\r\n");
+		delay_s();
+		for(i=0;i<10;i++)//清逗号所在位置
+			douhao[i]='\0';
+		for(i=0;i<strlen(temp2_data);i++)//找到','所在位置
+		{
+			if(temp2_data[i]==',')
+			{
+				douhao[k]=i;
+				k++;
+			}
+		
+		}
+		send0_data(strlen(douhao),douhao);
+		send0_data(strlen("\r\n"),"\r\n");
+		delay_s();
+		//************************** 以下分包
+		
+		k=0;
+		j=0;
+		//clear_temp_data(data_type);
+		for(i=0;i<20;i++)//清数据形式
+			data_type[i]='\0';
+		for(i=douhao[0]+1;i<douhao[1];i++)//数据形式
+		{
+			data_type[j]=temp2_data[i];
+			temp2_data[i]='\0';//清空temp2_data
+			j++;
+		
+		}
+		send0_data(strlen("data_type"),"data_type");
+		send0_data(strlen(data_type),data_type);
+		send0_data(strlen("\r\n"),"\r\n");
+		j=0;
+
+		
+		if(strstr(data_type,"send message")!=NULL)// 如果命令是要发短信
+		{
+		
+			send_message_flag=1;
+		
+			for(i=0;i<20;i++)//清电话号
+				data_number[i]='\0';
+			for(i=douhao[1]+1;i<douhao[2];i++)//得到电话号
+			{
+			
+				data_number[j]=temp2_data[i];
+				temp2_data[i]='\0';//清空temp2_data
+				j++;
+		
+			}
+			data_number[j]='"';
+			data_number[++j]='\r';//添加"\r
+			for(i=0;i<20;i++)//清电话号命令
+				com_send_message_numb[i]='\0';
+			strcat(com_send_message,data_number);//获得电话号命令
+			strcpy(com_send_message_numb,com_send_message);
+			send0_data(strlen("data_number"),"data_number");
+			send0_data(strlen(data_number),data_number);
+			send0_data(strlen("\r\n"),"\r\n");
+			send0_data(strlen(com_send_message_numb),com_send_message_numb);
+			send0_data(strlen("\r\n"),"\r\n");
+			j=0;
+			for(i=0;i<200;i++)//清发送的内容
+				data_content[i]='\0';
+			for(i=douhao[2]+1;i<size_of_temp2_data;i++)//得到发送的内容
+			{
+				data_content[j]=temp2_data[i];
+				temp2_data[i]='\0';//清空temp2_data
+				j++;
+			
+			}
+			send0_data(strlen("data_content"),"data_content");
+			send0_data(strlen(data_content),data_content);
+			send0_data(strlen("\r\n"),"\r\n");
+			j=0;
+			rec0_num=0;
+		                            
+		}
+		else
+			if(strstr(data_type,"read message")!=NULL)// 命令是要读短信
+			{
+			
+				send0_data(strlen("ENTER READ MESSAGE PROGROAM"),"ENTER READ MESSAGE PROGROAM");
+				delay_s();
+				uint8_t read_message_com[30]="AT+CMGR=";		
+				read_message_flag=1;
+			
+				for(i=0;i<200;i++)
+					temp1_data[i]='\0';
+				rec0_num=0;
+			
+				send1_data(strlen("AT+CMGF=1\r"),"AT+CMGF=1\r");//短信方式///////////////////////////
+				send0_data(strlen("\r\n"),"\r\n");
+				delay_s();
+				send1_data(strlen("AT+CNMI=2,1\r"),"AT+CNMI=2,1\r");//短信提示///////////////////////////
+				send0_data(strlen("\r\n"),"\r\n");
+				delay_s();
+				for(i=0;i<200;i++)
+					temp1_data[i]='\0';	
+				rec1_num=0;
+				while(!(strstr(temp1_data,"+CMTI")))
+				{
+					delay_s();
+				}
+
+				send0_data(strlen(temp1_data),temp1_data);
+				send0_data(strlen("\r\n"),"\r\n");
+				delay_s();
+				for(i=0;i<10;i++)//清逗号所在位置
+					douhao[i]='\0';
+				k=0;
+				for(i=0;i<strlen(temp1_data);i++)//找到','所在位置
+				{
+					if(temp1_data[i]==',')
+					{
+						douhao[k]=i;
+						k++;
+					}
+		
+				}
+			
+				for(i=0;i<10;i++)					//清收到短信所在位置
+					data_read_message_place[i]='\0';
+				j=0;
+			
+				for(i=douhao[0]+1;i<strlen(temp1_data);i++)
+					{
+						data_read_message_place[j]=temp1_data[i];
+						j++;
+					}
+				for(i=0;i<200;i++)
+					temp1_data[i]='\0';	
+				rec1_num=0;
+				data_read_message_place[j]='\r';
+				send0_data(strlen(data_read_message_place),data_read_message_place);//提示为未读短信place
+				send0_data(strlen("\r\n"),"\r\n");
+				//data_read_message_place[j]='\r';
+				strcat(read_message_com,data_read_message_place);
+				send1_data(strlen(read_message_com),read_message_com);//////////////////////////////////
+				send0_data(strlen("\r\n"),"\r\n");		
+				delay_s();
+
+				while(!(strstr(temp1_data,"CMGR")))
+				{
+					delay_s();
+					delay_s();
+				}
+
+				size_of_temp2_data=strlen(temp1_data);//获得temp0-data的size
+				send0_data(strlen(temp1_data),temp1_data);
+				send0_data(strlen("\r\n"),"\r\n");
+				delay_s();
+				for(i=0;i<10;i++)//清逗号所在位置
+					douhao[i]='\0';
+				k=0;
+				for(i=0;i<strlen(temp1_data);i++)//找到'"'所在位置
+				{
+					if(temp1_data[i]=='"')
+					{
+						douhao[k]=i;
+						k++;
+					}
+		
+				}
+			
+				for(i=0;i<15;i++)//清读或未读的标志
+					state_message[i]='\0';
+				j=0;
+				for(i=douhao[0]+1;i<douhao[1]+1;i++)//获得读或未读的标志
+					{
+						state_message[j]=temp1_data[i];
+						j++;	
+					}
+				if(strstr(state_message,"UN")!=NULL)
+					send0_data(strlen("This is a unread message"),"This is a unread message");//提示为未读短信
+				else
+					send0_data(strlen("This is a read message"),"This is a read message");
+
+				delay_s();
+				send0_data(strlen("\r\n"),"\r\n");
+				j=0;
+				for(i=0;i<20;i++)//clear tele number
+					data_number[i]='\0';
+				for(i=douhao[2]+1;i<douhao[3]-3;i++)//获得电话号
+					{
+						data_number[j]=temp1_data[i];
+						j++;
+					}
+				send0_data(strlen("data_number"),"data_number");
+				send0_data(strlen(data_number),data_number);//提示短信电话号
+				send0_data(strlen("\r\n"),"\r\n");
+				delay_s();
+				j=0;
+				for(i=0;i<200;i++)//clear tele number
+					data_content[i]='\0';
+				for(i=douhao[7]+3;i<size_of_temp2_data-8;i++)//获得content
+					{
+						data_content[j]=temp1_data[i];
+						j++;
+					}
+				send0_data(strlen("data_content"),"data_content");
+				send0_data(strlen(data_content),data_content);//提示短信content
+				send0_data(strlen("\r\n"),"\r\n");
+				delay_s();
+				j=0;
+				for(i=0;i<50;i++)//clear tele number
+					data_time[i]='\0';
+				for(i=douhao[6]+1;i<douhao[7]-3;i++)//获得TIME
+					{
+						data_time[j]=temp1_data[i];
+						j++;
+					}
+				send0_data(strlen("data_time"),"data_time");
+				send0_data(strlen(data_time),data_time);//提示短信TIME
+				send0_data(strlen("\r\n"),"\r\n");
+				delay_s();
+				for(i=0;i<200;i++)//清temp0_data
+					temp0_data[i]='\0';
+				rec0_num=0;
+				uart0_rec_flag=0;
+				for(i=0;i<200;i++)//清temp1_data
+					temp1_data[i]='\0';
+				rec1_num=0;
+				uart0_rec_flag=0;
+			}
+		else
+			send0_data(strlen("type of command is error,type again,please"),"type of command is error,type again,please");
+		
+		for(i=0;i<200;i++)//清temp0_data
+			temp0_data[i]='\0';
+		rec0_num=0;
+		for(i=0;i<20;i++)//清数据形式
+			data_type[i]='\0';
+	}
+	
+}
+
+
+//主程序
+int main(void)
+{
+	
+	
+	uint8_t i;
+	cli(); //关中断
+	UART0_SETTING(9600,7372800);//设置波特率、允许发送和接收,8位数据+1位STOP位
+	UART1_SETTING(9600,7372800);//设置波特率、允许发送和接收,8位数据+1位STOP位	
+	init_time0();
+	sei();
+	error_num1=0;
+	begin:
+	
+	clear_data();
+
+	delay_s();//3s后sim900a开机
+	delay_s();
+	delay_s();
+	sim_open_test();
+	for(i=0;i<10;i++)
+	{
+		delay_s();
+	}
+	sim_hand();
+	
+	//error_num1=0;
+	clear_data();
+	delay_s();
+	while(1)
+	{
+		chaibao();
+		if(send_message_flag==1)
+		{
+			begin1:
+			send_message_flag=0;
+			
+			while(!hand("OK"))
+			{
+				send1_data(strlen("AT+CMGF=1\r"),"AT+CMGF=1\r"); 
+				delay_s();
+				sim_die();
+				if(reset_flag==1)
+				{
+					reset_flag=0;
+					goto begin1;
+				}
+				if(restart_flag==1)
+				{
+					restart_flag=0;
+					goto begin;
+				}
+
+			}
+			send0_data(strlen("MESSAGE FORM OK\r\n"),"MESSAGE FORM OK\r\n");
+			error_num1=0;
+			clear_data();
+			delay_s();
+			send1_data(strlen(com_send_message_numb),com_send_message_numb);
+			//send1_data(strlen("AT+CMGS=\"15124532672\"\r"),"AT+CMGS=\"15124532672\"\r"); 
+			//send1_data(strlen("\\n"),"\\n");
+
+			while(!hand(">"))
+			{
+				delay_s();
+				sim_die();
+				if(reset_flag==1)
+				{
+					reset_flag=0;
+					goto begin1;
+				}
+				if(restart_flag==1)
+				{
+					restart_flag=0;
+					goto begin;
+				}
+	
+			}
+			send0_data(strlen("TEL NUMBER OK \r\n"),"TEL NUMBER OK \r\n");
+			error_num1=0;
+			clear_data();
+			delay_s();
+			send1_data(strlen(data_content),data_content);
+			clear_data();
+			delay_s();
+			UART1_DATA_BYTE_SEND(0x1a);
+			i=0;
+			while(!hand("OK"))
+			{ 
+				delay_s();
+				delay_s();
+				delay_s();
+				i++;
+				if(i==10)
+				{
+					sim_restart();
+				
+					strcpy(temp0_data,backup_temp0_data);
+					uart0_rec_flag=1;
+					send_message_flag=1;
+
+					goto begin;
+		
+				}
+			}
+			send0_data(strlen("SUCCESS \r\n"),"SUCCESS \r\n");
+		}
+	}
+}
+
