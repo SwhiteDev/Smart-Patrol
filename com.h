@@ -51,7 +51,9 @@ enum comm_parity_t
 #define ERR_PRINT		perror
 #define LIBDVR_PRINT		printf
 
-char *DEV_COM = NULL;
+char *DEV_COM_RFID = NULL;
+char *DEV_COM_GPRS = NULL;
+
 
 int CommOpen(char *DEV_COM);
 
@@ -71,4 +73,4 @@ void rfid(int fd);
 
 int  rfid_init(void);
 
-void gprs(void);
+int gprs_init(void);
