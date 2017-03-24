@@ -103,7 +103,12 @@ int CommOpen(char *DEV)
 	return fd;
 }
 
-
+/**************************************************
+ *函数名：CommDestory()
+ *功  能：关闭串口
+ *参  数：fd
+ *返回值：int
+**************************************************/
 int CommDestory(int fd)
 {
 	int ret = -1;
@@ -118,9 +123,12 @@ int CommDestory(int fd)
 
 	return ret;
 }
-
-
-
+/**************************************************
+ *函数名：SetAttribute()
+ *功  能：设置串口参数
+ *参  数：int fd,参数结构体COMM_ATTR *pattr
+ *返回值：int fd
+**************************************************/
 int SetAttribute(int fd,COMM_ATTR *pattr)
 {
 	int dev_fd = fd;
@@ -334,9 +342,12 @@ int SetAttribute(int fd,COMM_ATTR *pattr)
 
 	return 0;
 } 
-
-
-
+/**************************************************
+ *函数名：GetAttribute()
+ *功  能：完成设置串口参数
+ *参  数：int fd
+ *返回值：int fd
+**************************************************/
 int GetAttribute(int fd)
 {
 	int dev_fd = fd;
@@ -352,36 +363,35 @@ int GetAttribute(int fd)
 	cfmakeraw(&opt);			
 	return 0;
 } 
-
-
-/*********************************************************
-int CommRead(int fd,void *pdata, DWORD nbytes)
+/**************************************************
+ *函数名：CommRead()
+ *功  能：读串口
+ *参  数：int fd,char *pdata,DWORD nbytes
+ *返回值：int 读取字节数
+**************************************************/
+int CommRead(int fd,char *pdata, DWORD nbytes)
 {	
 	if (fd < 0)
 	{
-		fd = open(DEV_COM, O_RDWR);
-		if (fd < 0)
-		{
-			ERR_PRINT("Can't Open Com Dev");
-			return -1;
-		}		
+		ERR_PRINT("Can't Open Com Dev");
+		return -1;
 	}
 	printf("start to read!\n");
 	return read(fd, pdata, nbytes);
 }
-
-
-int CommWrite(int fd,void *pdata, DWORD len)
+/**************************************************
+ *函数名：CommWrite()
+ *功  能：写串口
+ *参  数：int fd,char *pdata,DWORD len
+ *返回值：int 写入字节数
+**************************************************/
+int CommWrite(int fd,char *pdata, DWORD len)
 {	
 	if (fd < 0)
 	{
-		fd = open(DEV_COM, O_RDWR);
-		if (fd < 0)
-		{
-			ERR_PRINT("Can't Open Com Dev");
-			return -1;
-		}		
-	}
+		ERR_PRINT("Can't Open Com Dev");
+		return -1;
+	}		
 	
 	printf("start to write!\n");
 	return write(fd, pdata, len);
@@ -392,14 +402,9 @@ int CommPurge(int fd,DWORD dw_flags)
 {
 	if (fd < 0)
 	{
-		fd = open(DEV_COM, O_RDWR);
-		if (fd < 0)
-		{
-			ERR_PRINT("Can't Open Com Dev");
-			return -1;
-		}		
-	}
-
+		ERR_PRINT("Can't Open Com Dev");
+		return -1;
+	}		
 	switch (dw_flags)
 	{
 		case COMM_PURGE_TXABORT:
@@ -421,4 +426,3 @@ int CommPurge(int fd,DWORD dw_flags)
 
 	return 0;
 }
-********************************************************/

@@ -63,9 +63,9 @@ int SetAttribute(int fd,COMM_ATTR *pattr);
 
 int GetAttribute(int fd);
 
-int CommRead(int fd,void *pdata, DWORD nbytes);
+int CommRead(int fd,char *pdata, DWORD nbytes);
 
-int CommWrite(int fd,void *pdata, DWORD len);
+int CommWrite(int fd,char *pdata, DWORD len);
 
 int CommPurge(int fd,DWORD dw_flags);
 
