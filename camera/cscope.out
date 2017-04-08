@@ -1,0 +1,346 @@
+cscope 15 $HOME/Smart-Patrol/camera -q 0000000054 0000002039
+	@camera.c
+
+1 
+	~<ÿm”a.h
+>
+
+2 
+	$š™_v4l2
+()
+
+4 
+i
+ = 0;
+
+5 
+»t
+ = 0;
+
+8 if((
+fd_video
+ = 
+	`İ’
+(
+FILE_VIDEO
+,
+O_RDWR
+)) == -1)
+
+10 
+	`´štf
+("open v4l interface failed!\n");
+
+11  (
+FALSE
+);
+
+15 if(
+	`ioùl
+(
+fd_video
+,
+VIDIOC_QUERYCAP
+,&
+ÿp
+) == -1)
+
+17 
+	`´štf
+("İ’ deviû % çed:uÇbËØqu”y deviû!\n",
+FILE_VIDEO
+);
+
+18  (
+FALSE
+);
+
+22 
+	`´štf
+("driv”:\t\t%s\n",
+ÿp
+.
+driv”
+);
+
+23 
+	`´štf
+("ÿrd:\t\t%s\n",
+ÿp
+.
+ÿrd
+);
+
+24 
+	`´štf
+("bus_šfo:\t%s\n",
+ÿp
+.
+bus_šfo
+);
+
+25 
+	`´štf
+("v”siÚ:\t%d\n",
+ÿp
+.
+v”siÚ
+);
+
+26 
+	`´štf
+("ÿ·b™›s:\t%x\n",
+ÿp
+.
+ÿ·b™›s
+);
+
+28 if((
+ÿp
+.
+ÿ·b™›s
+ & 
+V4L2_CAP_VIDEO_CAPTURE
+) == V4L2_CAP_VIDEO_CAPTURE)
+
+29 
+	`´štf
+("Deviû %s:suµÜt ÿ±u».\n",
+FILE_VIDEO
+);
+
+30 if((
+ÿp
+.
+ÿ·b™›s
+ & 
+V4L2_CAP_STREAMING
+) == V4L2_CAP_STREAMING)
+
+31 
+	`´štf
+("Deviû %s:suµÜt ¡»amšg.\n",
+FILE_VIDEO
+);
+
+34 
+fmtdesc
+.
+šdex
+ = 0;
+
+35 
+fmtdesc
+.
+ty³
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+36 
+	`´štf
+("Support format:\n");
+
+37 
+	`ioùl
+(
+fd_video
+,
+VIDIOC_ENUM_FMT
+,&
+fmtdesc
+) != -1)
+
+39 
+	`´štf
+("\t%d.%s\n",
+fmtdesc
+.
+šdex
++1,fmtdesc.
+desütiÚ
+);
+
+40 
+fmtdesc
+.
+šdex
+++;
+
+44 
+fmt
+.
+ty³
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+45 
+fmt
+.fmt.
+pix
+.
+pix–fÜm©
+ = 
+V4L2_PIX_FMT_YUYV
+;
+
+46 
+fmt
+.fmt.
+pix
+.
+height
+ = 
+IMAGEHEIGHT
+;
+
+47 
+fmt
+.fmt.
+pix
+.
+width
+ = 
+IMAGEWIDTH
+;
+
+48 
+fmt
+.fmt.
+pix
+.
+f›ld
+ = 
+V4L2_FIELD_INTERLACED
+;
+
+52 
+	}
+}
+
+	@camera.h
+
+1 
+	#TRUE
+ 1
+
+	)
+
+2 
+	#FALSE
+ 0
+
+	)
+
+4 
+	#FILE_VIDEO
+ "/dev/video0"
+
+	)
+
+5 
+	#BMP
+ "/home/swh™e/Sm¬t-P©rŞ/ÿm”a/piùu»/image.bmp"
+
+	)
+
+6 
+	#YUV
+ "/home/swh™e/Sm¬t-P©rŞ/ÿm”a/piùu»/image.yuv"
+
+	)
+
+8 
+	#IMAGEWIDTH
+ 640
+
+	)
+
+9 
+	#IMAGEHEIGHT
+ 480
+
+	)
+
+11 
+	gfd_video
+;
+
+12 
+v4l2_ÿ·b™y
+ 
+	gÿp
+;
+
+13 
+v4l2_fmtdesc
+ 
+	gfmtdesc
+;
+
+14 
+v4l2_fÜm©
+ 
+	gfmt
+,
+	gfmck
+;
+
+15 
+v4l2_¡»am·rm
+ 
+	g£tås
+;
+
+16 
+v4l2_»que¡bufãrs
+ 
+	g»q
+;
+
+17 
+v4l2_bufãr
+ 
+	gbuf
+;
+
+18 
+v4l2_buf_ty³
+ 
+	gty³
+;
+
+20 
+	gäame_bufãr
+[
+IMAGEHEIGHT
+*
+IMAGEWIDTH
+*3];
+
+22 
+š™_v4l2
+();
+
+23 
+v4l2_g¿b
+();
+
+24 
+şo£_v4l2
+();
+
+26 
+yuyv_2_rgb888
+();
+
+	@
+1
+.
+1
+/usr/include
+2
+18
+camera.c
+camera.h

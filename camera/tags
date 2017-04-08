@@ -1,0 +1,24 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BMP	camera.h	5;"	d
+FALSE	camera.h	2;"	d
+FILE_VIDEO	camera.h	4;"	d
+IMAGEHEIGHT	camera.h	9;"	d
+IMAGEWIDTH	camera.h	8;"	d
+TRUE	camera.h	1;"	d
+YUV	camera.h	6;"	d
+buf	camera.h	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
+cap	camera.h	/^static static v4l2_capability cap;$/;"	v
+fd_video	camera.h	/^static int fd_video;$/;"	v
+fmt	camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
+fmtack	camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
+fmtdesc	camera.h	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
+frame_buffer	camera.h	/^unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];$/;"	v
+init_v4l2	camera.c	/^int init_v4l2(void)$/;"	f
+req	camera.h	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
+setfps	camera.h	/^struct v4l2_streamparm setfps;$/;"	v	typeref:struct:v4l2_streamparm
+type	camera.h	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
