@@ -1,278 +1,344 @@
-cscope 15 $HOME/Smart-Patrol -q 0000001887 0000140701
-	@com.h
+cscope 15 $HOME/Smart-Patrol -q 0000001936 0000142349
+	@camera/camera.c
 
 1 
-	~<uni°d.h
+	~<ˇmîa.h
 >
 
-2 
-	~<°dlib.h
->
+2 
+	$öô_v4l2
+()
 
-3 
-	~<°dio.h
->
+4 
+i
+ = 0;
 
-4 
-	~<°rög.h
->
+5 
+ªt
+ = 0;
 
-5 
-	~<f˙é.h
->
+8 if((
+fd_video
+ = 
+	`›í
+(
+FILE_VIDEO
+,
+O_RDWR
+)) == -1)
 
-6 
-	~<sys/°©.h
->
+10 
+	`¥ötf
+("open v4l interface failed!\n");
 
-7 
-	~<sys/ty≥s.h
->
+11  (
+FALSE
+);
 
-8 
-	~<î∫o.h
->
+15 if(
+	`io˘l
+(
+fd_video
+,
+VIDIOC_QUERYCAP
+,&
+ˇp
+) == -1)
 
-9 
-	~<ãrmios.h
->
+17 
+	`¥ötf
+("›í devi˚ %†Áûed:u«bÀÅÿquîy devi˚!\n",
+FILE_VIDEO
+);
 
-11 
-	tBYTE
-;
-
-12 
-	tWORD
-;
-
-13 sig√d 
-	tLONG
-;
-
-14 
-	tDWORD
-;
-
-16 
-	sègCOMM_ATTR
-
-
-18 
-DWORD
- 
-	mbaudøã
-;
-
-19 
-BYTE
- 
-	md©abôs
-;
-
-20 
-BYTE
- 
-	m∑rôy
-;
-
-21 
-BYTE
- 
-	m°›bôs
-;
+18  (
+FALSE
+);
 
 22 
-BYTE
- 
-	mª£rved
-;
+	`¥ötf
+("drivî:\t\t%s\n",
+ˇp
+.
+drivî
+);
 
-23 } 
-	tCOMM_ATTR
-;
+23 
+	`¥ötf
+("ˇrd:\t\t%s\n",
+ˇp
+.
+ˇrd
+);
 
-26 
-	ecomm_°›bôs_t
+24 
+	`¥ötf
+("bus_öfo:\t%s\n",
+ˇp
+.
+bus_öfo
+);
 
+25 
+	`¥ötf
+("vîsi⁄:\t%d\n",
+ˇp
+.
+vîsi⁄
+);
 
-28 
-	mCOMM_ONESTOPBIT
-,
+26 
+	`¥ötf
+("ˇ∑bûôõs:\t%x\n",
+ˇp
+.
+ˇ∑bûôõs
+);
+
+28 if((
+ˇp
+.
+ˇ∑bûôõs
+ & 
+V4L2_CAP_VIDEO_CAPTURE
+) == V4L2_CAP_VIDEO_CAPTURE)
 
 29 
-	mCOMM_ONE5STOPBITS
-,
+	`¥ötf
+("Devi˚ %s:suµ‹t†ˇ±uª.\n",
+FILE_VIDEO
+);
 
-30 
-	mCOMM_TWOSTOPBITS
-,
+30 if((
+ˇp
+.
+ˇ∑bûôõs
+ & 
+V4L2_CAP_STREAMING
+) == V4L2_CAP_STREAMING)
 
-33 
-	ecomm_∑rôy_t
+31 
+	`¥ötf
+("Devi˚ %s:suµ‹t†°ªamög.\n",
+FILE_VIDEO
+);
 
+34 
+fmtdesc
+.
+ödex
+ = 0;
 
 35 
-	mCOMM_NOPARITY
-,
+fmtdesc
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
 
 36 
-	mCOMM_ODDPARITY
-,
+	`¥ötf
+("Support format:\n");
 
-37 
-	mCOMM_EVENPARITY
+37 
+	`io˘l
+(
+fd_video
 ,
-
-38 
-	mCOMM_MARK
-,
+VIDIOC_ENUM_FMT
+,&
+fmtdesc
+) != -1)
 
 39 
-	mCOMM_SPACE
-,
+	`¥ötf
+("\t%d.%s\n",
+fmtdesc
+.
+ödex
++1,fmtdesc.
+des¸ùti⁄
+);
 
-43 
-	#COMM_PURGE_TXABORT
- 0x0001
+40 
+fmtdesc
+.
+ödex
+++;
 
-	)
-
-44 
-	#COMM_PURGE_RXABORT
- 0x0002
-
-	)
-
-45 
-	#COMM_PURGE_TXCLEAR
- 0x0004
-
-	)
-
-46 
-	#COMM_PURGE_RXCLEAR
- 0x0008
-
-	)
-
-49 
-	#MAX
-(
-a
-, 
-b
-Ë◊ > b?á: b)
-
-	)
-
-51 
-	#ERR_PRINT
- 
-≥º‹
-
-
-	)
-
-52 
-	#LIBDVR_PRINT
- 
-¥ötf
-
-
-	)
-
-54 *
-	gDEV_COM_RFID
+44 
+fmt
+.
+ty≥
  = 
-NULL
+V4L2_BUF_TYPE_VIDEO_CAPTURE
 ;
 
-55 *
-	gDEV_COM_GPRS
+45 
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
  = 
-NULL
+V4L2_PIX_FMT_YUYV
 ;
 
-58 
-CommO≥n
-(*
-DEV_COM
-);
+46 
+fmt
+.fmt.
+pix
+.
+height
+ = 
+IMAGEHEIGHT
+;
 
-60 
-CommDe°‹y
-(
-fd
-);
+47 
+fmt
+.fmt.
+pix
+.
+width
+ = 
+IMAGEWIDTH
+;
 
-62 
-SëAâribuã
-(
-fd
+48 
+fmt
+.fmt.
+pix
+.
+fõld
+ = 
+V4L2_FIELD_INTERLACED
+;
+
+52 
+	}
+}
+
+	@camera/camera.h
+
+1 
+	#TRUE
+ 1
+
+	)
+
+2 
+	#FALSE
+ 0
+
+	)
+
+4 
+	#FILE_VIDEO
+ "/dev/video0"
+
+	)
+
+5 
+	#BMP
+ "/home/swhôe/Sm¨t-P©rﬁ/ˇmîa/pi˘uª/image.bmp"
+
+	)
+
+6 
+	#YUV
+ "/home/swhôe/Sm¨t-P©rﬁ/ˇmîa/pi˘uª/image.yuv"
+
+	)
+
+8 
+	#IMAGEWIDTH
+ 640
+
+	)
+
+9 
+	#IMAGEHEIGHT
+ 480
+
+	)
+
+11 
+	gfd_video
+;
+
+12 
+v4l2_ˇ∑bûôy
+ 
+	gˇp
+;
+
+13 
+v4l2_fmtdesc
+ 
+	gfmtdesc
+;
+
+14 
+v4l2_f‹m©
+ 
+	gfmt
 ,
-COMM_ATTR
- *
-∑âr
-);
+	gfmèck
+;
 
-64 
-GëAâribuã
-(
-fd
-);
-
-66 
-CommRód
-(
-fd
-,*
-pd©a
-, 
-DWORD
+15 
+v4l2_°ªam∑rm
  
-nbyãs
-);
+	g£tÂs
+;
 
-68 
-CommWrôe
-(
-fd
-,*
-pd©a
-, 
-DWORD
+16 
+v4l2_ªque°buf„rs
  
-Àn
-);
+	gªq
+;
 
-70 
-CommPurge
-(
-fd
-,
-DWORD
+17 
+v4l2_buf„r
  
-dw_Êags
-);
+	gbuf
+;
 
-72 
-rfid
-(
-fd
-);
+18 
+v4l2_buf_ty≥
+ 
+	gty≥
+;
 
-74 
-rfid_öô
+20 
+	g‰ame_buf„r
+[
+IMAGEHEIGHT
+*
+IMAGEWIDTH
+*3];
+
+22 
+öô_v4l2
 ();
 
-76 
-g¥s_öô
+23 
+v4l2_gøb
+();
+
+24 
+˛o£_v4l2
+();
+
+26 
+yuyv_2_rgb888
 ();
 
 	@main.c
 
 1 
-	~"com.h
+	~"mycom.h
 "
 
 2 
@@ -1656,6 +1722,216 @@ TCIFLUSH
 428 
 	}
 }
+
+	@mycom.c
+
+1 
+	gö˛ude
+ "mycom.h"
+
+6 
+	$com_›í
+(*
+dev
+)
+
+8 
+fd
+ = -1;
+
+9 
+fd
+ = 
+	`›í
+(*
+dev
+, 
+O_RDWR
+);
+
+10 if(
+fd
+ == -1)
+
+12 
+	`≥º‹
+("‰∏≤Âè£ÊâìÂºÄÂ§±Ë¥•!");
+
+13 
+	`exô
+(0);
+
+15  
+fd
+;
+
+16 
+	}
+}
+
+19 
+	g£
+
+
+	@mycom.h
+
+1 
+	~<uni°d.h
+>
+
+2 
+	~<°dlib.h
+>
+
+3 
+	~<°dio.h
+>
+
+4 
+	~<°rög.h
+>
+
+5 
+	~<f˙é.h
+>
+
+6 
+	~<sys/°©.h
+>
+
+7 
+	~<sys/ty≥s.h
+>
+
+8 
+	~<î∫o.h
+>
+
+9 
+	~<ãrmios.h
+>
+
+11 
+	#COMM_NOPARITY
+ 0
+
+	)
+
+12 
+	#COMM_ODDPARITY
+ 1
+
+	)
+
+13 
+	#COMM_EVENPARITY
+ 2
+
+	)
+
+15 
+	#COMM_ONESTOPBIT
+ 1
+
+	)
+
+16 
+	#COMM_TWOSTOPBITS
+ 2
+
+	)
+
+19 
+	tBYTE
+;
+
+20 
+	tWORD
+;
+
+21 sig√d 
+	tLONG
+;
+
+22 
+	tDWORD
+;
+
+24 
+	scom_©å
+
+
+26 
+	mbaudøã
+;
+
+27 
+	md©abôs
+;
+
+28 
+	m°›bôs
+;
+
+29 
+	m∑rôy
+;
+
+33 
+com_›í
+(*
+dev
+);
+
+34 
+£t_com_©å
+(
+fd
+, 
+com_©å
+ *
+©å
+);
+
+35 
+gë_com_©å
+(
+fd
+, 
+com_©å
+ *
+©å
+);
+
+36 
+com_ªad
+(
+fd
+, 
+rbuff
+, 
+DWORD
+ 
+nbyãs
+);
+
+37 
+com_wrôe
+(
+fd
+, 
+wbuff
+, 
+DWORD
+ 
+nbyãs
+);
+
+38 
+com_˛o£
+(*
+dev
+);
 
 	@/usr/include/errno.h
 
@@ -25456,10 +25732,13 @@ __END_DECLS
 .
 1
 /usr/include
-22
-456
-com.h
+25
+498
+camera/camera.c
+camera/camera.h
 main.c
+mycom.c
+mycom.h
 /usr/include/errno.h
 /usr/include/fcntl.h
 /usr/include/stdio.h

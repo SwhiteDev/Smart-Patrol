@@ -4,47 +4,50 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-BYTE	com.h	/^typedef unsigned char			BYTE;$/;"	t
-COMM_ATTR	com.h	/^} COMM_ATTR;$/;"	t	typeref:struct:tagCOMM_ATTR
-COMM_EVENPARITY	com.h	/^	COMM_EVENPARITY,$/;"	e	enum:comm_parity_t
-COMM_MARK	com.h	/^	COMM_MARK,$/;"	e	enum:comm_parity_t
-COMM_NOPARITY	com.h	/^	COMM_NOPARITY,$/;"	e	enum:comm_parity_t
-COMM_ODDPARITY	com.h	/^	COMM_ODDPARITY,$/;"	e	enum:comm_parity_t
-COMM_ONE5STOPBITS	com.h	/^	COMM_ONE5STOPBITS,$/;"	e	enum:comm_stopbits_t
-COMM_ONESTOPBIT	com.h	/^	COMM_ONESTOPBIT,$/;"	e	enum:comm_stopbits_t
-COMM_PURGE_RXABORT	com.h	44;"	d
-COMM_PURGE_RXCLEAR	com.h	46;"	d
-COMM_PURGE_TXABORT	com.h	43;"	d
-COMM_PURGE_TXCLEAR	com.h	45;"	d
-COMM_SPACE	com.h	/^	COMM_SPACE,$/;"	e	enum:comm_parity_t
-COMM_TWOSTOPBITS	com.h	/^	COMM_TWOSTOPBITS,$/;"	e	enum:comm_stopbits_t
+BMP	camera/camera.h	5;"	d
+BYTE	mycom.h	/^typedef unsigned char			BYTE;$/;"	t
+COMM_EVENPARITY	mycom.h	13;"	d
+COMM_NOPARITY	mycom.h	11;"	d
+COMM_ODDPARITY	mycom.h	12;"	d
+COMM_ONESTOPBIT	mycom.h	15;"	d
+COMM_TWOSTOPBITS	mycom.h	16;"	d
 CommDestory	main.c	/^int CommDestory(int fd)$/;"	f
 CommOpen	main.c	/^int CommOpen(char *DEV)$/;"	f
 CommPurge	main.c	/^int CommPurge(int fd,DWORD dw_flags)$/;"	f
 CommRead	main.c	/^int CommRead(int fd,char *pdata, DWORD nbytes)$/;"	f
 CommWrite	main.c	/^int CommWrite(int fd,char *pdata, DWORD len)$/;"	f
-DEV_COM_GPRS	com.h	/^char *DEV_COM_GPRS = NULL;$/;"	v
-DEV_COM_RFID	com.h	/^char *DEV_COM_RFID = NULL;$/;"	v
-DWORD	com.h	/^typedef unsigned int			DWORD;$/;"	t
-ERR_PRINT	com.h	51;"	d
+DWORD	mycom.h	/^typedef unsigned int			DWORD;$/;"	t
+FALSE	camera/camera.h	2;"	d
+FILE_VIDEO	camera/camera.h	4;"	d
 GetAttribute	main.c	/^int GetAttribute(int fd)$/;"	f
-LIBDVR_PRINT	com.h	52;"	d
-LONG	com.h	/^typedef signed int			LONG;$/;"	t
-MAX	com.h	49;"	d
+IMAGEHEIGHT	camera/camera.h	9;"	d
+IMAGEWIDTH	camera/camera.h	8;"	d
+LONG	mycom.h	/^typedef signed int	         	LONG;$/;"	t
 SetAttribute	main.c	/^int SetAttribute(int fd,COMM_ATTR *pattr)$/;"	f
-WORD	com.h	/^typedef unsigned short			WORD;$/;"	t
-baudrate	com.h	/^	DWORD	baudrate;		$/;"	m	struct:tagCOMM_ATTR
-comm_parity_t	com.h	/^enum comm_parity_t $/;"	g
-comm_stopbits_t	com.h	/^enum comm_stopbits_t $/;"	g
-databits	com.h	/^	BYTE	databits;$/;"	m	struct:tagCOMM_ATTR
+TRUE	camera/camera.h	1;"	d
+WORD	mycom.h	/^typedef unsigned short			WORD;$/;"	t
+YUV	camera/camera.h	6;"	d
+baudrate	mycom.h	/^	unsigned int baudrate;    \/*波特率*\/$/;"	m	struct:com_attr
+buf	camera/camera.h	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
+cap	camera/camera.h	/^static static v4l2_capability cap;$/;"	v
+com_attr	mycom.h	/^typedef struct com_attr       \/*串口属性结构*\/         $/;"	s
+com_open	mycom.c	/^int com_open(char *dev)$/;"	f
+databits	mycom.h	/^	unsigned char databits;    \/*数据位*\/$/;"	m	struct:com_attr
+fd_video	camera/camera.h	/^static int fd_video;$/;"	v
+fmt	camera/camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
+fmtack	camera/camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
+fmtdesc	camera/camera.h	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
+frame_buffer	camera/camera.h	/^unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];$/;"	v
 gprs_buff	main.c	/^char gprs_buff[512];$/;"	v
 gprs_init	main.c	/^int gprs_init(void)$/;"	f
+init_v4l2	camera/camera.c	/^int init_v4l2(void)$/;"	f
 main	main.c	/^int main()$/;"	f
 num	main.c	/^DWORD num = 512;$/;"	v
-parity	com.h	/^	BYTE	parity;$/;"	m	struct:tagCOMM_ATTR
-reserved	com.h	/^	BYTE	reserved;$/;"	m	struct:tagCOMM_ATTR
+parity	mycom.h	/^	unsigned char parity;    \/*校验位*\/$/;"	m	struct:com_attr
+req	camera/camera.h	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
 rfid	main.c	/^void rfid(int fd)$/;"	f
 rfid_buff	main.c	/^unsigned short rfid_buff[512];$/;"	v
 rfid_init	main.c	/^int rfid_init(void)$/;"	f
-stopbits	com.h	/^	BYTE	stopbits;	$/;"	m	struct:tagCOMM_ATTR
-tagCOMM_ATTR	com.h	/^typedef struct tagCOMM_ATTR$/;"	s
+setfps	camera/camera.h	/^struct v4l2_streamparm setfps;$/;"	v	typeref:struct:v4l2_streamparm
+stopbits	mycom.h	/^	unsigned char stopbits;    \/*停止位*\/$/;"	m	struct:com_attr
+type	camera/camera.h	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
