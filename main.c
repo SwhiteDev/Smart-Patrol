@@ -1,5 +1,8 @@
 #include "mycom.h"
-DWORD num = 512;
+#include "init.h"
+
+DWORD num = 512;          /*读取和写入字节*/
+
 extern BYTE rbuff[512];
 extern BYTE wbuff[512];
 
@@ -24,16 +27,16 @@ int main()
 **************************************************/
 /*int gprs_init(void)
 {
-	DEV_COM_GPRS = "/dev/ttyUSB1";
-	int fd = CommOpen(DEV_COM_GPRS);
-	COMM_ATTR attr = {0};
+	char *dev = "/dev/ttyUSB1";
+	int fd = com_open(dev);
+	com_attr attr = {0};
 	attr.baudrate = 9600;
 	attr.databits = 8;
 	attr.parity = COMM_NOPARITY;
 	attr.stopbits = COMM_ONESTOPBIT;
-	if(SetAttribute(fd,&attr) != 0)
+	if(set_com_attr(fd,&attr) != 0)
 		printf("set com_gprs attr failed\n");
-	GetAttribute(fd);
+	get_com_attr(fd);
 	//初始化SIM卡相关AT指令
 	char *cmd[] = {"AT\r",                 \
 			"AT+CCID\r"};
@@ -65,24 +68,4 @@ void rfid(int fd)
 		printf("%d",rbuff[i]);
 	}
 	printf("\n");
-}
-/**************************************************
- *函数名：rfid_init()
- *功  能：初始化rfid模块接口
- *参  数：void
- *返回值：int
-**************************************************/
-int rfid_init(void)
-{
-	const char *dev = "/dev/ttyUSB0";
-	int fd = com_open(dev);
-	com_attr attr = {0};
-	attr.baudrate = 19200;
-	attr.databits = 8;
-	attr.parity = COMM_NOPARITY;
-	attr.stopbits = COMM_ONESTOPBIT;
-	if(set_com_attr(fd,&attr) != 0)
-		printf("set com_rfid attr failed\n");
-	get_com_attr(fd);
-	return fd;
 }
