@@ -40,5 +40,7 @@ int  com_read(int fd, BYTE *rbuff, DWORD nbytes);
 int  com_write(int fd, BYTE *wbuff, DWORD nbytes);
 void com_close(int fd);
 
-void rfid(int fd);
+int rfid(int fd);
+void gprs(int fd);
 int rfid_init();
+int gprs_init();

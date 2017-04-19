@@ -1,7 +1,7 @@
 #include "mycom.h"
 
 BYTE rbuff[512];
-BYTE wbuff[512];
+BYTE gbuff[512];
 
 int com_open(const char *dev)
 {
@@ -12,7 +12,7 @@ int com_open(const char *dev)
 		printf("串口打开失败!");
 		exit(0);
 	}
-	fcntl(fd, F_SETFL, 0);
+//	fcntl(fd, F_SETFL, 0);    /*设置以阻塞模式打开*/
 	return fd;
 }
 
