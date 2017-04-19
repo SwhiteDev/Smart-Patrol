@@ -33,9 +33,9 @@ typedef struct com_attr       /*串口属性结构*/
 }com_attr;
 
 
-int  com_open(const char *dev);
-int  set_com_attr(int fd, com_attr *attr);
-void get_com_attr(int fd);
+int  com_open(const char *dev);   
+int  set_com_attr(int fd, com_attr *attr);  /*设置串口属性*/
+void get_com_attr(int fd);    /*获取串口属性*/
 int  com_read(int fd, BYTE *rbuff, DWORD nbytes);
 int  com_write(int fd, BYTE *wbuff, DWORD nbytes);
 void com_close(int fd);
