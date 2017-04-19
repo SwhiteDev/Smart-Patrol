@@ -1,8 +1,5 @@
 #include "mycom.h"
 
-BYTE rbuff[512];
-BYTE gbuff[512];
-
 int com_open(const char *dev)
 {
 	int fd = -1;
@@ -267,7 +264,7 @@ void get_com_attr(int fd)
  *参  数：int fd，unsigned char *rbuff, unsigned int nbytes
  *返回值：int ret读取字节数
 **************************************************/
-int com_read(int fd, BYTE *rbuff, DWORD nbytes)
+int com_read(int fd, BYTE *read_buff, DWORD nbytes)
 {
 	int ret;
 	if(fd < 0)
@@ -275,7 +272,7 @@ int com_read(int fd, BYTE *rbuff, DWORD nbytes)
 		printf("com_read error");
 		exit(0);
 	}
-	ret = read(fd, rbuff, nbytes);
+	ret = read(fd, read_buff, nbytes);
 	return ret;
 }
 
@@ -285,7 +282,7 @@ int com_read(int fd, BYTE *rbuff, DWORD nbytes)
  *参  数：int fd，unsigned char *wbuff, unsigned int nbytes
  *返回值：int ret写入字节数
 **************************************************/
-int com_write(int fd, BYTE *wbuff, DWORD nbytes)
+int com_write(int fd, BYTE *write_buff, DWORD nbytes)
 {
 	int ret;
 	if(fd < 0)
@@ -293,7 +290,7 @@ int com_write(int fd, BYTE *wbuff, DWORD nbytes)
 		printf("com_write error");
 		exit(0);
 	}
-	ret = write(fd, wbuff, nbytes);
+	ret = write(fd, write_buff, nbytes);
 	return ret;
 }
 

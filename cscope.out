@@ -1,4 +1,4 @@
-cscope 15 $HOME/Smart-Patrol -q 0000001936 0000142349
+cscope 15 $HOME/Smart-Patrol -q 0000001916 0000143913
 	@camera/camera.c
 
 1 
@@ -335,267 +335,71 @@ v4l2_gøb
 yuyv_2_rgb888
 ();
 
-	@main.c
+	@init.c
 
 1 
 	~"mycom.h
 "
 
-2 
-DWORD
- 
-	gnum
- = 512;
-
-3 
-	grfid_buff
-[512];
-
-4 
-	gg¥s_buff
-[512];
-
-6 
-	$maö
-()
-
-8 
-rfid_fd
- = -1;
-
-9 
-rfid_fd
- = 
-	`rfid_öô
-();
-
-10 
-	`rfid
-(
-rfid_fd
-);
-
-13 
-	}
-}
-
-21 
-	$g¥s_öô
-()
-
-23 
-DEV_COM_GPRS
- = "/dev/ttyUSB1";
-
-24 
-fd
- = 
-	`CommO≥n
-(
-DEV_COM_GPRS
-);
-
-25 
-COMM_ATTR
- 
-©å
- = {0};
-
-26 
-©å
-.
-baudøã
- = 9600;
-
-27 
-©å
-.
-d©abôs
- = 8;
-
-28 
-©å
-.
-∑rôy
- = 
-COMM_NOPARITY
+3 c⁄° 
+	gdevi˚_id
 ;
 
-29 
-©å
-.
-°›bôs
- = 
-COMM_ONESTOPBIT
+4 
+rbuff
+[512];
+
+5 
+gbuff
+[512];
+
+6 
+num
 ;
 
-30 if(
-	`SëAâribuã
-(
-fd
-,&
-©å
-) != 0)
+10 c⁄° *
+	gcmd
+[] = {
 
-31 
-	`¥ötf
-("set com_gprsáttr failed\n");
-
-32 
-	`GëAâribuã
-(
-fd
-);
-
-34 *
-cmd
-[] = {"AT\r", \
+23 c⁄° *
+	gpo°
+[] = {"POST /xg/index.php/admin/upload/record\r\n", \
 
 36 
-ªt_w
-;
-
-37 
-ªt_w
- = 
-	`wrôe
-(
-fd
-,
-cmd
-[1],((cmd[1])-1));
-
-38 
-	`¶ìp
-(2);
-
-39 
-ªt_r
-;
-
-40 
-ªt_r
- = 
-	`ªad
-(
-fd
-,
-g¥s_buff
-,10);
-
-41 
-	`¥ötf
-("%s\n",
-g¥s_buff
-);
-
-42  
-fd
-;
-
-44 
-	}
-}
-
-51 
-	$rfid
-(
-fd
-)
-
-53 
-	`mem£t
-(
-rfid_buff
-,'0',
-num
-);
-
-54 
-ªt
-;
-
-55 
-i
-;
-
-56 (
-ªt
- = 
-	`ªad
-(
-fd
-,
-rfid_buff
-,
-num
-)) >= 0)
-
-58 if(
-ªt
- > 5)
-
-60 
-	`¥ötf
-("%d---------------",
-ªt
-);
-
-61 
-i
- = 0;i < 5;i++)
-
-63 
-	`¥ötf
-("%d-",
-rfid_buff
-[
-i
-]);
-
-65 
-	`¥ötf
-("\n");
-
-71 
-	}
-}
-
-78 
 	$rfid_öô
 ()
 
-80 
-DEV_COM_RFID
+38 c⁄° *
+dev
  = "/dev/ttyUSB0";
 
-81 
+39 
 fd
  = 
-	`CommO≥n
+	`com_›í
 (
-DEV_COM_RFID
+dev
 );
 
-82 
-COMM_ATTR
+41 
+com_©å
  
 ©å
  = {0};
 
-83 
+42 
 ©å
 .
 baudøã
  = 19200;
 
-84 
+43 
 ©å
 .
 d©abôs
  = 8;
 
-85 
+44 
 ©å
 .
 ∑rôy
@@ -603,7 +407,7 @@ d©abôs
 COMM_NOPARITY
 ;
 
-86 
+45 
 ©å
 .
 °›bôs
@@ -611,23 +415,179 @@ COMM_NOPARITY
 COMM_ONESTOPBIT
 ;
 
-87 if(
-	`SëAâribuã
+46 if(
+	`£t_com_©å
 (
 fd
-,&
+, &
 ©å
 ) != 0)
 
-88 
+47 
 	`¥ötf
 ("set com_rfidáttr failed\n");
 
-89 
-	`GëAâribuã
+48 
+	`gë_com_©å
 (
 fd
 );
+
+49  
+fd
+;
+
+50 
+	}
+}
+
+58 
+	$g¥s_öô
+()
+
+60 
+r_ªt
+, 
+w_ªt
+, 
+i
+;
+
+61 *
+dev
+ = "/dev/ttyUSB1";
+
+62 
+fd
+ = 
+	`com_›í
+(
+dev
+);
+
+64 
+com_©å
+ 
+©å
+ = {0};
+
+65 
+©å
+.
+baudøã
+ = 9600;
+
+66 
+©å
+.
+d©abôs
+ = 8;
+
+67 
+©å
+.
+∑rôy
+ = 
+COMM_NOPARITY
+;
+
+68 
+©å
+.
+°›bôs
+ = 
+COMM_ONESTOPBIT
+;
+
+69 if(
+	`£t_com_©å
+(
+fd
+, &
+©å
+) != 0)
+
+70 
+	`¥ötf
+("set com_gprsáttr failed\n");
+
+71 
+	`gë_com_©å
+(
+fd
+);
+
+75 
+i
+ = 0;i < 9;i++)
+
+77 
+	`mem£t
+(
+gbuff
+, '\0', 
+num
+);
+
+78 
+w_ªt
+ = 
+	`com_wrôe
+(
+fd
+, 
+cmd
+[
+i
+], 
+	`°æí
+(cmd[i]));
+
+79 
+	`¥ötf
+("GPRSÂÜôÂÖ•ÂëΩ‰ª§Ôºö%s\n",
+cmd
+[
+i
+]);
+
+80 
+	`¥ötf
+("GPRSÂÜôÂÖ•Â≠óËäÇÊï∞Ôºö%d\n",
+w_ªt
+);
+
+82 
+	`¶ìp
+(1);
+
+85 
+r_ªt
+ = 
+	`com_ªad
+(
+fd
+, 
+gbuff
+, 
+num
+);
+
+86 
+	`¥ötf
+("GPRSËøîÂõûÂëΩ‰ª§Ôºö%s\n", 
+gbuff
+);
+
+87 
+	`¥ötf
+("GPRSËøîÂõûÂ≠óËäÇÊï∞Ôºö%d\n", 
+r_ªt
+);
+
+88 
+	`¶ìp
+(1);
 
 90  
 fd
@@ -637,135 +597,457 @@ fd
 	}
 }
 
-92 
-	$CommO≥n
-(*
-DEV
+	@main.c
+
+1 
+	~"mycom.h
+"
+
+2 
+DWORD
+ 
+num
+;
+
+3 c⁄° *
+cmd
+[];
+
+4 c⁄° *
+po°
+[];
+
+5 
+BYTE
+ 
+gbuff
+[512];
+
+6 
+BYTE
+ 
+rbuff
+[512];
+
+14 
+	$maö
+()
+
+16 
+rfid_fd
+ = -1;
+
+17 
+g¥s_fd
+ = -1;
+
+18 
+Êag
+ = 0;
+
+19 
+rfid_fd
+ = 
+	`rfid_öô
+();
+
+20 
+g¥s_fd
+ = 
+	`g¥s_öô
+();
+
+26 
+Êag
+ = 
+	`rfid
+(
+rfid_fd
+);
+
+27 if(
+Êag
+ > 0)
+
+29 
+	`¥ötf
+("\n\nÁ≠âÂæÖGPRSÊâßË°åÊ®°Âùó......\n\n");
+
+30 
+	`g¥s
+(
+g¥s_fd
+);
+
+31 
+	`¥ötf
+("Êú¨Ê¨°Á≠æÂà∞ÂÆåÊàêÔºÅÔºÅÔºÅ");
+
+36 
+	}
+}
+
+46 
+	$g¥s
+(
+fd
 )
 
-94 
+48 
+w_ªt
+,
+r_ªt
+;
+
+49 
+i
+,
+j
+;
+
+52 
+i
+ = 7;i < 8;i++)
+
+54 
+	`mem£t
+(
+gbuff
+, '\0', 
+num
+);
+
+55 
+w_ªt
+ = 
+	`com_wrôe
+(
+fd
+, 
+cmd
+[
+i
+], 
+	`°æí
+(cmd[i]));
+
+56 
+	`¥ötf
+("GPRSÂÜôÂÖ•ÂëΩ‰ª§Ôºö%s\n",
+cmd
+[
+i
+]);
+
+57 
+	`¥ötf
+("GPRSÂÜôÂÖ•Â≠óËäÇÊï∞Ôºö%d\n",
+w_ªt
+);
+
+58 
+	`¶ìp
+(1);
+
+61 
+r_ªt
+ = 
+	`com_ªad
+(
+fd
+, 
+gbuff
+, 
+num
+);
+
+62 
+	`¥ötf
+("GPRSËøîÂõûÂëΩ‰ª§Ôºö%s\n",
+gbuff
+);
+
+63 
+	`¥ötf
+("GPRSËøîÂõûÂ≠óËäÇÊï∞Ôºö%d\n",
+r_ªt
+);
+
+64 
+	`¶ìp
+(1);
+
+69 
+j
+ = 0;j < 5;j++)
+
+71 
+	`mem£t
+(
+gbuff
+, '\0', 
+num
+);
+
+72 
+w_ªt
+ = 
+	`com_wrôe
+(
+fd
+, 
+po°
+[
+j
+], 
+	`°æí
+(post[j]));
+
+73 
+	`¥ötf
+("GPRSÂÜôÂÖ•ÂëΩ‰ª§Ôºö%s\n",
+po°
+[
+j
+]);
+
+74 
+	`¥ötf
+("GPRSÂÜôÂÖ•Â≠óËäÇÊï∞Ôºö%d\n",
+w_ªt
+);
+
+76 
+	`¶ìp
+(1);
+
+77 
+	`¥ötf
+("ÂèëÈÄÅÊàêÂäüÔºÅ");
+
+78 
+r_ªt
+ = 
+	`com_ªad
+(
+fd
+, 
+gbuff
+, 
+num
+);
+
+79 
+	`¥ötf
+("ÊúçÂä°Âô®ËøîÂõûÊï∞ÊçÆÔºö%s\n",
+gbuff
+);
+
+80 
+	`¥ötf
+("ËøîÂõûÂ≠óËäÇÊï∞Ôºö%d\n",
+r_ªt
+);
+
+84 
+	`mem£t
+(
+gbuff
+, '\0', 
+num
+);
+
+85 
+	`com_wrôe
+(
+fd
+, 
+cmd
+[9], 
+	`°æí
+(cmd[9]));
+
+86 
+r_ªt
+ = 
+	`com_ªad
+(
+fd
+, 
+gbuff
+, 
+num
+);
+
+87 
+	`¥ötf
+("%s\n",
+gbuff
+);
+
+88 
+	}
+}
+
+97 
+	$rfid
+(
+fd
+)
+
+99 
+	`mem£t
+(
+rbuff
+, '0', 
+num
+);
+
+100 
+ªt
+;
+
+101 
+i
+;
+
+103 
+	`¶ìp
+(2);
+
+104 
+ªt
+ = 
+	`com_ªad
+(
+fd
+, 
+rbuff
+, 
+num
+);
+
+105 
+	`¥ötf
+("RFIDÊé•Êî∂Â≠óËäÇÊï∞Ôºö%d\n",
+ªt
+);
+
+106 
+	`¥ötf
+("Âç°Âè∑Ôºö");
+
+107 
+i
+ = 0;ò< 
+ªt
+;i++)
+
+109 
+	`¥ötf
+("%d",
+rbuff
+[
+i
+]);
+
+111 
+	`¥ötf
+("\n");
+
+112  
+ªt
+;
+
+113 
+	}
+}
+
+	@mycom.c
+
+1 
+	~"mycom.h
+"
+
+3 
+BYTE
+ 
+	grbuff
+[512];
+
+4 
+BYTE
+ 
+	ggbuff
+[512];
+
+5 
+DWORD
+ 
+	gnum
+ = 512;
+
+7 
+	$com_›í
+(c⁄° *
+dev
+)
+
+9 
 fd
  = -1;
 
-95 
+10 
 fd
  = 
 	`›í
 (
-DEV
+dev
 , 
 O_RDWR
-|
+ | 
 O_NOCTTY
-|
+ | 
 O_NDELAY
 );
 
-96 
-	`f˙é
-(
+11 if(
 fd
-,
-F_SETFL
-,0);
+ == -1)
 
-97 i‡(
-fd
- < 0)
+13 
+	`¥ötf
+("‰∏≤Âè£ÊâìÂºÄÂ§±Ë¥•!");
 
-99 
-	`ERR_PRINT
-("open com dev\n");
+14 
+	`exô
+(0);
 
-102 
-	`LIBDVR_PRINT
-("CommOpen Successful\n");
-
-103  
+17  
 fd
 ;
 
-104 
+18 
 	}
 }
 
-112 
-	$CommDe°‹y
+27 
+	$£t_com_©å
 (
 fd
-)
-
-114 
-ªt
- = -1;
-
-116 if(
-fd
- > 0)
-
-118 
-	`¥ötf
-("close start!\n");
-
-119 
-ªt
- = 
-	`˛o£
-(
-fd
-);
-
-120 
-	`¥ötf
-("closeÉnd!\n");
-
-121 
-fd
- = -1;
-
-124  
-ªt
-;
-
-125 
-	}
-}
-
-132 
-	$SëAâribuã
-(
-fd
-,
-COMM_ATTR
+, 
+com_©å
  *
-∑âr
+©å
 )
 
-134 
-dev_fd
- = 
-fd
-;
-
-135 
+29 
 ãrmios
  
 ›t
 ;
 
-136 
-COMM_ATTR
- *
-©å
- = 
-∑âr
-;
-
-138 i‡(
-dev_fd
- < 0)
-
-143 
+31 
 	`mem£t
 (&
 ›t
@@ -773,21 +1055,21 @@ dev_fd
 ãrmios
 ));
 
-144 
+32 
 	`tcgë©å
 (
-dev_fd
+fd
 , &
 ›t
 );
 
-145 
+33 
 	`cfmakîaw
 (&
 ›t
 );
 
-148 
+37 
 	`¥ötf
 ("£àbaudøã %d\n", 
 ©å
@@ -795,511 +1077,515 @@ dev_fd
 baudøã
 );
 
-149 
+38 
 ©å
 ->
 baudøã
 )
 
-152 
+41 
 	`cf£ti•ìd
 (&
 ›t
 , 
 B50
+);
+
+42 
+	`cf£to•ìd
+(&
+›t
+, 
+B50
+);
+
+45 
+	`cf£ti•ìd
+(&
+›t
+, 
+B75
+);
+
+46 
+	`cf£to•ìd
+(&
+›t
+, 
+B75
+);
+
+49 
+	`cf£ti•ìd
+(&
+›t
+, 
+B110
+);
+
+50 
+	`cf£to•ìd
+(&
+›t
+, 
+B110
+);
+
+53 
+	`cf£ti•ìd
+(&
+›t
+, 
+B134
+);
+
+54 
+	`cf£to•ìd
+(&
+›t
+, 
+B134
+);
+
+57 
+	`cf£ti•ìd
+(&
+›t
+, 
+B150
+);
+
+58 
+	`cf£to•ìd
+(&
+›t
+, 
+B150
+);
+
+61 
+	`cf£ti•ìd
+(&
+›t
+, 
+B200
+);
+
+62 
+	`cf£to•ìd
+(&
+›t
+, 
+B200
+);
+
+65 
+	`cf£ti•ìd
+(&
+›t
+, 
+B300
+);
+
+66 
+	`cf£to•ìd
+(&
+›t
+, 
+B300
+);
+
+69 
+	`cf£ti•ìd
+(&
+›t
+, 
+B600
+);
+
+70 
+	`cf£to•ìd
+(&
+›t
+, 
+B600
+);
+
+73 
+	`cf£ti•ìd
+(&
+›t
+, 
+B1200
+);
+
+74 
+	`cf£to•ìd
+(&
+›t
+, 
+B1200
+);
+
+77 
+	`cf£ti•ìd
+(&
+›t
+, 
+B1800
+);
+
+78 
+	`cf£to•ìd
+(&
+›t
+, 
+B1800
+);
+
+81 
+	`cf£ti•ìd
+(&
+›t
+, 
+B2400
+);
+
+82 
+	`cf£to•ìd
+(&
+›t
+, 
+B2400
+);
+
+85 
+	`cf£ti•ìd
+(&
+›t
+, 
+B4800
+);
+
+86 
+	`cf£to•ìd
+(&
+›t
+, 
+B4800
+);
+
+89 
+	`cf£ti•ìd
+(&
+›t
+, 
+B9600
+);
+
+90 
+	`cf£to•ìd
+(&
+›t
+, 
+B9600
+);
+
+93 
+	`cf£ti•ìd
+(&
+›t
+, 
+B19200
+);
+
+94 
+	`cf£to•ìd
+(&
+›t
+, 
+B19200
+);
+
+97 
+	`cf£ti•ìd
+(&
+›t
+, 
+B38400
+);
+
+98 
+	`cf£to•ìd
+(&
+›t
+, 
+B38400
+);
+
+101 
+	`cf£ti•ìd
+(&
+›t
+, 
+B57600
+);
+
+102 
+	`cf£to•ìd
+(&
+›t
+, 
+B57600
+);
+
+105 
+	`cf£ti•ìd
+(&
+›t
+, 
+B115200
+);
+
+106 
+	`cf£to•ìd
+(&
+›t
+, 
+B115200
+);
+
+109 
+	`cf£ti•ìd
+(&
+›t
+, 
+B230400
+);
+
+110 
+	`cf£to•ìd
+(&
+›t
+, 
+B230400
+);
+
+113 
+	`cf£ti•ìd
+(&
+›t
+, 
+B460800
+);
+
+114 
+	`cf£to•ìd
+(&
+›t
+, 
+B460800
+);
+
+117 
+	`cf£ti•ìd
+(&
+›t
+, 
+B500000
+);
+
+118 
+	`cf£to•ìd
+(&
+›t
+, 
+B500000
+);
+
+121 
+	`cf£ti•ìd
+(&
+›t
+, 
+B576000
+);
+
+122 
+	`cf£to•ìd
+(&
+›t
+, 
+B576000
+);
+
+125 
+	`cf£ti•ìd
+(&
+›t
+, 
+B921600
+);
+
+126 
+	`cf£to•ìd
+(&
+›t
+, 
+B921600
+);
+
+129 
+	`cf£ti•ìd
+(&
+›t
+, 
+B1000000
+);
+
+130 
+	`cf£to•ìd
+(&
+›t
+, 
+B1000000
+);
+
+133 
+	`cf£ti•ìd
+(&
+›t
+, 
+B1152000
+);
+
+134 
+	`cf£to•ìd
+(&
+›t
+, 
+B1152000
+);
+
+137 
+	`cf£ti•ìd
+(&
+›t
+, 
+B1500000
+);
+
+138 
+	`cf£to•ìd
+(&
+›t
+, 
+B1500000
+);
+
+141 
+	`cf£ti•ìd
+(&
+›t
+, 
+B2000000
+);
+
+142 
+	`cf£to•ìd
+(&
+›t
+, 
+B2000000
+);
+
+145 
+	`cf£ti•ìd
+(&
+›t
+, 
+B2500000
+);
+
+146 
+	`cf£to•ìd
+(&
+›t
+, 
+B2500000
+);
+
+149 
+	`cf£ti•ìd
+(&
+›t
+, 
+B3000000
+);
+
+150 
+	`cf£to•ìd
+(&
+›t
+, 
+B3000000
 );
 
 153 
-	`cf£to•ìd
-(&
-›t
-, 
-B50
-);
-
-156 
 	`cf£ti•ìd
 (&
 ›t
 , 
-B75
+B3500000
+);
+
+154 
+	`cf£to•ìd
+(&
+›t
+, 
+B3500000
 );
 
 157 
-	`cf£to•ìd
-(&
-›t
-, 
-B75
-);
-
-160 
 	`cf£ti•ìd
 (&
 ›t
 , 
-B110
+B4000000
+);
+
+158 
+	`cf£to•ìd
+(&
+›t
+, 
+B4000000
 );
 
 161 
-	`cf£to•ìd
-(&
-›t
-, 
-B110
-);
-
-164 
-	`cf£ti•ìd
-(&
-›t
-, 
-B134
-);
-
-165 
-	`cf£to•ìd
-(&
-›t
-, 
-B134
-);
-
-168 
-	`cf£ti•ìd
-(&
-›t
-, 
-B150
-);
-
-169 
-	`cf£to•ìd
-(&
-›t
-, 
-B150
-);
-
-172 
-	`cf£ti•ìd
-(&
-›t
-, 
-B200
-);
-
-173 
-	`cf£to•ìd
-(&
-›t
-, 
-B200
-);
-
-176 
-	`cf£ti•ìd
-(&
-›t
-, 
-B300
-);
-
-177 
-	`cf£to•ìd
-(&
-›t
-, 
-B300
-);
-
-180 
-	`cf£ti•ìd
-(&
-›t
-, 
-B600
-);
-
-181 
-	`cf£to•ìd
-(&
-›t
-, 
-B600
-);
-
-184 
-	`cf£ti•ìd
-(&
-›t
-, 
-B1200
-);
-
-185 
-	`cf£to•ìd
-(&
-›t
-, 
-B1200
-);
-
-188 
-	`cf£ti•ìd
-(&
-›t
-, 
-B1800
-);
-
-189 
-	`cf£to•ìd
-(&
-›t
-, 
-B1800
-);
-
-192 
-	`cf£ti•ìd
-(&
-›t
-, 
-B2400
-);
-
-193 
-	`cf£to•ìd
-(&
-›t
-, 
-B2400
-);
-
-196 
-	`cf£ti•ìd
-(&
-›t
-, 
-B4800
-);
-
-197 
-	`cf£to•ìd
-(&
-›t
-, 
-B4800
-);
-
-200 
-	`cf£ti•ìd
-(&
-›t
-, 
-B9600
-);
-
-201 
-	`cf£to•ìd
-(&
-›t
-, 
-B9600
-);
-
-204 
-	`cf£ti•ìd
-(&
-›t
-, 
-B19200
-);
-
-205 
-	`cf£to•ìd
-(&
-›t
-, 
-B19200
-);
-
-208 
-	`cf£ti•ìd
-(&
-›t
-, 
-B38400
-);
-
-209 
-	`cf£to•ìd
-(&
-›t
-, 
-B38400
-);
-
-212 
-	`cf£ti•ìd
-(&
-›t
-, 
-B57600
-);
-
-213 
-	`cf£to•ìd
-(&
-›t
-, 
-B57600
-);
-
-216 
-	`cf£ti•ìd
-(&
-›t
-, 
-B115200
-);
-
-217 
-	`cf£to•ìd
-(&
-›t
-, 
-B115200
-);
-
-220 
-	`cf£ti•ìd
-(&
-›t
-, 
-B230400
-);
-
-221 
-	`cf£to•ìd
-(&
-›t
-, 
-B230400
-);
-
-224 
-	`cf£ti•ìd
-(&
-›t
-, 
-B460800
-);
-
-225 
-	`cf£to•ìd
-(&
-›t
-, 
-B460800
-);
-
-228 
-	`cf£ti•ìd
-(&
-›t
-, 
-B500000
-);
-
-229 
-	`cf£to•ìd
-(&
-›t
-, 
-B500000
-);
-
-232 
-	`cf£ti•ìd
-(&
-›t
-, 
-B576000
-);
-
-233 
-	`cf£to•ìd
-(&
-›t
-, 
-B576000
-);
-
-236 
-	`cf£ti•ìd
-(&
-›t
-, 
-B921600
-);
-
-237 
-	`cf£to•ìd
-(&
-›t
-, 
-B921600
-);
-
-240 
-	`cf£ti•ìd
-(&
-›t
-, 
-B1000000
-);
-
-241 
-	`cf£to•ìd
-(&
-›t
-, 
-B1000000
-);
-
-244 
-	`cf£ti•ìd
-(&
-›t
-, 
-B1152000
-);
-
-245 
-	`cf£to•ìd
-(&
-›t
-, 
-B1152000
-);
-
-248 
-	`cf£ti•ìd
-(&
-›t
-, 
-B1500000
-);
-
-249 
-	`cf£to•ìd
-(&
-›t
-, 
-B1500000
-);
-
-252 
-	`cf£ti•ìd
-(&
-›t
-, 
-B2000000
-);
-
-253 
-	`cf£to•ìd
-(&
-›t
-, 
-B2000000
-);
-
-256 
-	`cf£ti•ìd
-(&
-›t
-, 
-B2500000
-);
-
-257 
-	`cf£to•ìd
-(&
-›t
-, 
-B2500000
-);
-
-260 
-	`cf£ti•ìd
-(&
-›t
-, 
-B3000000
-);
-
-261 
-	`cf£to•ìd
-(&
-›t
-, 
-B3000000
-);
-
-264 
-	`cf£ti•ìd
-(&
-›t
-, 
-B3500000
-);
-
-265 
-	`cf£to•ìd
-(&
-›t
-, 
-B3500000
-);
-
-268 
-	`cf£ti•ìd
-(&
-›t
-, 
-B4000000
-);
-
-269 
-	`cf£to•ìd
-(&
-›t
-, 
-B4000000
-);
-
-272 
-	`LIBDVR_PRINT
+	`¥ötf
 ("unsuµ‹ãd baudøã %d\n", 
 ©å
 ->
 baudøã
 );
 
-277 
+162  
+FALSE
+;
+
+167 
 ©å
 ->
 ∑rôy
 )
 
-279 
+169 
 COMM_NOPARITY
 :
 
-280 
+170 
 ›t
 .
 c_cÊag
@@ -1307,7 +1593,7 @@ c_cÊag
 PARENB
 ;
 
-281 
+171 
 ›t
 .
 c_iÊag
@@ -1315,11 +1601,11 @@ c_iÊag
 INPCK
 ;
 
-283 
+173 
 COMM_ODDPARITY
 :
 
-284 
+174 
 ›t
 .
 c_cÊag
@@ -1327,7 +1613,7 @@ c_cÊag
 PARENB
 ;
 
-285 
+175 
 ›t
 .
 c_cÊag
@@ -1335,7 +1621,7 @@ c_cÊag
 PARODD
 ;
 
-286 
+176 
 ›t
 .
 c_iÊag
@@ -1343,11 +1629,11 @@ c_iÊag
 INPCK
 ;
 
-288 
+178 
 COMM_EVENPARITY
 :
 
-289 
+179 
 ›t
 .
 c_cÊag
@@ -1355,7 +1641,7 @@ c_cÊag
 PARENB
 ;
 
-290 
+180 
 ›t
 .
 c_cÊag
@@ -1363,7 +1649,7 @@ c_cÊag
 PARODD
 ;
 
-291 
+181 
 ›t
 .
 c_iÊag
@@ -1371,15 +1657,19 @@ c_iÊag
 INPCK
 ;
 
-293 
-	`LIBDVR_PRINT
+183 
+	`¥ötf
 ("unsuµ‹ãdÖ¨ôy %d\n", 
 ©å
 ->
 ∑rôy
 );
 
-298 
+184  
+FALSE
+;
+
+187 
 ›t
 .
 c_cÊag
@@ -1387,13 +1677,13 @@ c_cÊag
 CSIZE
 ;
 
-299 
+191 
 ©å
 ->
 d©abôs
 )
 
-302 
+194 
 ›t
 .
 c_cÊag
@@ -1401,7 +1691,7 @@ c_cÊag
 CS5
 ;
 
-305 
+197 
 ›t
 .
 c_cÊag
@@ -1409,7 +1699,7 @@ c_cÊag
 CS6
 ;
 
-308 
+200 
 ›t
 .
 c_cÊag
@@ -1417,7 +1707,7 @@ c_cÊag
 CS7
 ;
 
-311 
+203 
 ›t
 .
 c_cÊag
@@ -1425,15 +1715,19 @@ c_cÊag
 CS8
 ;
 
-314 
-	`LIBDVR_PRINT
+206 
+	`¥ötf
 ("unsuµ‹ãd d©®bô†%d\n", 
 ©å
 ->
 d©abôs
 );
 
-319 
+207  
+FALSE
+;
+
+210 
 ›t
 .
 c_cÊag
@@ -1441,17 +1735,17 @@ c_cÊag
 CSTOPB
 ;
 
-320 
+213 
 ©å
 ->
 °›bôs
 )
 
-322 
+215 
 COMM_ONESTOPBIT
 :
 
-323 
+216 
 ›t
 .
 c_cÊag
@@ -1459,11 +1753,11 @@ c_cÊag
 CSTOPB
 ;
 
-326 
+219 
 COMM_TWOSTOPBITS
 :
 
-327 
+220 
 ›t
 .
 c_cÊag
@@ -1471,15 +1765,19 @@ c_cÊag
 CSTOPB
 ;
 
-330 
-	`LIBDVR_PRINT
+223 
+	`¥ötf
 ("unsuµ‹ãd st› bô†%d\n", 
 ©å
 ->
 °›bôs
 );
 
-333 
+224  
+FALSE
+;
+
+229 
 ›t
 .
 c_cc
@@ -1487,7 +1785,7 @@ c_cc
 VTIME
 ] = 0;
 
-334 
+230 
 ›t
 .
 c_cc
@@ -1495,55 +1793,87 @@ c_cc
 VMIN
 ] = 1;
 
-336 
+233 
+›t
+.
+c_iÊag
+ &~(
+ICRNL
+ | 
+INLCR
+);
+
+234 
+›t
+.
+c_iÊag
+ &~(
+IXON
+ | 
+IXOFF
+ | 
+IXANY
+);
+
+236 
 	`tcÊush
 (
-dev_fd
+fd
 , 
 TCIOFLUSH
 );
 
-337 i‡(
+237 i‡(
 	`tc£èâr
 (
-dev_fd
+fd
 , 
 TCSANOW
 , &
 ›t
 ) < 0)
 
-339 
-	`ERR_PRINT
-("tcsetattr\n");
+239 
+	`¥ötf
+("tcsetattr faild\n");
 
-344 
+240  
+FALSE
+;
+
+242  
+TRUE
+;
+
+243 
 	}
 }
 
-351 
-	$GëAâribuã
+252 
+	$gë_com_©å
 (
 fd
 )
 
-353 
-dev_fd
- = 
-fd
-;
-
-354 
+254 
 ãrmios
  
 ›t
 ;
 
-356 i‡(
-dev_fd
+255 if(
+fd
  < 0)
 
-361 
+257 
+	`¥ötf
+("get_com_attrÉrror");
+
+258 
+	`exô
+(0);
+
+260 
 	`mem£t
 (&
 ›t
@@ -1551,227 +1881,151 @@ dev_fd
 ãrmios
 ));
 
-362 
+261 
 	`tcgë©å
 (
-dev_fd
+fd
 , &
 ›t
 );
 
-363 
+262 
 	`cfmakîaw
 (&
 ›t
 );
 
-365 
+263 
 	}
 }
 
-372 
-	$CommRód
+271 
+	$com_ªad
 (
 fd
-,*
-pd©a
+, 
+BYTE
+ *
+rbuff
 , 
 DWORD
  
 nbyãs
 )
 
-374 i‡(
+273 
+ªt
+;
+
+274 if(
 fd
  < 0)
 
-376 
-	`ERR_PRINT
-("Can't Open Com Dev");
-
-379 
+276 
 	`¥ötf
-("startÅoÑead!\n");
+("com_readÉrror");
 
-380  
+277 
+	`exô
+(0);
+
+279 
+ªt
+ = 
 	`ªad
 (
 fd
 , 
-pd©a
+rbuff
 , 
 nbyãs
 );
 
-381 
+280  
+ªt
+;
+
+281 
 	}
 }
 
-388 
-	$CommWrôe
+289 
+	$com_wrôe
 (
 fd
-,*
-pd©a
+, 
+BYTE
+ *
+wbuff
 , 
 DWORD
  
-Àn
+nbyãs
 )
 
-390 i‡(
+291 
+ªt
+;
+
+292 if(
 fd
  < 0)
 
-392 
-	`ERR_PRINT
-("Can't Open Com Dev");
-
-396 
+294 
 	`¥ötf
-("startÅo write!\n");
+("com_writeÉrror");
 
-397  
+295 
+	`exô
+(0);
+
+297 
+ªt
+ = 
 	`wrôe
 (
 fd
 , 
-pd©a
+wbuff
 , 
-Àn
+nbyãs
 );
 
-398 
+298  
+ªt
+;
+
+299 
 	}
 }
 
-401 
-	$CommPurge
+307 
+	$com_˛o£
 (
 fd
-,
-DWORD
- 
-dw_Êags
 )
 
-403 i‡(
+309 if(
 fd
  < 0)
 
-405 
-	`ERR_PRINT
-("Can't Open Com Dev");
+311 
+	`¥ötf
+("com_closeÉrror");
 
-408 
-dw_Êags
-)
-
-410 
-COMM_PURGE_TXABORT
-:
-
-411 
-	`tcÊow
-(
-fd
-, 
-TCOOFF
-);
-
-413 
-COMM_PURGE_RXABORT
-:
-
-414 
-	`tcÊow
-(
-fd
-, 
-TCIOFF
-);
-
-416 
-COMM_PURGE_TXCLEAR
-:
-
-417 
-	`tcÊush
-(
-fd
-, 
-TCOFLUSH
-);
-
-419 
-COMM_PURGE_RXCLEAR
-:
-
-420 
-	`tcÊush
-(
-fd
-, 
-TCIFLUSH
-);
-
-423 
-	`LIBDVR_PRINT
-("Unknow flag\n");
-
-428 
-	}
-}
-
-	@mycom.c
-
-1 
-	gö˛ude
- "mycom.h"
-
-6 
-	$com_›í
-(*
-dev
-)
-
-8 
-fd
- = -1;
-
-9 
-fd
- = 
-	`›í
-(*
-dev
-, 
-O_RDWR
-);
-
-10 if(
-fd
- == -1)
-
-12 
-	`≥º‹
-("‰∏≤Âè£ÊâìÂºÄÂ§±Ë¥•!");
-
-13 
+312 
 	`exô
 (0);
 
-15  
+314 
+	`˛o£
+(
 fd
-;
+);
 
-16 
+315 
 	}
 }
-
-19 
-	g£
-
 
 	@mycom.h
 
@@ -1812,78 +2066,94 @@ fd
 >
 
 11 
+	#FALSE
+ -1
+
+	)
+
+12 
+	#TRUE
+ 0
+
+	)
+
+14 
 	#COMM_NOPARITY
  0
 
 	)
 
-12 
+15 
 	#COMM_ODDPARITY
  1
 
 	)
 
-13 
+16 
 	#COMM_EVENPARITY
  2
 
 	)
 
-15 
+18 
 	#COMM_ONESTOPBIT
  1
 
 	)
 
-16 
+19 
 	#COMM_TWOSTOPBITS
  2
 
 	)
 
-19 
+22 
 	tBYTE
 ;
 
-20 
+23 
 	tWORD
 ;
 
-21 sig√d 
+24 sig√d 
 	tLONG
 ;
 
-22 
+25 
 	tDWORD
 ;
 
-24 
+27 
 	scom_©å
 
 
-26 
+29 
 	mbaudøã
 ;
 
-27 
+30 
 	md©abôs
 ;
 
-28 
+31 
 	m°›bôs
 ;
 
-29 
+32 
 	m∑rôy
 ;
 
-33 
+33 }
+	tcom_©å
+;
+
+36 
 com_›í
-(*
+(c⁄° *
 dev
 );
 
-34 
+37 
 £t_com_©å
 (
 fd
@@ -1893,21 +2163,19 @@ com_©å
 ©å
 );
 
-35 
+38 
 gë_com_©å
 (
 fd
-, 
-com_©å
- *
-©å
 );
 
-36 
+39 
 com_ªad
 (
 fd
-, 
+, 
+BYTE
+ *
 rbuff
 , 
 DWORD
@@ -1915,11 +2183,13 @@ DWORD
 nbyãs
 );
 
-37 
+40 
 com_wrôe
 (
 fd
-, 
+, 
+BYTE
+ *
 wbuff
 , 
 DWORD
@@ -1927,11 +2197,77 @@ DWORD
 nbyãs
 );
 
-38 
+41 
 com_˛o£
-(*
-dev
+(
+fd
 );
+
+43 
+rfid
+(
+fd
+);
+
+44 
+g¥s
+(
+fd
+);
+
+45 
+rfid_öô
+();
+
+46 
+g¥s_öô
+();
+
+	@test.c
+
+1 
+	~<°dio.h
+>
+
+2 
+	~<°rög.h
+>
+
+3 
+	$maö
+()
+
+5 *
+po°
+[] = {"POST /xg/index.php/admin/upload/record\r\n", \
+
+11 
+i
+;
+
+12 
+i
+ = 0;i < 5;i++)
+
+14 
+	`¥ötf
+("%s\n",
+po°
+[
+i
+]);
+
+15 
+	`¥ötf
+("%d\n",
+	`°æí
+(
+po°
+));
+
+17 
+	}
+}
 
 	@/usr/include/errno.h
 
@@ -25732,13 +26068,15 @@ __END_DECLS
 .
 1
 /usr/include
-25
-498
+27
+512
 camera/camera.c
 camera/camera.h
+init.c
 main.c
 mycom.c
 mycom.h
+test.c
 /usr/include/errno.h
 /usr/include/fcntl.h
 /usr/include/stdio.h

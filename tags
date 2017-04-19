@@ -5,49 +5,55 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 BMP	camera/camera.h	5;"	d
-BYTE	mycom.h	/^typedef unsigned char			BYTE;$/;"	t
-COMM_EVENPARITY	mycom.h	13;"	d
-COMM_NOPARITY	mycom.h	11;"	d
-COMM_ODDPARITY	mycom.h	12;"	d
-COMM_ONESTOPBIT	mycom.h	15;"	d
-COMM_TWOSTOPBITS	mycom.h	16;"	d
-CommDestory	main.c	/^int CommDestory(int fd)$/;"	f
-CommOpen	main.c	/^int CommOpen(char *DEV)$/;"	f
-CommPurge	main.c	/^int CommPurge(int fd,DWORD dw_flags)$/;"	f
-CommRead	main.c	/^int CommRead(int fd,char *pdata, DWORD nbytes)$/;"	f
-CommWrite	main.c	/^int CommWrite(int fd,char *pdata, DWORD len)$/;"	f
-DWORD	mycom.h	/^typedef unsigned int			DWORD;$/;"	t
+BYTE	mycom.h	/^typedef unsigned char BYTE;$/;"	t
+COMM_EVENPARITY	mycom.h	16;"	d
+COMM_NOPARITY	mycom.h	14;"	d
+COMM_ODDPARITY	mycom.h	15;"	d
+COMM_ONESTOPBIT	mycom.h	18;"	d
+COMM_TWOSTOPBITS	mycom.h	19;"	d
+DWORD	mycom.h	/^typedef unsigned int DWORD;$/;"	t
 FALSE	camera/camera.h	2;"	d
+FALSE	mycom.h	11;"	d
 FILE_VIDEO	camera/camera.h	4;"	d
-GetAttribute	main.c	/^int GetAttribute(int fd)$/;"	f
 IMAGEHEIGHT	camera/camera.h	9;"	d
 IMAGEWIDTH	camera/camera.h	8;"	d
-LONG	mycom.h	/^typedef signed int	         	LONG;$/;"	t
-SetAttribute	main.c	/^int SetAttribute(int fd,COMM_ATTR *pattr)$/;"	f
+LONG	mycom.h	/^typedef signed int LONG;$/;"	t
 TRUE	camera/camera.h	1;"	d
-WORD	mycom.h	/^typedef unsigned short			WORD;$/;"	t
+TRUE	mycom.h	12;"	d
+WORD	mycom.h	/^typedef unsigned short WORD;$/;"	t
 YUV	camera/camera.h	6;"	d
 baudrate	mycom.h	/^	unsigned int baudrate;    \/*波特率*\/$/;"	m	struct:com_attr
 buf	camera/camera.h	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
 cap	camera/camera.h	/^static static v4l2_capability cap;$/;"	v
+cmd	init.c	/^const char *cmd[] = {$/;"	v
 com_attr	mycom.h	/^typedef struct com_attr       \/*串口属性结构*\/         $/;"	s
-com_open	mycom.c	/^int com_open(char *dev)$/;"	f
+com_attr	mycom.h	/^}com_attr;$/;"	t	typeref:struct:com_attr
+com_close	mycom.c	/^void com_close(int fd)$/;"	f
+com_open	mycom.c	/^int com_open(const char *dev)$/;"	f
+com_read	mycom.c	/^int com_read(int fd, BYTE *rbuff, DWORD nbytes)$/;"	f
+com_write	mycom.c	/^int com_write(int fd, BYTE *wbuff, DWORD nbytes)$/;"	f
 databits	mycom.h	/^	unsigned char databits;    \/*数据位*\/$/;"	m	struct:com_attr
+device_id	init.c	/^const  unsigned char device_id;    \/*每个设备固定的设备号*\/$/;"	v
 fd_video	camera/camera.h	/^static int fd_video;$/;"	v
 fmt	camera/camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
 fmtack	camera/camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
 fmtdesc	camera/camera.h	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
 frame_buffer	camera/camera.h	/^unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];$/;"	v
-gprs_buff	main.c	/^char gprs_buff[512];$/;"	v
-gprs_init	main.c	/^int gprs_init(void)$/;"	f
+gbuff	mycom.c	/^BYTE gbuff[512];$/;"	v
+get_com_attr	mycom.c	/^void get_com_attr(int fd)$/;"	f
+gprs	main.c	/^void gprs(int fd)$/;"	f
+gprs_init	init.c	/^int gprs_init()$/;"	f
 init_v4l2	camera/camera.c	/^int init_v4l2(void)$/;"	f
-main	main.c	/^int main()$/;"	f
-num	main.c	/^DWORD num = 512;$/;"	v
+main	main.c	/^int main(void)$/;"	f
+main	test.c	/^void main()$/;"	f
+num	mycom.c	/^DWORD num = 512;$/;"	v
 parity	mycom.h	/^	unsigned char parity;    \/*校验位*\/$/;"	m	struct:com_attr
+post	init.c	/^const char *post[] = {"POST \/xg\/index.php\/admin\/upload\/record\\r\\n", 				\\$/;"	v
+rbuff	mycom.c	/^BYTE rbuff[512];$/;"	v
 req	camera/camera.h	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
-rfid	main.c	/^void rfid(int fd)$/;"	f
-rfid_buff	main.c	/^unsigned short rfid_buff[512];$/;"	v
-rfid_init	main.c	/^int rfid_init(void)$/;"	f
+rfid	main.c	/^int rfid(int fd)$/;"	f
+rfid_init	init.c	/^int rfid_init(void)$/;"	f
+set_com_attr	mycom.c	/^int set_com_attr(int fd, com_attr *attr)$/;"	f
 setfps	camera/camera.h	/^struct v4l2_streamparm setfps;$/;"	v	typeref:struct:v4l2_streamparm
 stopbits	mycom.h	/^	unsigned char stopbits;    \/*停止位*\/$/;"	m	struct:com_attr
 type	camera/camera.h	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type

@@ -1,31 +1,9 @@
 #include "mycom.h"
-
-const  BYTE device_id;    /*每个设备固定的设备号*/
-extern BYTE rbuff[512];   /*rfid读取缓冲区*/
-extern BYTE gbuff[512];   /*gprs读取缓冲区*/
-DWORD num = 512;          /*读取和写入字节*/
-
-/****命令缓冲区，cmd为初始化AT指令，post为post数据包****/
-const unsigned char *cmd[] = {
-								"AT\r", 				 \
-								"AT+CCID\r", 				\
-								"AT+CSQ\r", 				\
-								"AT+CGCLASS=\"B\"\r", 				\
-								"AT+CGDCONT=1,\"IP\",\"CMNET\"\r", 				\
-								"AT+CGATT=1\r", 				\
-								"AT+CIPCSGP=1,\"CMNET\"\r", 				\
-								"AT+CIPSTART=\"TCP\",\"182.254.244.212\",\"80\"\r", 				\
-								"AT+CIPSEND=181\r", 				\
-								"AT+CIPCLOSE\r" 				\
-					   		 };
-
-const unsigned char *post[] = {
-							   "POST /xg/index.php/admin/upload/record\r\n", 				\
-							   "Host: www.hicoder.cn\r\n", 				\
-						       "Content-Type:application/x-www-form-urlencoded\r\n", 				\
-						   	   "Content-Length:37\r\n\r\n", 				\
-							   "key=iot&location=002&device=device001"  				\
-							  };
+extern DWORD num;
+extern const unsigned char *cmd[];
+extern const unsigned char *post[];
+extern BYTE gbuff[512];
+extern BYTE rbuff[512];
 /**************************************************
 主函数 : main()
 参数   : void
@@ -42,6 +20,7 @@ int main(void)
 	gprs_fd = gprs_init();
 
 	/*循环读卡*/
+	
 	while(1)
 	{
 		flag = rfid(rfid_fd);
@@ -52,6 +31,7 @@ int main(void)
 			printf("本次签到完成！！！");
 		}
 	}
+	
 	return 0;
 }
 
@@ -68,14 +48,13 @@ void gprs(int fd)
 	int w_ret,r_ret;
 	int i,j;
 
-	/**建立链接**/
-	for(i = 0;i < 9;i++)
+
+	for(i = 7;i < 8;i++)
 	{
 		memset(gbuff, '\0', num);
 		w_ret = com_write(fd, cmd[i], strlen(cmd[i]));
 		printf("GPRS写入命令：%s\n",cmd[i]);
 		printf("GPRS写入字节数：%d\n",w_ret);
-
 		sleep(1);
 
 
@@ -87,11 +66,11 @@ void gprs(int fd)
 
 
 	/*当执行到SEND命令时开始发送POST数据包*/
-	memset(gbuff, '\0', num);
 	for(j = 0;j < 5;j++)
 	{
+		memset(gbuff, '\0', num);
 		w_ret = com_write(fd, post[j], strlen(post[j]));
-		printf("GPRS写入命令：%s\n",post[i]);
+		printf("GPRS写入命令：%s\n",post[j]);
 		printf("GPRS写入字节数：%d\n",w_ret);
 	}
 	sleep(1);
