@@ -42,5 +42,8 @@ void com_close(int fd);
 
 int rfid(int fd);
 void gprs(int fd);
+
 int rfid_init();
 int gprs_init();
+
+void card_to_post(unsigned char card[]);    //卡号填充
