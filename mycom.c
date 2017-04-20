@@ -1,5 +1,12 @@
 #include "mycom.h"
 
+
+/**************************************************
+ *函数名：com_open()
+ *功  能：打开串口
+ *参  数：设备名字符串
+ *返回值：int fd
+**************************************************/
 int com_open(const char *dev)
 {
 	int fd = -1;
@@ -159,6 +166,7 @@ int set_com_attr(int fd, com_attr *attr)
 			break;
 	}
 
+
 	/************************校验位************************/
 	switch (attr->parity)
 	{
@@ -183,7 +191,7 @@ int set_com_attr(int fd, com_attr *attr)
 			opt.c_cflag &= ~CSIZE;       /*无论设置多少校验位都需要的*/
 	
 
-        /*******************数据位*****************/
+    /*******************数据位*****************/
 	switch (attr->databits)              
 	{
 		case 5:
@@ -205,6 +213,7 @@ int set_com_attr(int fd, com_attr *attr)
 	}
 	opt.c_cflag &= ~CSTOPB;
 
+
 	/*******************停止位***************/
 	switch (attr->stopbits)       
 	{
@@ -220,15 +229,18 @@ int set_com_attr(int fd, com_attr *attr)
 			return FALSE;
 			break;
 	}
-	
+
+
 	/*等待时间*/
 	opt.c_cc[VTIME]	= 0;
 	opt.c_cc[VMIN]	= 1;	
-	
+
+
 	/*非阻塞*/
 	opt.c_iflag &= ~(ICRNL | INLCR);
 	opt.c_iflag &= ~(IXON | IXOFF | IXANY);
-	
+
+
 	tcflush(fd, TCIOFLUSH);	       //刷清缓冲区
 	if (tcsetattr(fd, TCSANOW, &opt) < 0)
 	{
@@ -258,6 +270,7 @@ void get_com_attr(int fd)
 	cfmakeraw(&opt);
 } 
 
+
 /**************************************************
  *函数名：com_read()
  *功  能：读串口操作
@@ -276,6 +289,7 @@ int com_read(int fd, BYTE *read_buff, DWORD nbytes)
 	return ret;
 }
 
+
 /**************************************************
  *函数名：com_write()
  *功  能：写串口操作
@@ -293,6 +307,7 @@ int com_write(int fd, BYTE *write_buff, DWORD nbytes)
 	ret = write(fd, write_buff, nbytes);
 	return ret;
 }
+
 
 /**************************************************
  *函数名：com_close()
