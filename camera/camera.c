@@ -31,7 +31,8 @@ int init_v4l2(void)
 		if((cap.capabilities & V4L2_CAP_STREAMING) == V4L2_CAP_STREAMING)
 		printf("Device %s:supports streaming.\n", FILE_VIDEO);
 	}
-		//emu all support fmt
+
+	//emu all support fmt
 	fmtdesc.index = 0;
 	fmtdesc.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
 	printf("Support format:\n");
@@ -79,7 +80,11 @@ int init_v4l2(void)
 
 	return TRUE;
 }
-void main()
+
+
+int close_v4l2(void)
 {
-	int flag = init_v4l2();	
+	//ioctl(fd_video, VIDIOC_STREAMOFF, &buf_type);
+	close(fd_video);
+	return TRUE;
 }

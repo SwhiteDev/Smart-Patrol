@@ -4,21 +4,52 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-BMP	camera.h	16;"	d
-FALSE	camera.h	13;"	d
-FILE_VIDEO	camera.h	15;"	d
-IMAGEHEIGHT	camera.h	20;"	d
-IMAGEWIDTH	camera.h	19;"	d
-TRUE	camera.h	12;"	d
-YUV	camera.h	17;"	d
+BITMAPFILE_HEADER	main.c	/^}BITMAPFILE_HEADER;$/;"	t	typeref:struct:tagBITMAPFILE_HEADER	file:
+BITMAPINFO_HEADER	main.c	/^}BITMAPINFO_HEADER;$/;"	t	typeref:struct:tagBITMAPINFO_HEADER	file:
+BMP	camera.h	18;"	d
+BYTE	main.c	/^typedef unsigned char BYTE;$/;"	t	file:
+DWORD	main.c	/^typedef unsigned int DWORD;$/;"	t	file:
+FALSE	camera.h	15;"	d
+FILE_VIDEO	camera.h	17;"	d
+IMAGEHEIGHT	camera.h	22;"	d
+IMAGEWIDTH	camera.h	21;"	d
+LONG	main.c	/^typedef signed int LONG;$/;"	t	file:
+SRC	Makefile	/^SRC = main.c camera.c video_capture.c$/;"	m
+TRUE	camera.h	14;"	d
+WORD	main.c	/^typedef unsigned short WORD;$/;"	t	file:
+YUV	camera.h	19;"	d
+bfOffBits	main.c	/^	DWORD bfOffBits;$/;"	m	struct:tagBITMAPFILE_HEADER	file:
+bfReserved	main.c	/^	DWORD bfReserved;$/;"	m	struct:tagBITMAPFILE_HEADER	file:
+bfSize	main.c	/^	DWORD bfSize;$/;"	m	struct:tagBITMAPFILE_HEADER	file:
+bfType	main.c	/^	WORD  bfType;$/;"	m	struct:tagBITMAPFILE_HEADER	file:
+biBitCount	main.c	/^	WORD  biBitCount;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biClrImportant	main.c	/^	DWORD biClrImportant;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biClrUsed	main.c	/^	DWORD biClrUsed;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biCompression	main.c	/^	DWORD biCompression;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biHeight	main.c	/^	DWORD biHeight;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biPlanes	main.c	/^	WORD  biPlanes;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biSize	main.c	/^	DWORD biSize;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biSizeImage	main.c	/^	DWORD biSizeImage;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biWidth	main.c	/^	DWORD biWidth;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biXPelsPerMeter	main.c	/^	DWORD biXPelsPerMeter;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
+biYPelsPerMeter	main.c	/^	DWORD biYPelsPerMeter;$/;"	m	struct:tagBITMAPINFO_HEADER	file:
 buf	camera.h	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
-cap	camera.h	/^static static v4l2_capability cap;$/;"	v
+buffer	video_capture.c	/^struct buffer$/;"	s	file:
+buffers	video_capture.c	/^} *buffers;$/;"	v	typeref:struct:buffer
+cap	camera.h	/^static struct v4l2_capability cap;    \/\/设备属性$/;"	v	typeref:struct:v4l2_capability
+close_v4l2	camera.c	/^int close_v4l2(void)$/;"	f
 fd_video	camera.h	/^static int fd_video;$/;"	v
-fmt	camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
-fmtack	camera.h	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
-fmtdesc	camera.h	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
+fmt	camera.h	/^struct v4l2_format fmt,fmtack;        $/;"	v	typeref:struct:v4l2_format
+fmtack	camera.h	/^struct v4l2_format fmt,fmtack;        $/;"	v	typeref:struct:
+fmtdesc	camera.h	/^struct v4l2_fmtdesc fmtdesc;          \/\/帧格式$/;"	v	typeref:struct:v4l2_fmtdesc
 frame_buffer	camera.h	/^unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];$/;"	v
 init_v4l2	camera.c	/^int init_v4l2(void)$/;"	f
-req	camera.h	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
+length	video_capture.c	/^	unsigned int length;$/;"	m	struct:buffer	file:
+main	main.c	/^void main()$/;"	f
+req	camera.h	/^struct v4l2_requestbuffers req;       \/\/申请缓冲区$/;"	v	typeref:struct:v4l2_requestbuffers
 setfps	camera.h	/^struct v4l2_streamparm setfps;$/;"	v	typeref:struct:v4l2_streamparm
+start	video_capture.c	/^	void *start;$/;"	m	struct:buffer	file:
+tagBITMAPFILE_HEADER	main.c	/^typedef struct tagBITMAPFILE_HEADER$/;"	s	file:
+tagBITMAPINFO_HEADER	main.c	/^typedef struct tagBITMAPINFO_HEADER$/;"	s	file:
 type	camera.h	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
+v4l2_grab	video_capture.c	/^int v4l2_grab(void)$/;"	f

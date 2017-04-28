@@ -1,2 +1,3 @@
-camera : camera.c camera.h
-	gcc -o camera camera.c
+SRC = main.c camera.c video_capture.c
+camera : $(SRC)
+	gcc -g -o camera $(SRC)

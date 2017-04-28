@@ -6,6 +6,7 @@
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/mman.h>
 #include <errno.h>
 #include <termios.h>
 #include <linux/videodev2.h>
@@ -27,6 +28,14 @@ struct v4l2_format fmt,fmtack;
 struct v4l2_streamparm setfps;
 struct v4l2_requestbuffers req;       //申请缓冲区
 struct v4l2_buffer buf;
+
+/*获取缓存信息，并mmap到用户空间*/
+static struct buffer
+{
+	void *start;
+	unsigned int length;
+} *buffers;
+
 enum v4l2_buf_type type;
 
 unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];
