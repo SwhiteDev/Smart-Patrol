@@ -4,13 +4,13 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-BMP	camera.h	5;"	d
-FALSE	camera.h	2;"	d
-FILE_VIDEO	camera.h	4;"	d
-IMAGEHEIGHT	camera.h	9;"	d
-IMAGEWIDTH	camera.h	8;"	d
-TRUE	camera.h	1;"	d
-YUV	camera.h	6;"	d
+BMP	camera.h	16;"	d
+FALSE	camera.h	13;"	d
+FILE_VIDEO	camera.h	15;"	d
+IMAGEHEIGHT	camera.h	20;"	d
+IMAGEWIDTH	camera.h	19;"	d
+TRUE	camera.h	12;"	d
+YUV	camera.h	17;"	d
 buf	camera.h	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
 cap	camera.h	/^static static v4l2_capability cap;$/;"	v
 fd_video	camera.h	/^static int fd_video;$/;"	v
