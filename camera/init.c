@@ -72,9 +72,9 @@ int init_v4l2(void)
 	}
 
 	//set fps
-	setfps.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
-	setfps.parm.capture.timeperframe.numerator = 10;
-	setfps.parm.capture.timeperframe.denominator = 10;
+//	setfps.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
+//	setfps.parm.capture.timeperframe.numerator = 10;
+//	setfps.parm.capture.timeperframe.denominator = 10;
 
 	printf("init %s \t[OK]\n", FILE_VIDEO);
 

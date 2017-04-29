@@ -1,101 +1,225 @@
-cscope 15 $HOME/Smart-Patrol/camera -q 0000003498 0000232929
-	@camera.c
+cscope 15 $HOME/Smart-Patrol/camera -q 0000003549 0000238851
+	@header.h
+
+1 
+	tBYTE
+;
+
+2 
+	tWORD
+;
+
+3 sig√d 
+	tLONG
+;
+
+4 
+	tDWORD
+;
+
+6 
+	sègBITMAPFILE_HEADER
+
+
+8 
+WORD
+ 
+	mbfTy≥
+;
+
+9 
+DWORD
+ 
+	mbfSize
+;
+
+10 
+DWORD
+ 
+	mbfRe£rved
+;
+
+11 
+DWORD
+ 
+	mbfOffBôs
+;
+
+12 }
+	tBITMAPFILE_HEADER
+;
+
+14 
+	sègBITMAPINFO_HEADER
+
+
+16 
+DWORD
+ 
+	mbiSize
+;
+
+17 
+DWORD
+ 
+	mbiWidth
+;
+
+18 
+DWORD
+ 
+	mbiHeight
+;
+
+19 
+WORD
+ 
+	mbiPœ√s
+;
+
+20 
+WORD
+ 
+	mbiBôCou¡
+;
+
+21 
+DWORD
+ 
+	mbiCom¥essi⁄
+;
+
+22 
+DWORD
+ 
+	mbiSizeImage
+;
+
+23 
+DWORD
+ 
+	mbiXPñsPîMëî
+;
+
+24 
+DWORD
+ 
+	mbiYPñsPîMëî
+;
+
+25 
+DWORD
+ 
+	mbiCÃU£d
+;
+
+26 
+DWORD
+ 
+	mbiCÃImp‹è¡
+;
+
+27 }
+	tBITMAPINFO_HEADER
+;
+
+	@init.c
 
 1 
-	~<ˇmîa.h
->
+	~"öô.h
+"
 
-2 
+3 
 	$öô_v4l2
 ()
 
-4 
+5 
 i
  = 0;
 
-5 
+6 
 ªt
  = 0;
 
-8 if((
+9 if((
 fd_video
  = 
 	`›í
 (
 FILE_VIDEO
-,
+, 
 O_RDWR
 )) == -1)
 
-10 
+11 
 	`¥ötf
 ("open v4l interface failed!\n");
 
-11  (
+12  (
 FALSE
 );
 
-15 if(
+16 if(
 	`io˘l
 (
 fd_video
-,
+, 
 VIDIOC_QUERYCAP
-,&
+, &
 ˇp
 ) == -1)
 
-17 
+18 
 	`¥ötf
 ("›í devi˚ %†Áûed:u«bÀÅÿquîy devi˚!\n",
 FILE_VIDEO
 );
 
-18  (
+19  (
 FALSE
 );
 
-22 
+23 
 	`¥ötf
-("drivî:\t\t%s\n",
+("drivî:\t\t%s\n", 
 ˇp
 .
 drivî
 );
 
-23 
+24 
 	`¥ötf
-("ˇrd:\t\t%s\n",
+("ˇrd:\t\t%s\n", 
 ˇp
 .
 ˇrd
 );
 
-24 
+25 
 	`¥ötf
-("bus_öfo:\t%s\n",
+("bus_öfo:\t%s\n", 
 ˇp
 .
 bus_öfo
 );
 
-25 
+26 
 	`¥ötf
-("vîsi⁄:\t%d\n",
+("vîsi⁄:\t%d\n", 
 ˇp
 .
 vîsi⁄
 );
 
-26 
+27 
 	`¥ötf
-("ˇ∑bûôõs:\t%x\n",
+("ˇ∑bûôõs:\t%x\n", 
 ˇp
 .
 ˇ∑bûôõs
 );
 
-28 if((
+29 if((
 ˇp
 .
 ˇ∑bûôõs
@@ -103,13 +227,13 @@ vîsi⁄
 V4L2_CAP_VIDEO_CAPTURE
 ) == V4L2_CAP_VIDEO_CAPTURE)
 
-29 
+30 
 	`¥ötf
-("Devi˚ %s:suµ‹t†ˇ±uª.\n",
+("Devi˚ %s:suµ‹t†ˇ±uª.\n", 
 FILE_VIDEO
 );
 
-30 if((
+31 if((
 ˇp
 .
 ˇ∑bûôõs
@@ -117,19 +241,19 @@ FILE_VIDEO
 V4L2_CAP_STREAMING
 ) == V4L2_CAP_STREAMING)
 
-31 
+32 
 	`¥ötf
-("Devi˚ %s:suµ‹t†°ªamög.\n",
+("Devi˚ %s:suµ‹t†°ªamög.\n", 
 FILE_VIDEO
 );
 
-34 
+36 
 fmtdesc
 .
 ödex
  = 0;
 
-35 
+37 
 fmtdesc
 .
 ty≥
@@ -137,37 +261,37 @@ ty≥
 V4L2_BUF_TYPE_VIDEO_CAPTURE
 ;
 
-36 
+38 
 	`¥ötf
 ("Support format:\n");
 
-37 
+39 
 	`io˘l
 (
 fd_video
-,
+, 
 VIDIOC_ENUM_FMT
-,&
+, &
 fmtdesc
 ) != -1)
 
-39 
+41 
 	`¥ötf
-("\t%d.%s\n",
+("\t%d.%s\n", 
 fmtdesc
 .
 ödex
-+1,fmtdesc.
++1, fmtdesc.
 des¸ùti⁄
 );
 
-40 
+42 
 fmtdesc
 .
 ödex
 ++;
 
-44 
+46 
 fmt
 .
 ty≥
@@ -175,7 +299,7 @@ ty≥
 V4L2_BUF_TYPE_VIDEO_CAPTURE
 ;
 
-45 
+47 
 fmt
 .fmt.
 pix
@@ -185,7 +309,7 @@ pixñf‹m©
 V4L2_PIX_FMT_YUYV
 ;
 
-46 
+48 
 fmt
 .fmt.
 pix
@@ -195,7 +319,7 @@ height
 IMAGEHEIGHT
 ;
 
-47 
+49 
 fmt
 .fmt.
 pix
@@ -205,7 +329,7 @@ width
 IMAGEWIDTH
 ;
 
-48 
+50 
 fmt
 .fmt.
 pix
@@ -215,11 +339,147 @@ fõld
 V4L2_FIELD_INTERLACED
 ;
 
-52 
+52 if(
+	`io˘l
+(
+fd_video
+, 
+VIDIOC_S_FMT
+, &
+fmt
+) == -1)
+
+54 
+	`¥ötf
+("UnableÅo set format\n");
+
+55  
+FALSE
+;
+
+57 if(
+	`io˘l
+(
+fd_video
+, 
+VIDIOC_G_FMT
+, &
+fmt
+) == -1)
+
+59 
+	`¥ötf
+("UnableÅo get format\n");
+
+60  
+FALSE
+;
+
+64 
+	`¥ötf
+("fmt.ty≥:\t\t%d\n", 
+fmt
+.
+ty≥
+);
+
+65 
+	`¥ötf
+("pix.pixñf‹m©:\t%c%c%c%c\n", 
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ & 0xFF,\
+
+66 (
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ >> 8) & 0xFF,\
+
+67 (
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ >> 16)& 0xFF,\
+
+68 (
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ >> 24)& 0xFF);
+
+69 
+	`¥ötf
+("pix.height:\t\t%d\n", 
+fmt
+.fmt.
+pix
+.
+height
+);
+
+70 
+	`¥ötf
+("pix.width:\t\t%d\n", 
+fmt
+.fmt.
+pix
+.
+width
+);
+
+71 
+	`¥ötf
+("pix.fõld:\t\t%d\n", 
+fmt
+.fmt.
+pix
+.
+fõld
+);
+
+79 
+	`¥ötf
+("öô %†\t[OK]\n", 
+FILE_VIDEO
+);
+
+81  
+TRUE
+;
+
+82 
 	}
 }
 
-	@camera.h
+85 
+	$˛o£_v4l2
+()
+
+88 
+	`˛o£
+(
+fd_video
+);
+
+89  
+TRUE
+;
+
+90 
+	}
+}
+
+	@init.h
 
 1 
 	~<uni°d.h
@@ -242,116 +502,80 @@ V4L2_FIELD_INTERLACED
 >
 
 6 
-	~<sys/°©.h
+	~<sys/io˘l.h
 >
 
 7 
-	~<sys/ty≥s.h
+	~<sys/°©.h
 >
 
 8 
-	~<î∫o.h
+	~<sys/ty≥s.h
 >
 
 9 
-	~<ãrmios.h
+	~<sys/mm™.h
 >
 
 10 
+	~<î∫o.h
+>
+
+11 
+	~<ãrmios.h
+>
+
+12 
 	~<löux/videodev2.h
 >
 
-12 
+14 
 	#TRUE
  1
 
 	)
 
-13 
+15 
 	#FALSE
  0
 
 	)
 
-15 
+17 
 	#FILE_VIDEO
  "/dev/video0"
 
 	)
 
-16 
+18 
 	#BMP
  "/home/swhôe/Sm¨t-P©rﬁ/ˇmîa/pi˘uª/image.bmp"
 
 	)
 
-17 
+19 
 	#YUV
  "/home/swhôe/Sm¨t-P©rﬁ/ˇmîa/pi˘uª/image.yuv"
 
 	)
 
-19 
+21 
 	#IMAGEWIDTH
  640
 
 	)
 
-20 
+22 
 	#IMAGEHEIGHT
  480
 
 	)
 
-22 
+24 
 	gfd_video
 ;
 
-23 
-v4l2_ˇ∑bûôy
- 
-	gˇp
-;
-
-24 
-v4l2_fmtdesc
- 
-	gfmtdesc
-;
-
-25 
-v4l2_f‹m©
- 
-	gfmt
-,
-	gfmèck
-;
-
-26 
-v4l2_°ªam∑rm
- 
-	g£tÂs
-;
-
-27 
-v4l2_ªque°buf„rs
- 
-	gªq
-;
-
-28 
-v4l2_buf„r
- 
-	gbuf
-;
-
-29 
-v4l2_buf_ty≥
- 
-	gty≥
-;
-
-31 
+25 
 	g‰ame_buf„r
 [
 IMAGEHEIGHT
@@ -359,19 +583,991 @@ IMAGEHEIGHT
 IMAGEWIDTH
 *3];
 
-33 
+26 
+v4l2_ˇ∑bûôy
+ 
+	gˇp
+;
+
+27 
+v4l2_fmtdesc
+ 
+	gfmtdesc
+;
+
+28 
+v4l2_f‹m©
+ 
+	gfmt
+,
+	gfmèck
+;
+
+29 
+v4l2_°ªam∑rm
+ 
+	g£tÂs
+;
+
+31 
 öô_v4l2
 ();
 
-34 
-v4l2_gøb
-();
-
-35 
+32 
 ˛o£_v4l2
 ();
 
-37 
+	@main.c
+
+1 
+	~"hódî.h
+"
+
+2 
+	~"öô.h
+"
+
+3 
+	~"video_ˇ±uª.h
+"
+
+6 
+	$maö
+()
+
+8 
+FILE
+ *
+Â1
+,*
+Â2
+;
+
+10 
+BITMAPFILE_HEADER
+ 
+bf
+;
+
+11 
+BITMAPINFO_HEADER
+ 
+bi
+;
+
+13 
+Â1
+ = 
+	`f›í
+(
+BMP
+, "wb");
+
+14 if(!
+Â1
+)
+
+16 
+	`¥ötf
+("open BMPÉrror\n");
+
+17  
+FALSE
+;
+
+20 
+Â2
+ = 
+	`f›í
+(
+YUV
+, "wb");
+
+21 if(!
+Â2
+)
+
+23 
+	`¥ötf
+("open YUVÉrror\n");
+
+24  
+FALSE
+;
+
+27 if(
+	`öô_v4l2
+(Ë=
+FALSE
+)
+
+29  
+FALSE
+;
+
+33 
+bi
+.
+biSize
+ = 40;
+
+34 
+bi
+.
+biWidth
+ = 
+IMAGEWIDTH
+;
+
+35 
+bi
+.
+biHeight
+ = 
+IMAGEHEIGHT
+;
+
+36 
+bi
+.
+biPœ√s
+ = 1;
+
+37 
+bi
+.
+biBôCou¡
+ = 24;
+
+38 
+bi
+.
+biCom¥essi⁄
+ = 0;
+
+39 
+bi
+.
+biSizeImage
+ = 
+IMAGEHEIGHT
+*
+IMAGEWIDTH
+*3;
+
+40 
+bi
+.
+biXPñsPîMëî
+ = 0;
+
+41 
+bi
+.
+biYPñsPîMëî
+ = 0;
+
+42 
+bi
+.
+biCÃU£d
+ = 0;
+
+43 
+bi
+.
+biCÃImp‹è¡
+ = 0;
+
+46 
+bf
+.
+bfTy≥
+ = 0x4d42;
+
+47 
+bf
+.
+bfSize
+ = 54 + 
+bi
+.
+biSizeImage
+;
+
+48 
+bf
+.
+bfRe£rved
+ = 0;
+
+49 
+bf
+.
+bfOffBôs
+ = 54;
+
+51 
+	`v4l2_gøb
+();
+
+53 
+	`fwrôe
+(
+buf„rs
+[0].
+°¨t
+, 640*480*2, 1, 
+Â2
+);
+
+54 
+	`¥ötf
+("save YUV OK\n");
+
+56 
+	`yuyv_2_rgb888
+();
+
+57 
+	`fwrôe
+(&
+bf
+, 14, 1, 
+Â1
+);
+
+58 
+	`fwrôe
+(&
+bi
+, 40, 1, 
+Â1
+);
+
+59 
+	`fwrôe
+(
+‰ame_buf„r
+, 
+bi
+.
+biSizeImage
+, 1, 
+Â1
+);
+
+60 
+	`¥ötf
+("save BMP OK\n");
+
+62 
+	`f˛o£
+(
+Â1
+);
+
+63 
+	`f˛o£
+(
+Â2
+);
+
+64 
+	`˛o£_v4l2
+();
+
+65  
+TRUE
+;
+
+66 
+	}
+}
+
+	@video_capture.c
+
+1 
+	~"video_ˇ±uª.h
+"
+
+10 
+	$v4l2_gøb
+()
+
+12 
+n_buf„rs
+;
+
+15 
+ªq
+.
+cou¡
+ = 4;
+
+16 
+ªq
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+17 
+ªq
+.
+mem‹y
+ = 
+V4L2_MEMORY_MMAP
+;
+
+18 if(
+	`io˘l
+(
+fd_video
+, 
+VIDIOC_REQBUFS
+, &
+ªq
+) == -1)
+
+20 
+	`¥ötf
+("request for buffersÉrror\n");
+
+25 
+buf„rs
+ = 
+	`mÆloc
+(
+ªq
+.
+cou¡
+*(*buffers));
+
+26 if(!
+buf„rs
+)
+
+28 
+	`¥ötf
+("Out of memory\n");
+
+29  
+FALSE
+;
+
+32 
+n_buf„rs
+ = 0;n_buf„r†< 
+ªq
+.
+cou¡
+;n_buffers++)
+
+34 
+buf
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+35 
+buf
+.
+mem‹y
+ = 
+V4L2_MEMORY_MMAP
+;
+
+36 
+buf
+.
+ödex
+ = 
+n_buf„rs
+;
+
+39 if(
+	`io˘l
+(
+fd_video
+, 
+VIDIOC_QUERYBUF
+, &
+buf
+) == -1)
+
+41 
+	`¥ötf
+("query bufferÉrror\n");
+
+42  
+FALSE
+;
+
+45 
+buf„rs
+[
+n_buf„rs
+].
+Àngth
+ = 
+buf
+.length;
+
+48 
+buf„rs
+[
+n_buf„rs
+].
+°¨t
+ = 
+	`mm≠
+(
+NULL
+, 
+buf
+.
+Àngth
+,\
+
+49 
+PROT_READ
+ | 
+PROT_WRITE
+, 
+MAP_SHARED
+, \
+
+50 
+fd_video
+, 
+buf
+.
+m
+.
+off£t
+);
+
+51 if(
+buf„rs
+[
+n_buf„rs
+].
+°¨t
+ =
+MAP_FAILED
+)
+
+53 
+	`¥ötf
+("buffer mapÉrror");
+
+54  
+FALSE
+;
+
+59 
+n_buf„rs
+ = 0;n_buf„r†< 
+ªq
+.
+cou¡
+;n_buffers++)
+
+61 
+buf
+.
+ödex
+ = 
+n_buf„rs
+;
+
+62 
+	`io˘l
+(
+fd_video
+, 
+VIDIOC_QBUF
+, &
+buf
+);
+
+65 
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+66 
+	`io˘l
+(
+fd_video
+, 
+VIDIOC_STREAMON
+, &
+ty≥
+);
+
+68 
+	`io˘l
+(
+fd_video
+, 
+VIDIOC_DQBUF
+, &
+buf
+);
+
+70 
+	`¥ötf
+("grab yuyv OK\n");
+
+71  
+TRUE
+;
+
+72 
+	}
+}
+
+75 
+	$yuyv_2_rgb888
+()
+
+77 
+i
+,
+j
+;
+
+78 
+y1
+,
+y2
+,
+u
+,
+v
+;
+
+79 
+r1
+,
+g1
+,
+b1
+,
+r2
+,
+g2
+,
+b2
+;
+
+80 * 
+poöãr
+;
+
+82 
+poöãr
+ = 
+buf„rs
+[0].
+°¨t
+;
+
+84 
+i
+=0;i<480;i++)
+
+86 
+j
+=0;j<320;j++)
+
+88 
+y1
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4);
+
+89 
+u
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4 + 1);
+
+90 
+y2
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4 + 2);
+
+91 
+v
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4 + 3);
+
+93 
+r1
+ = 
+y1
+ + 1.042*(
+v
+-128);
+
+94 
+g1
+ = 
+y1
+ - 0.34414*(
+u
+-128Ë- 0.71414*(
+v
+-128);
+
+95 
+b1
+ = 
+y1
+ + 1.772*(
+u
+-128);
+
+97 
+r2
+ = 
+y2
+ + 1.042*(
+v
+-128);
+
+98 
+g2
+ = 
+y2
+ - 0.34414*(
+u
+-128Ë- 0.71414*(
+v
+-128);
+
+99 
+b2
+ = 
+y2
+ + 1.772*(
+u
+-128);
+
+101 if(
+r1
+>255)
+
+102 
+r1
+ = 255;
+
+103 if(
+r1
+<0)
+
+104 
+r1
+ = 0;
+
+106 if(
+b1
+>255)
+
+107 
+b1
+ = 255;
+
+108 if(
+b1
+<0)
+
+109 
+b1
+ = 0;
+
+111 if(
+g1
+>255)
+
+112 
+g1
+ = 255;
+
+113 if(
+g1
+<0)
+
+114 
+g1
+ = 0;
+
+116 if(
+r2
+>255)
+
+117 
+r2
+ = 255;
+
+118 if(
+r2
+<0)
+
+119 
+r2
+ = 0;
+
+121 if(
+b2
+>255)
+
+122 
+b2
+ = 255;
+
+123 if(
+b2
+<0)
+
+124 
+b2
+ = 0;
+
+126 if(
+g2
+>255)
+
+127 
+g2
+ = 255;
+
+128 if(
+g2
+<0)
+
+129 
+g2
+ = 0;
+
+131 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 ) = ()
+b1
+;
+
+132 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 1Ë()
+g1
+;
+
+133 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 2Ë()
+r1
+;
+
+134 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 3Ë()
+b2
+;
+
+135 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 4Ë()
+g2
+;
+
+136 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 5Ë()
+r2
+;
+
+139 
+	`¥ötf
+("changeÅo RGB OK \n");
+
+140 
+	}
+}
+
+	@video_capture.h
+
+1 
+	~<uni°d.h
+>
+
+2 
+	~<°dlib.h
+>
+
+3 
+	~<°dio.h
+>
+
+4 
+	~<°rög.h
+>
+
+5 
+	~<f˙é.h
+>
+
+6 
+	~<sys/io˘l.h
+>
+
+7 
+	~<sys/°©.h
+>
+
+8 
+	~<sys/ty≥s.h
+>
+
+9 
+	~<sys/mm™.h
+>
+
+10 
+	~<î∫o.h
+>
+
+11 
+	~<ãrmios.h
+>
+
+12 
+	~<löux/videodev2.h
+>
+
+14 
+	#TRUE
+ 1
+
+	)
+
+15 
+	#FALSE
+ 0
+
+	)
+
+18 
+	#IMAGEWIDTH
+ 640
+
+	)
+
+19 
+	#IMAGEHEIGHT
+ 480
+
+	)
+
+21 
+fd_video
+;
+
+22 
+‰ame_buf„r
+[
+IMAGEHEIGHT
+*
+IMAGEWIDTH
+*3];
+
+23 
+v4l2_ªque°buf„rs
+ 
+	gªq
+;
+
+24 
+v4l2_buf„r
+ 
+	gbuf
+;
+
+27 
+	sbuf„r
+
+
+29 *
+	m°¨t
+;
+
+30 
+	mÀngth
+;
+
+31 } *
+	gbuf„rs
+;
+
+33 
+v4l2_buf_ty≥
+ 
+	gty≥
+;
+
+35 
+v4l2_gøb
+();
+
+36 
 yuyv_2_rgb888
 ();
 
@@ -36766,10 +37962,14 @@ __END_DECLS
 .
 1
 /usr/include
-29
-675
-camera.c
-camera.h
+33
+719
+header.h
+init.c
+init.h
+main.c
+video_capture.c
+video_capture.h
 /usr/include/errno.h
 /usr/include/fcntl.h
 /usr/include/linux/videodev2.h
