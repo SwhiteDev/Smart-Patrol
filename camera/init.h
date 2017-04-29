@@ -14,7 +14,7 @@
 #define TRUE 1
 #define FALSE 0
 
-#define FILE_VIDEO "/dev/video0"
+#define FILE_VIDEO "/dev/video2"
 #define BMP 	   "/home/swhite/Smart-Patrol/camera/picture/image.bmp"
 #define YUV 	   "/home/swhite/Smart-Patrol/camera/picture/image.yuv"
 
