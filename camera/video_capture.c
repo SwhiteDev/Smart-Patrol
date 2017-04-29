@@ -1,4 +1,4 @@
-#include "camera.h"
+#include "video_capture.h"
 
 /*****************************************************
  *函数名 : v4l2_grab()
@@ -10,8 +10,6 @@
 int v4l2_grab(void)
 {
 	unsigned int n_buffers;
-	struct v4l2_requestbuffers req;
-
 
 	/*申请缓存区*/
 	req.count = 4;

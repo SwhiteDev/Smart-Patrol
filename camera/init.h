@@ -21,28 +21,13 @@
 #define IMAGEWIDTH 640
 #define IMAGEHEIGHT 480
 
-static int fd_video;
+int fd_video;
+unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];
 static struct v4l2_capability cap;    //设备属性
 struct v4l2_fmtdesc fmtdesc;          //帧格式
 struct v4l2_format fmt,fmtack;        
 struct v4l2_streamparm setfps;
-struct v4l2_requestbuffers req;       //申请缓冲区
-struct v4l2_buffer buf;
-
-/*获取缓存信息，并mmap到用户空间*/
-static struct buffer
-{
-	void *start;
-	unsigned int length;
-} *buffers;
-
-enum v4l2_buf_type type;
-
-unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];
 
 int init_v4l2(void);
-int v4l2_grab(void);
 int close_v4l2(void);
-
-int yuyv_2_rgb888(void);
 

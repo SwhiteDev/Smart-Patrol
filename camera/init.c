@@ -1,4 +1,4 @@
-#include "camera.h"
+#include "init.h"
 
 int init_v4l2(void)
 {
