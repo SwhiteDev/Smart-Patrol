@@ -1,4 +1,4 @@
-cscope 15 $HOME/Smart-Patrol/camera -q 0000003549 0000238851
+cscope 15 $HOME/Smart-Patrol/camera -q 0000003567 0000255807
 	@header.h
 
 1 
@@ -447,6 +447,38 @@ pix
 fõld
 );
 
+75 
+£tÂs
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+76 
+£tÂs
+.
+∑rm
+.
+ˇ±uª
+.
+timïî‰ame
+.
+numî©‹
+ = 10;
+
+77 
+£tÂs
+.
+∑rm
+.
+ˇ±uª
+.
+timïî‰ame
+.
+díomö©‹
+ = 10;
+
 79 
 	`¥ötf
 ("öô %†\t[OK]\n", 
@@ -543,7 +575,7 @@ TRUE
 
 17 
 	#FILE_VIDEO
- "/dev/video0"
+ "/dev/video2"
 
 	)
 
@@ -616,6 +648,3074 @@ v4l2_°ªam∑rm
 32 
 ˛o£_v4l2
 ();
+
+	@lab_v4l2_yuyv/v4l2grab.c
+
+1 
+	~<uni°d.h
+>
+
+2 
+	~<sys/ty≥s.h
+>
+
+3 
+	~<sys/°©.h
+>
+
+4 
+	~<f˙é.h
+>
+
+5 
+	~<°dio.h
+>
+
+6 
+	~<sys/io˘l.h
+>
+
+7 
+	~<°dlib.h
+>
+
+8 
+	~<sys/mm™.h
+>
+
+9 
+	~<löux/ty≥s.h
+>
+
+10 
+	~<löux/videodev2.h
+>
+
+12 
+	~"v4l2gøb.h
+"
+
+14 
+	#TRUE
+ 1
+
+	)
+
+15 
+	#FALSE
+ 0
+
+	)
+
+17 
+	#FILE_VIDEO
+ "/dev/video2"
+
+	)
+
+18 
+	#BMP
+ "/home/swhôe/image_bmp.bmp"
+
+	)
+
+19 
+	#YUV
+ "/home/swhôe/image_yuv.yuv"
+
+	)
+
+21 
+	#IMAGEWIDTH
+ 640
+
+	)
+
+22 
+	#IMAGEHEIGHT
+ 480
+
+	)
+
+24 
+	gfd
+;
+
+25 
+v4l2_ˇ∑bûôy
+ 
+	gˇp
+;
+
+26 
+v4l2_fmtdesc
+ 
+	gfmtdesc
+;
+
+27 
+v4l2_f‹m©
+ 
+	gfmt
+,
+	gfmèck
+;
+
+28 
+v4l2_°ªam∑rm
+ 
+	g£tÂs
+;
+
+29 
+v4l2_ªque°buf„rs
+ 
+	gªq
+;
+
+30 
+v4l2_buf„r
+ 
+	gbuf
+;
+
+31 
+v4l2_buf_ty≥
+ 
+	gty≥
+;
+
+32 
+	g‰ame_buf„r
+[
+IMAGEWIDTH
+*
+IMAGEHEIGHT
+*3];
+
+35 
+	sbuf„r
+
+
+37 * 
+	m°¨t
+;
+
+38 
+	mÀngth
+;
+
+39 } * 
+	gbuf„rs
+;
+
+41 
+	$öô_v4l2
+()
+
+43 
+i
+;
+
+44 
+ªt
+ = 0;
+
+47 i‡((
+fd
+ = 
+	`›í
+(
+FILE_VIDEO
+, 
+O_RDWR
+)) == -1)
+
+49 
+	`¥ötf
+("Error opening V4L interface\n");
+
+50  (
+FALSE
+);
+
+54 i‡(
+	`io˘l
+(
+fd
+, 
+VIDIOC_QUERYCAP
+, &
+ˇp
+) == -1)
+
+56 
+	`¥ötf
+("Eº‹ o≥nög devi˚ %s: u«bÀÅÿquîy devi˚.\n",
+FILE_VIDEO
+);
+
+57  (
+FALSE
+);
+
+61 
+	`¥ötf
+("drivî:\t\t%s\n",
+ˇp
+.
+drivî
+);
+
+62 
+	`¥ötf
+("ˇrd:\t\t%s\n",
+ˇp
+.
+ˇrd
+);
+
+63 
+	`¥ötf
+("bus_öfo:\t%s\n",
+ˇp
+.
+bus_öfo
+);
+
+64 
+	`¥ötf
+("vîsi⁄:\t%d\n",
+ˇp
+.
+vîsi⁄
+);
+
+65 
+	`¥ötf
+("ˇ∑bûôõs:\t%x\n",
+ˇp
+.
+ˇ∑bûôõs
+);
+
+67 i‡((
+ˇp
+.
+ˇ∑bûôõs
+ & 
+V4L2_CAP_VIDEO_CAPTURE
+) == V4L2_CAP_VIDEO_CAPTURE)
+
+69 
+	`¥ötf
+("Devi˚ %s: suµ‹t†ˇ±uª.\n",
+FILE_VIDEO
+);
+
+72 i‡((
+ˇp
+.
+ˇ∑bûôõs
+ & 
+V4L2_CAP_STREAMING
+) == V4L2_CAP_STREAMING)
+
+74 
+	`¥ötf
+("Devi˚ %s: suµ‹t†°ªamög.\n",
+FILE_VIDEO
+);
+
+79 
+fmtdesc
+.
+ödex
+=0;
+
+80 
+fmtdesc
+.
+ty≥
+=
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+81 
+	`¥ötf
+("Support format:\n");
+
+82 
+	`io˘l
+(
+fd
+,
+VIDIOC_ENUM_FMT
+,&
+fmtdesc
+)!=-1)
+
+84 
+	`¥ötf
+("\t%d.%s\n",
+fmtdesc
+.
+ödex
++1,fmtdesc.
+des¸ùti⁄
+);
+
+85 
+fmtdesc
+.
+ödex
+++;
+
+89 
+fmt
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+90 
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ = 
+V4L2_PIX_FMT_YUYV
+;
+
+91 
+fmt
+.fmt.
+pix
+.
+height
+ = 
+IMAGEHEIGHT
+;
+
+92 
+fmt
+.fmt.
+pix
+.
+width
+ = 
+IMAGEWIDTH
+;
+
+93 
+fmt
+.fmt.
+pix
+.
+fõld
+ = 
+V4L2_FIELD_INTERLACED
+;
+
+95 if(
+	`io˘l
+(
+fd
+, 
+VIDIOC_S_FMT
+, &
+fmt
+) == -1)
+
+97 
+	`¥ötf
+("UnableÅo set format\n");
+
+98  
+FALSE
+;
+
+100 if(
+	`io˘l
+(
+fd
+, 
+VIDIOC_G_FMT
+, &
+fmt
+) == -1)
+
+102 
+	`¥ötf
+("UnableÅo get format\n");
+
+103  
+FALSE
+;
+
+106 
+	`¥ötf
+("fmt.ty≥:\t\t%d\n",
+fmt
+.
+ty≥
+);
+
+107 
+	`¥ötf
+("pix.pixñf‹m©:\t%c%c%c%c\n",
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ & 0xFF, (fmt.fmt.pix.pixelformat >> 8) & 0xFF,(fmt.fmt.pix.pixelformat >> 16) & 0xFF, (fmt.fmt.pix.pixelformat >> 24) & 0xFF);
+
+108 
+	`¥ötf
+("pix.height:\t\t%d\n",
+fmt
+.fmt.
+pix
+.
+height
+);
+
+109 
+	`¥ötf
+("pix.width:\t\t%d\n",
+fmt
+.fmt.
+pix
+.
+width
+);
+
+110 
+	`¥ötf
+("pix.fõld:\t\t%d\n",
+fmt
+.fmt.
+pix
+.
+fõld
+);
+
+113 
+£tÂs
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+114 
+£tÂs
+.
+∑rm
+.
+ˇ±uª
+.
+timïî‰ame
+.
+numî©‹
+ = 10;
+
+115 
+£tÂs
+.
+∑rm
+.
+ˇ±uª
+.
+timïî‰ame
+.
+díomö©‹
+ = 10;
+
+117 
+	`¥ötf
+("öô %†\t[OK]\n",
+FILE_VIDEO
+);
+
+119  
+TRUE
+;
+
+120 
+	}
+}
+
+122 
+	$v4l2_gøb
+()
+
+124 
+n_buf„rs
+;
+
+127 
+ªq
+.
+cou¡
+=4;
+
+128 
+ªq
+.
+ty≥
+=
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+129 
+ªq
+.
+mem‹y
+=
+V4L2_MEMORY_MMAP
+;
+
+130 if(
+	`io˘l
+(
+fd
+,
+VIDIOC_REQBUFS
+,&
+ªq
+)==-1)
+
+132 
+	`¥ötf
+("request for buffersÉrror\n");
+
+136 
+buf„rs
+ = 
+	`mÆloc
+(
+ªq
+.
+cou¡
+* (*buffers));
+
+137 i‡(!
+buf„rs
+)
+
+139 
+	`¥ötf
+ ("Out of memory\n");
+
+140 (
+FALSE
+);
+
+143 
+n_buf„rs
+ = 0;Ç_buf„r†< 
+ªq
+.
+cou¡
+;Ç_buffers++)
+
+145 
+buf
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+146 
+buf
+.
+mem‹y
+ = 
+V4L2_MEMORY_MMAP
+;
+
+147 
+buf
+.
+ödex
+ = 
+n_buf„rs
+;
+
+149 i‡(
+	`io˘l
+ (
+fd
+, 
+VIDIOC_QUERYBUF
+, &
+buf
+) == -1)
+
+151 
+	`¥ötf
+("query bufferÉrror\n");
+
+152 (
+FALSE
+);
+
+155 
+buf„rs
+[
+n_buf„rs
+].
+Àngth
+ = 
+buf
+.length;
+
+157 
+buf„rs
+[
+n_buf„rs
+].
+°¨t
+ = 
+	`mm≠
+(
+NULL
+,
+buf
+.
+Àngth
+,
+PROT_READ
+ |
+PROT_WRITE
+, 
+MAP_SHARED
+, 
+fd
+, buf.
+m
+.
+off£t
+);
+
+158 i‡(
+buf„rs
+[
+n_buf„rs
+].
+°¨t
+ =
+MAP_FAILED
+)
+
+160 
+	`¥ötf
+("buffer mapÉrror\n");
+
+161 (
+FALSE
+);
+
+166 
+n_buf„rs
+ = 0;Ç_buf„r†< 
+ªq
+.
+cou¡
+;Ç_buffers++)
+
+168 
+buf
+.
+ödex
+ = 
+n_buf„rs
+;
+
+169 
+	`io˘l
+(
+fd
+, 
+VIDIOC_QBUF
+, &
+buf
+);
+
+172 
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+173 
+	`io˘l
+ (
+fd
+, 
+VIDIOC_STREAMON
+, &
+ty≥
+);
+
+175 
+	`io˘l
+(
+fd
+, 
+VIDIOC_DQBUF
+, &
+buf
+);
+
+177 
+	`¥ötf
+("grab yuyv OK\n");
+
+178 (
+TRUE
+);
+
+179 
+	}
+}
+
+182 
+	$yuyv_2_rgb888
+()
+
+184 
+i
+,
+j
+;
+
+185 
+y1
+,
+y2
+,
+u
+,
+v
+;
+
+186 
+r1
+,
+g1
+,
+b1
+,
+r2
+,
+g2
+,
+b2
+;
+
+187 * 
+poöãr
+;
+
+189 
+poöãr
+ = 
+buf„rs
+[0].
+°¨t
+;
+
+191 
+i
+=0;i<480;i++)
+
+193 
+j
+=0;j<320;j++)
+
+195 
+y1
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4);
+
+196 
+u
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4 + 1);
+
+197 
+y2
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4 + 2);
+
+198 
+v
+ = *–
+poöãr
+ + (
+i
+*320+
+j
+)*4 + 3);
+
+200 
+r1
+ = 
+y1
+ + 1.042*(
+v
+-128);
+
+201 
+g1
+ = 
+y1
+ - 0.34414*(
+u
+-128Ë- 0.71414*(
+v
+-128);
+
+202 
+b1
+ = 
+y1
+ + 1.772*(
+u
+-128);
+
+204 
+r2
+ = 
+y2
+ + 1.042*(
+v
+-128);
+
+205 
+g2
+ = 
+y2
+ - 0.34414*(
+u
+-128Ë- 0.71414*(
+v
+-128);
+
+206 
+b2
+ = 
+y2
+ + 1.772*(
+u
+-128);
+
+208 if(
+r1
+>255)
+
+209 
+r1
+ = 255;
+
+210 if(
+r1
+<0)
+
+211 
+r1
+ = 0;
+
+213 if(
+b1
+>255)
+
+214 
+b1
+ = 255;
+
+215 if(
+b1
+<0)
+
+216 
+b1
+ = 0;
+
+218 if(
+g1
+>255)
+
+219 
+g1
+ = 255;
+
+220 if(
+g1
+<0)
+
+221 
+g1
+ = 0;
+
+223 if(
+r2
+>255)
+
+224 
+r2
+ = 255;
+
+225 if(
+r2
+<0)
+
+226 
+r2
+ = 0;
+
+228 if(
+b2
+>255)
+
+229 
+b2
+ = 255;
+
+230 if(
+b2
+<0)
+
+231 
+b2
+ = 0;
+
+233 if(
+g2
+>255)
+
+234 
+g2
+ = 255;
+
+235 if(
+g2
+<0)
+
+236 
+g2
+ = 0;
+
+238 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 ) = ()
+b1
+;
+
+239 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 1Ë()
+g1
+;
+
+240 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 2Ë()
+r1
+;
+
+241 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 3Ë()
+b2
+;
+
+242 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 4Ë()
+g2
+;
+
+243 *(
+‰ame_buf„r
+ + ((480-1-
+i
+)*320+
+j
+)*6 + 5Ë()
+r2
+;
+
+246 
+	`¥ötf
+("changeÅo RGB OK \n");
+
+247 
+	}
+}
+
+249 
+	$˛o£_v4l2
+()
+
+251 if(
+fd
+ != -1)
+
+253 
+	`˛o£
+(
+fd
+);
+
+254  (
+TRUE
+);
+
+256  (
+FALSE
+);
+
+257 
+	}
+}
+
+260 
+	$maö
+()
+
+263 
+FILE
+ * 
+Â1
+,* 
+Â2
+;
+
+265 
+BITMAPFILEHEADER
+ 
+bf
+;
+
+266 
+BITMAPINFOHEADER
+ 
+bi
+;
+
+269 
+Â1
+ = 
+	`f›í
+(
+BMP
+, "wb");
+
+270 if(!
+Â1
+)
+
+272 
+	`¥ötf
+("›í "
+BMP
+"error\n");
+
+273 (
+FALSE
+);
+
+276 
+Â2
+ = 
+	`f›í
+(
+YUV
+, "wb");
+
+277 if(!
+Â2
+)
+
+279 
+	`¥ötf
+("›í "
+YUV
+"error\n");
+
+280 (
+FALSE
+);
+
+283 if(
+	`öô_v4l2
+(Ë=
+FALSE
+)
+
+285 (
+FALSE
+);
+
+289 
+bi
+.
+biSize
+ = 40;
+
+290 
+bi
+.
+biWidth
+ = 
+IMAGEWIDTH
+;
+
+291 
+bi
+.
+biHeight
+ = 
+IMAGEHEIGHT
+;
+
+292 
+bi
+.
+biPœ√s
+ = 1;
+
+293 
+bi
+.
+biBôCou¡
+ = 24;
+
+294 
+bi
+.
+biCom¥essi⁄
+ = 0;
+
+295 
+bi
+.
+biSizeImage
+ = 
+IMAGEWIDTH
+*
+IMAGEHEIGHT
+*3;
+
+296 
+bi
+.
+biXPñsPîMëî
+ = 0;
+
+297 
+bi
+.
+biYPñsPîMëî
+ = 0;
+
+298 
+bi
+.
+biCÃU£d
+ = 0;
+
+299 
+bi
+.
+biCÃImp‹è¡
+ = 0;
+
+303 
+bf
+.
+bfTy≥
+ = 0x4d42;
+
+304 
+bf
+.
+bfSize
+ = 54 + 
+bi
+.
+biSizeImage
+;
+
+305 
+bf
+.
+bfRe£rved
+ = 0;
+
+306 
+bf
+.
+bfOffBôs
+ = 54;
+
+308 
+	`v4l2_gøb
+();
+
+309 
+	`fwrôe
+(
+buf„rs
+[0].
+°¨t
+, 640*480*2, 1, 
+Â2
+);
+
+310 
+	`¥ötf
+("ßvê"
+YUV
+"OK\n");
+
+312 
+	`yuyv_2_rgb888
+();
+
+313 
+	`fwrôe
+(&
+bf
+.
+bfTy≥
+, 2, 1, 
+Â1
+);
+
+314 
+	`fwrôe
+(&
+bf
+.
+bfSize
+, 4, 1, 
+Â1
+);
+
+315 
+	`fwrôe
+(&
+bf
+.
+bfRe£rved
+, 4, 1, 
+Â1
+);
+
+316 
+	`fwrôe
+(&
+bf
+.
+bfOffBôs
+, 4, 1, 
+Â1
+);
+
+318 
+	`fwrôe
+(&
+bi
+.
+biSize
+, 4, 1, 
+Â1
+);
+
+319 
+	`fwrôe
+(&
+bi
+.
+biWidth
+, 4, 1, 
+Â1
+);
+
+320 
+	`fwrôe
+(&
+bi
+.
+biHeight
+, 4, 1, 
+Â1
+);
+
+321 
+	`fwrôe
+(&
+bi
+.
+biPœ√s
+, 2, 1, 
+Â1
+);
+
+322 
+	`fwrôe
+(&
+bi
+.
+biBôCou¡
+, 2, 1, 
+Â1
+);
+
+323 
+	`fwrôe
+(&
+bi
+.
+biCom¥essi⁄
+, 4, 1, 
+Â1
+);
+
+324 
+	`fwrôe
+(&
+bi
+.
+biSizeImage
+, 4, 1, 
+Â1
+);
+
+325 
+	`fwrôe
+(&
+bi
+.
+biXPñsPîMëî
+, 4, 1, 
+Â1
+);
+
+326 
+	`fwrôe
+(&
+bi
+.
+biYPñsPîMëî
+, 4, 1, 
+Â1
+);
+
+327 
+	`fwrôe
+(&
+bi
+.
+biCÃU£d
+, 4, 1, 
+Â1
+);
+
+328 
+	`fwrôe
+(&
+bi
+.
+biCÃImp‹è¡
+, 4, 1, 
+Â1
+);
+
+329 
+	`fwrôe
+(
+‰ame_buf„r
+, 
+bi
+.
+biSizeImage
+, 1, 
+Â1
+);
+
+330 
+	`¥ötf
+("ßvê"
+BMP
+"OK\n");
+
+333 
+	`f˛o£
+(
+Â1
+);
+
+334 
+	`f˛o£
+(
+Â2
+);
+
+335 
+	`˛o£_v4l2
+();
+
+337 (
+TRUE
+);
+
+338 
+	}
+}
+
+	@lab_v4l2_yuyv/v4l2grab.h
+
+8 #i‚de‡
+__V4LGRAB_H__
+
+
+9 
+	#__V4LGRAB_H__
+
+
+	)
+
+12 
+	~<°dio.h
+>
+
+26 
+	#FREE
+(
+x
+Ëif((x)){
+	`‰ì
+((x));(x)=
+NULL
+;}
+
+	)
+
+30 
+	tBYTE
+;
+
+31 
+	tWORD
+;
+
+32 
+	tDWORD
+;
+
+35 #¥agm®
+∑ck
+(1)
+
+37 
+	sègBITMAPFILEHEADER
+{
+
+38 
+WORD
+ 
+	mbfTy≥
+;
+
+39 
+DWORD
+ 
+	mbfSize
+;
+
+40 
+DWORD
+ 
+	mbfRe£rved
+;
+
+41 
+DWORD
+ 
+	mbfOffBôs
+;
+
+43 }
+	tBITMAPFILEHEADER
+;
+
+46 
+	sègBITMAPINFOHEADER
+{
+
+47 
+DWORD
+ 
+	mbiSize
+;
+
+48 
+DWORD
+ 
+	mbiWidth
+;
+
+49 
+DWORD
+ 
+	mbiHeight
+;
+
+50 
+WORD
+ 
+	mbiPœ√s
+;
+
+51 
+WORD
+ 
+	mbiBôCou¡
+;
+
+52 
+DWORD
+ 
+	mbiCom¥essi⁄
+;
+
+53 
+DWORD
+ 
+	mbiSizeImage
+;
+
+54 
+DWORD
+ 
+	mbiXPñsPîMëî
+;
+
+55 
+DWORD
+ 
+	mbiYPñsPîMëî
+;
+
+56 
+DWORD
+ 
+	mbiCÃU£d
+;
+
+57 
+DWORD
+ 
+	mbiCÃImp‹è¡
+;
+
+58 }
+	tBITMAPINFOHEADER
+;
+
+60 
+	sègRGBQUAD
+{
+
+61 
+BYTE
+ 
+	mrgbBlue
+;
+
+62 
+BYTE
+ 
+	mrgbGªí
+;
+
+63 
+BYTE
+ 
+	mrgbRed
+;
+
+64 
+BYTE
+ 
+	mrgbRe£rved
+;
+
+65 }
+	tRGBQUAD
+;
+
+71 #i‡
+deföed
+(
+__˝lu•lus
+)
+
+78 
+›íVideo
+();
+
+79 
+˛o£Video
+();
+
+82 
+gëVideoD©a
+(*
+d©a
+, 
+size
+);
+
+84 #i‡
+deföed
+(
+__˝lu•lus
+)
+
+	@lab_v4l2_yuyv/v4l2grab_Anysize.c
+
+1 
+	~<uni°d.h
+>
+
+2 
+	~<sys/ty≥s.h
+>
+
+3 
+	~<sys/°©.h
+>
+
+4 
+	~<f˙é.h
+>
+
+5 
+	~<°dio.h
+>
+
+6 
+	~<sys/io˘l.h
+>
+
+7 
+	~<°dlib.h
+>
+
+8 
+	~<sys/mm™.h
+>
+
+9 
+	~<löux/ty≥s.h
+>
+
+10 
+	~<löux/videodev2.h
+>
+
+12 
+	~"v4l2gøb.h
+"
+
+14 
+	#TRUE
+ 1
+
+	)
+
+15 
+	#FALSE
+ 0
+
+	)
+
+17 
+	#FILE_VIDEO
+ "/dev/video0"
+
+	)
+
+18 
+	#BMP
+ "/home/swhôe/image_bmp.bmp"
+
+	)
+
+19 
+	#YUV
+ "/home/swhôe/image_yuv.yuv"
+
+	)
+
+21 
+	#IMAGEWIDTH
+ 640
+
+	)
+
+22 
+	#IMAGEHEIGHT
+ 480
+
+	)
+
+24 
+	gfd
+;
+
+25 
+v4l2_ˇ∑bûôy
+ 
+	gˇp
+;
+
+26 
+v4l2_fmtdesc
+ 
+	gfmtdesc
+;
+
+27 
+v4l2_f‹m©
+ 
+	gfmt
+,
+	gfmèck
+;
+
+28 
+v4l2_°ªam∑rm
+ 
+	g£tÂs
+;
+
+29 
+v4l2_ªque°buf„rs
+ 
+	gªq
+;
+
+30 
+v4l2_buf„r
+ 
+	gbuf
+;
+
+31 
+v4l2_buf_ty≥
+ 
+	gty≥
+;
+
+32 
+	g‰ame_buf„r
+[
+IMAGEWIDTH
+*
+IMAGEHEIGHT
+*3];
+
+35 
+	sbuf„r
+
+
+37 * 
+	m°¨t
+;
+
+38 
+	mÀngth
+;
+
+39 } * 
+	gbuf„rs
+;
+
+41 
+	$öô_v4l2
+()
+
+43 
+i
+;
+
+44 
+ªt
+ = 0;
+
+47 i‡((
+fd
+ = 
+	`›í
+(
+FILE_VIDEO
+, 
+O_RDWR
+)) == -1)
+
+49 
+	`¥ötf
+("Error opening V4L interface\n");
+
+50  (
+FALSE
+);
+
+54 i‡(
+	`io˘l
+(
+fd
+, 
+VIDIOC_QUERYCAP
+, &
+ˇp
+) == -1)
+
+56 
+	`¥ötf
+("Eº‹ o≥nög devi˚ %s: u«bÀÅÿquîy devi˚.\n",
+FILE_VIDEO
+);
+
+57  (
+FALSE
+);
+
+61 
+	`¥ötf
+("drivî:\t\t%s\n",
+ˇp
+.
+drivî
+);
+
+62 
+	`¥ötf
+("ˇrd:\t\t%s\n",
+ˇp
+.
+ˇrd
+);
+
+63 
+	`¥ötf
+("bus_öfo:\t%s\n",
+ˇp
+.
+bus_öfo
+);
+
+64 
+	`¥ötf
+("vîsi⁄:\t%d\n",
+ˇp
+.
+vîsi⁄
+);
+
+65 
+	`¥ötf
+("ˇ∑bûôõs:\t%x\n",
+ˇp
+.
+ˇ∑bûôõs
+);
+
+67 i‡((
+ˇp
+.
+ˇ∑bûôõs
+ & 
+V4L2_CAP_VIDEO_CAPTURE
+) == V4L2_CAP_VIDEO_CAPTURE)
+
+69 
+	`¥ötf
+("Devi˚ %s: suµ‹t†ˇ±uª.\n",
+FILE_VIDEO
+);
+
+72 i‡((
+ˇp
+.
+ˇ∑bûôõs
+ & 
+V4L2_CAP_STREAMING
+) == V4L2_CAP_STREAMING)
+
+74 
+	`¥ötf
+("Devi˚ %s: suµ‹t†°ªamög.\n",
+FILE_VIDEO
+);
+
+79 
+fmtdesc
+.
+ödex
+=0;
+
+80 
+fmtdesc
+.
+ty≥
+=
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+81 
+	`¥ötf
+("Support format:\n");
+
+82 
+	`io˘l
+(
+fd
+,
+VIDIOC_ENUM_FMT
+,&
+fmtdesc
+)!=-1)
+
+84 
+	`¥ötf
+("\t%d.%s\n",
+fmtdesc
+.
+ödex
++1,fmtdesc.
+des¸ùti⁄
+);
+
+85 
+fmtdesc
+.
+ödex
+++;
+
+89 
+fmt
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+90 
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ = 
+V4L2_PIX_FMT_YUYV
+;
+
+91 
+fmt
+.fmt.
+pix
+.
+height
+ = 
+IMAGEHEIGHT
+;
+
+92 
+fmt
+.fmt.
+pix
+.
+width
+ = 
+IMAGEWIDTH
+;
+
+93 
+fmt
+.fmt.
+pix
+.
+fõld
+ = 
+V4L2_FIELD_INTERLACED
+;
+
+95 if(
+	`io˘l
+(
+fd
+, 
+VIDIOC_S_FMT
+, &
+fmt
+) == -1)
+
+97 
+	`¥ötf
+("UnableÅo set format\n");
+
+98  
+FALSE
+;
+
+100 if(
+	`io˘l
+(
+fd
+, 
+VIDIOC_G_FMT
+, &
+fmt
+) == -1)
+
+102 
+	`¥ötf
+("UnableÅo get format\n");
+
+103  
+FALSE
+;
+
+106 
+	`¥ötf
+("fmt.ty≥:\t\t%d\n",
+fmt
+.
+ty≥
+);
+
+107 
+	`¥ötf
+("pix.pixñf‹m©:\t%c%c%c%c\n",
+fmt
+.fmt.
+pix
+.
+pixñf‹m©
+ & 0xFF, (fmt.fmt.pix.pixelformat >> 8) & 0xFF,(fmt.fmt.pix.pixelformat >> 16) & 0xFF, (fmt.fmt.pix.pixelformat >> 24) & 0xFF);
+
+108 
+	`¥ötf
+("pix.height:\t\t%d\n",
+fmt
+.fmt.
+pix
+.
+height
+);
+
+109 
+	`¥ötf
+("pix.width:\t\t%d\n",
+fmt
+.fmt.
+pix
+.
+width
+);
+
+110 
+	`¥ötf
+("pix.fõld:\t\t%d\n",
+fmt
+.fmt.
+pix
+.
+fõld
+);
+
+113 
+£tÂs
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+114 
+£tÂs
+.
+∑rm
+.
+ˇ±uª
+.
+timïî‰ame
+.
+numî©‹
+ = 10;
+
+115 
+£tÂs
+.
+∑rm
+.
+ˇ±uª
+.
+timïî‰ame
+.
+díomö©‹
+ = 10;
+
+117 
+	`¥ötf
+("öô %†\t[OK]\n",
+FILE_VIDEO
+);
+
+119  
+TRUE
+;
+
+120 
+	}
+}
+
+122 
+	$v4l2_gøb
+()
+
+124 
+n_buf„rs
+;
+
+127 
+ªq
+.
+cou¡
+=4;
+
+128 
+ªq
+.
+ty≥
+=
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+129 
+ªq
+.
+mem‹y
+=
+V4L2_MEMORY_MMAP
+;
+
+130 if(
+	`io˘l
+(
+fd
+,
+VIDIOC_REQBUFS
+,&
+ªq
+)==-1)
+
+132 
+	`¥ötf
+("request for buffersÉrror\n");
+
+136 
+buf„rs
+ = 
+	`mÆloc
+(
+ªq
+.
+cou¡
+* (*buffers));
+
+137 i‡(!
+buf„rs
+)
+
+139 
+	`¥ötf
+ ("Out of memory\n");
+
+140 (
+FALSE
+);
+
+143 
+n_buf„rs
+ = 0;Ç_buf„r†< 
+ªq
+.
+cou¡
+;Ç_buffers++)
+
+145 
+buf
+.
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+146 
+buf
+.
+mem‹y
+ = 
+V4L2_MEMORY_MMAP
+;
+
+147 
+buf
+.
+ödex
+ = 
+n_buf„rs
+;
+
+149 i‡(
+	`io˘l
+ (
+fd
+, 
+VIDIOC_QUERYBUF
+, &
+buf
+) == -1)
+
+151 
+	`¥ötf
+("query bufferÉrror\n");
+
+152 (
+FALSE
+);
+
+155 
+buf„rs
+[
+n_buf„rs
+].
+Àngth
+ = 
+buf
+.length;
+
+157 
+buf„rs
+[
+n_buf„rs
+].
+°¨t
+ = 
+	`mm≠
+(
+NULL
+,
+buf
+.
+Àngth
+,
+PROT_READ
+ |
+PROT_WRITE
+, 
+MAP_SHARED
+, 
+fd
+, buf.
+m
+.
+off£t
+);
+
+158 i‡(
+buf„rs
+[
+n_buf„rs
+].
+°¨t
+ =
+MAP_FAILED
+)
+
+160 
+	`¥ötf
+("buffer mapÉrror\n");
+
+161 (
+FALSE
+);
+
+166 
+n_buf„rs
+ = 0;Ç_buf„r†< 
+ªq
+.
+cou¡
+;Ç_buffers++)
+
+168 
+buf
+.
+ödex
+ = 
+n_buf„rs
+;
+
+169 
+	`io˘l
+(
+fd
+, 
+VIDIOC_QBUF
+, &
+buf
+);
+
+172 
+ty≥
+ = 
+V4L2_BUF_TYPE_VIDEO_CAPTURE
+;
+
+173 
+	`io˘l
+ (
+fd
+, 
+VIDIOC_STREAMON
+, &
+ty≥
+);
+
+175 
+	`io˘l
+(
+fd
+, 
+VIDIOC_DQBUF
+, &
+buf
+);
+
+177 
+	`¥ötf
+("grab yuyv OK\n");
+
+178 (
+TRUE
+);
+
+179 
+	}
+}
+
+182 
+	$yuyv_2_rgb888
+()
+
+184 
+i
+,
+j
+;
+
+185 
+y1
+,
+y2
+,
+u
+,
+v
+;
+
+186 
+r1
+,
+g1
+,
+b1
+,
+r2
+,
+g2
+,
+b2
+;
+
+187 * 
+poöãr
+;
+
+189 
+poöãr
+ = 
+buf„rs
+[0].
+°¨t
+;
+
+191 
+i
+=0;i<
+IMAGEHEIGHT
+;i++)
+
+193 
+j
+=0;j<(
+IMAGEWIDTH
+/2);j++)
+
+195 
+y1
+ = *–
+poöãr
+ + (
+i
+*(
+IMAGEWIDTH
+/2)+
+j
+)*4);
+
+196 
+u
+ = *–
+poöãr
+ + (
+i
+*(
+IMAGEWIDTH
+/2)+
+j
+)*4 + 1);
+
+197 
+y2
+ = *–
+poöãr
+ + (
+i
+*(
+IMAGEWIDTH
+/2)+
+j
+)*4 + 2);
+
+198 
+v
+ = *–
+poöãr
+ + (
+i
+*(
+IMAGEWIDTH
+/2)+
+j
+)*4 + 3);
+
+200 
+r1
+ = 
+y1
+ + 1.042*(
+v
+-128);
+
+201 
+g1
+ = 
+y1
+ - 0.34414*(
+u
+-128Ë- 0.71414*(
+v
+-128);
+
+202 
+b1
+ = 
+y1
+ + 1.772*(
+u
+-128);
+
+204 
+r2
+ = 
+y2
+ + 1.042*(
+v
+-128);
+
+205 
+g2
+ = 
+y2
+ - 0.34414*(
+u
+-128Ë- 0.71414*(
+v
+-128);
+
+206 
+b2
+ = 
+y2
+ + 1.772*(
+u
+-128);
+
+208 if(
+r1
+>255)
+
+209 
+r1
+ = 255;
+
+210 if(
+r1
+<0)
+
+211 
+r1
+ = 0;
+
+213 if(
+b1
+>255)
+
+214 
+b1
+ = 255;
+
+215 if(
+b1
+<0)
+
+216 
+b1
+ = 0;
+
+218 if(
+g1
+>255)
+
+219 
+g1
+ = 255;
+
+220 if(
+g1
+<0)
+
+221 
+g1
+ = 0;
+
+223 if(
+r2
+>255)
+
+224 
+r2
+ = 255;
+
+225 if(
+r2
+<0)
+
+226 
+r2
+ = 0;
+
+228 if(
+b2
+>255)
+
+229 
+b2
+ = 255;
+
+230 if(
+b2
+<0)
+
+231 
+b2
+ = 0;
+
+233 if(
+g2
+>255)
+
+234 
+g2
+ = 255;
+
+235 if(
+g2
+<0)
+
+236 
+g2
+ = 0;
+
+238 *(
+‰ame_buf„r
+ + ((
+IMAGEHEIGHT
+-1-
+i
+)*(
+IMAGEWIDTH
+/2)+
+j
+)*6 ) = ()
+b1
+;
+
+239 *(
+‰ame_buf„r
+ + ((
+IMAGEHEIGHT
+-1-
+i
+)*(
+IMAGEWIDTH
+/2)+
+j
+)*6 + 1Ë()
+g1
+;
+
+240 *(
+‰ame_buf„r
+ + ((
+IMAGEHEIGHT
+-1-
+i
+)*(
+IMAGEWIDTH
+/2)+
+j
+)*6 + 2Ë()
+r1
+;
+
+241 *(
+‰ame_buf„r
+ + ((
+IMAGEHEIGHT
+-1-
+i
+)*(
+IMAGEWIDTH
+/2)+
+j
+)*6 + 3Ë()
+b2
+;
+
+242 *(
+‰ame_buf„r
+ + ((
+IMAGEHEIGHT
+-1-
+i
+)*(
+IMAGEWIDTH
+/2)+
+j
+)*6 + 4Ë()
+g2
+;
+
+243 *(
+‰ame_buf„r
+ + ((
+IMAGEHEIGHT
+-1-
+i
+)*(
+IMAGEWIDTH
+/2)+
+j
+)*6 + 5Ë()
+r2
+;
+
+246 
+	`¥ötf
+("changeÅo RGB OK \n");
+
+247 
+	}
+}
+
+249 
+	$˛o£_v4l2
+()
+
+251 if(
+fd
+ != -1)
+
+253 
+	`˛o£
+(
+fd
+);
+
+254  (
+TRUE
+);
+
+256  (
+FALSE
+);
+
+257 
+	}
+}
+
+260 
+	$maö
+()
+
+263 
+FILE
+ * 
+Â1
+,* 
+Â2
+;
+
+265 
+gøb
+;
+
+266 
+BITMAPFILEHEADER
+ 
+bf
+;
+
+267 
+BITMAPINFOHEADER
+ 
+bi
+;
+
+270 
+Â1
+ = 
+	`f›í
+(
+BMP
+, "wb");
+
+271 if(!
+Â1
+)
+
+273 
+	`¥ötf
+("›í "
+BMP
+"error\n");
+
+274 (
+FALSE
+);
+
+277 
+Â2
+ = 
+	`f›í
+(
+YUV
+, "wb");
+
+278 if(!
+Â2
+)
+
+280 
+	`¥ötf
+("›í "
+YUV
+"error\n");
+
+281 (
+FALSE
+);
+
+284 if(
+	`öô_v4l2
+(Ë=
+FALSE
+)
+
+286 (
+FALSE
+);
+
+290 
+bi
+.
+biSize
+ = 40;
+
+291 
+bi
+.
+biWidth
+ = 
+IMAGEWIDTH
+;
+
+292 
+bi
+.
+biHeight
+ = 
+IMAGEHEIGHT
+;
+
+293 
+bi
+.
+biPœ√s
+ = 1;
+
+294 
+bi
+.
+biBôCou¡
+ = 24;
+
+295 
+bi
+.
+biCom¥essi⁄
+ = 0;
+
+296 
+bi
+.
+biSizeImage
+ = 
+IMAGEWIDTH
+*
+IMAGEHEIGHT
+*3;
+
+297 
+bi
+.
+biXPñsPîMëî
+ = 0;
+
+298 
+bi
+.
+biYPñsPîMëî
+ = 0;
+
+299 
+bi
+.
+biCÃU£d
+ = 0;
+
+300 
+bi
+.
+biCÃImp‹è¡
+ = 0;
+
+304 
+bf
+.
+bfTy≥
+ = 0x4d42;
+
+305 
+bf
+.
+bfSize
+ = 54 + 
+bi
+.
+biSizeImage
+;
+
+306 
+bf
+.
+bfRe£rved
+ = 0;
+
+307 
+bf
+.
+bfOffBôs
+ = 54;
+
+309 
+gøb
+=
+	`v4l2_gøb
+();
+
+310 
+	`¥ötf
+("GRAB i†%d\n",
+gøb
+);
+
+311 
+	`¥ötf
+("grab ok\n");
+
+312 
+	`fwrôe
+(
+buf„rs
+[0].
+°¨t
+, 
+IMAGEHEIGHT
+*
+IMAGEWIDTH
+*2,1, 
+Â2
+);
+
+313 
+	`¥ötf
+("ßvê"
+YUV
+"OK\n");
+
+315 
+	`yuyv_2_rgb888
+();
+
+316 
+	`fwrôe
+(&
+bf
+, 14, 1, 
+Â1
+);
+
+317 
+	`fwrôe
+(&
+bi
+, 40, 1, 
+Â1
+);
+
+318 
+	`fwrôe
+(
+‰ame_buf„r
+, 
+bi
+.
+biSizeImage
+, 1, 
+Â1
+);
+
+319 
+	`¥ötf
+("ßvê"
+BMP
+"OK\n");
+
+322 
+	`f˛o£
+(
+Â1
+);
+
+323 
+	`f˛o£
+(
+Â2
+);
+
+324 
+	`˛o£_v4l2
+();
+
+326 (
+TRUE
+);
+
+327 
+	}
+}
 
 	@main.c
 
@@ -833,19 +3933,153 @@ buf„rs
 	`fwrôe
 (&
 bf
-, 14, 1, 
+.
+bfTy≥
+, 2, 1, 
 Â1
 );
 
 58 
 	`fwrôe
 (&
-bi
-, 40, 1, 
+bf
+.
+bfSize
+, 4, 1, 
 Â1
 );
 
 59 
+	`fwrôe
+(&
+bf
+.
+bfRe£rved
+, 4, 1, 
+Â1
+);
+
+60 
+	`fwrôe
+(&
+bf
+.
+bfOffBôs
+, 4, 1, 
+Â1
+);
+
+62 
+	`fwrôe
+(&
+bi
+.
+biSize
+, 4, 1, 
+Â1
+);
+
+63 
+	`fwrôe
+(&
+bi
+.
+biWidth
+, 4, 1, 
+Â1
+);
+
+64 
+	`fwrôe
+(&
+bi
+.
+biHeight
+, 4, 1, 
+Â1
+);
+
+65 
+	`fwrôe
+(&
+bi
+.
+biPœ√s
+, 2, 1, 
+Â1
+);
+
+66 
+	`fwrôe
+(&
+bi
+.
+biBôCou¡
+, 2, 1, 
+Â1
+);
+
+67 
+	`fwrôe
+(&
+bi
+.
+biCom¥essi⁄
+, 4, 1, 
+Â1
+);
+
+68 
+	`fwrôe
+(&
+bi
+.
+biSizeImage
+, 4, 1, 
+Â1
+);
+
+69 
+	`fwrôe
+(&
+bi
+.
+biXPñsPîMëî
+, 4, 1, 
+Â1
+);
+
+70 
+	`fwrôe
+(&
+bi
+.
+biYPñsPîMëî
+, 4, 1, 
+Â1
+);
+
+71 
+	`fwrôe
+(&
+bi
+.
+biCÃU£d
+, 4, 1, 
+Â1
+);
+
+72 
+	`fwrôe
+(&
+bi
+.
+biCÃImp‹è¡
+, 4, 1, 
+Â1
+);
+
+73 
 	`fwrôe
 (
 ‰ame_buf„r
@@ -857,31 +4091,31 @@ biSizeImage
 Â1
 );
 
-60 
+74 
 	`¥ötf
 ("save BMP OK\n");
 
-62 
+76 
 	`f˛o£
 (
 Â1
 );
 
-63 
+77 
 	`f˛o£
 (
 Â2
 );
 
-64 
+78 
 	`˛o£_v4l2
 ();
 
-65  
+79  
 TRUE
 ;
 
-66 
+80 
 	}
 }
 
@@ -1181,11 +4415,15 @@ buf„rs
 
 84 
 i
-=0;i<480;i++)
+=0;i<
+IMAGEHEIGHT
+;i++)
 
 86 
 j
-=0;j<320;j++)
+=0;j<
+IMAGEWIDTH
+/2;j++)
 
 88 
 y1
@@ -1193,7 +4431,9 @@ y1
 poöãr
  + (
 i
-*320+
+*
+IMAGEWIDTH
+/2+
 j
 )*4);
 
@@ -1203,7 +4443,9 @@ u
 poöãr
  + (
 i
-*320+
+*
+IMAGEWIDTH
+/2+
 j
 )*4 + 1);
 
@@ -1213,7 +4455,9 @@ y2
 poöãr
  + (
 i
-*320+
+*
+IMAGEWIDTH
+/2+
 j
 )*4 + 2);
 
@@ -1223,7 +4467,9 @@ v
 poöãr
  + (
 i
-*320+
+*
+IMAGEWIDTH
+/2+
 j
 )*4 + 3);
 
@@ -1377,9 +4623,13 @@ g2
 
 131 *(
 ‰ame_buf„r
- + ((480-1-
+ + ((
+IMAGEHEIGHT
+-1-
 i
-)*320+
+)*
+IMAGEWIDTH
+/2+
 j
 )*6 ) = ()
 b1
@@ -1387,9 +4637,13 @@ b1
 
 132 *(
 ‰ame_buf„r
- + ((480-1-
+ + ((
+IMAGEHEIGHT
+-1-
 i
-)*320+
+)*
+IMAGEWIDTH
+/2+
 j
 )*6 + 1Ë()
 g1
@@ -1397,9 +4651,13 @@ g1
 
 133 *(
 ‰ame_buf„r
- + ((480-1-
+ + ((
+IMAGEHEIGHT
+-1-
 i
-)*320+
+)*
+IMAGEWIDTH
+/2+
 j
 )*6 + 2Ë()
 r1
@@ -1407,9 +4665,13 @@ r1
 
 134 *(
 ‰ame_buf„r
- + ((480-1-
+ + ((
+IMAGEHEIGHT
+-1-
 i
-)*320+
+)*
+IMAGEWIDTH
+/2+
 j
 )*6 + 3Ë()
 b2
@@ -1417,9 +4679,13 @@ b2
 
 135 *(
 ‰ame_buf„r
- + ((480-1-
+ + ((
+IMAGEHEIGHT
+-1-
 i
-)*320+
+)*
+IMAGEWIDTH
+/2+
 j
 )*6 + 4Ë()
 g2
@@ -1427,9 +4693,13 @@ g2
 
 136 *(
 ‰ame_buf„r
- + ((480-1-
+ + ((
+IMAGEHEIGHT
+-1-
 i
-)*320+
+)*
+IMAGEWIDTH
+/2+
 j
 )*6 + 5Ë()
 r2
@@ -2552,6 +5822,168 @@ __va_¨g_∑ck_Àn
 292 
 __END_DECLS
 
+
+	@/usr/include/linux/types.h
+
+1 #i‚de‡
+_LINUX_TYPES_H
+
+
+2 
+	#_LINUX_TYPES_H
+
+
+	)
+
+4 
+	~<asm/ty≥s.h
+>
+
+6 #i‚de‡
+__ASSEMBLY__
+
+
+8 
+	~<löux/posix_ty≥s.h
+>
+
+16 #ifde‡
+__CHECKER__
+
+
+17 
+	#__bôwi£__
+ 
+	`__©åibuã__
+((
+bôwi£
+))
+
+	)
+
+19 
+	#__bôwi£__
+
+
+	)
+
+21 #ifde‡
+__CHECK_ENDIAN__
+
+
+22 
+	#__bôwi£
+ 
+__bôwi£__
+
+
+	)
+
+24 
+	#__bôwi£
+
+
+	)
+
+27 
+__u16
+ 
+	t__bôwi£
+ 
+	t__À16
+;
+
+28 
+__u16
+ 
+	t__bôwi£
+ 
+	t__be16
+;
+
+29 
+__u32
+ 
+	t__bôwi£
+ 
+	t__À32
+;
+
+30 
+__u32
+ 
+	t__bôwi£
+ 
+	t__be32
+;
+
+31 
+__u64
+ 
+	t__bôwi£
+ 
+	t__À64
+;
+
+32 
+__u64
+ 
+	t__bôwi£
+ 
+	t__be64
+;
+
+34 
+__u16
+ 
+	t__bôwi£
+ 
+	t__sum16
+;
+
+35 
+__u32
+ 
+	t__bôwi£
+ 
+	t__wsum
+;
+
+46 
+	#__Æig√d_u64
+ 
+__u64
+ 
+	`__©åibuã__
+((
+	`Æig√d
+(8)))
+
+	)
+
+47 
+	#__Æig√d_be64
+ 
+__be64
+ 
+	`__©åibuã__
+((
+	`Æig√d
+(8)))
+
+	)
+
+48 
+	#__Æig√d_À64
+ 
+__À64
+ 
+	`__©åibuã__
+((
+	`Æig√d
+(8)))
+
+	)
 
 	@/usr/include/linux/videodev2.h
 
@@ -25513,167 +28945,57 @@ _LINUX_IOCTL_H
 	~<asm/io˘l.h
 >
 
-	@/usr/include/linux/types.h
+	@/usr/include/linux/posix_types.h
 
 1 #i‚de‡
-_LINUX_TYPES_H
+_LINUX_POSIX_TYPES_H
 
 
 2 
-	#_LINUX_TYPES_H
+	#_LINUX_POSIX_TYPES_H
 
 
 	)
 
 4 
-	~<asm/ty≥s.h
+	~<löux/°ddef.h
 >
 
-6 #i‚de‡
-__ASSEMBLY__
-
-
-8 
-	~<löux/posix_ty≥s.h
->
-
-16 #ifde‡
-__CHECKER__
-
-
-17 
-	#__bôwi£__
- 
-	`__©åibuã__
-((
-bôwi£
-))
-
-	)
-
-19 
-	#__bôwi£__
-
-
-	)
-
-21 #ifde‡
-__CHECK_ENDIAN__
+21 #unde‡
+__FD_SETSIZE
 
 
 22 
-	#__bôwi£
- 
-__bôwi£__
-
+	#__FD_SETSIZE
+ 1024
 
 	)
 
-24 
-	#__bôwi£
+25 
+	mfds_bôs
+[
+__FD_SETSIZE
+ / (8 * ())];
 
-
-	)
-
-27 
-__u16
- 
-	t__bôwi£
- 
-	t__À16
+26 } 
+	t__kî√l_fd_£t
 ;
 
-28 
-__u16
- 
-	t__bôwi£
- 
-	t__be16
+29 (*
+	t__kî√l_sigh™dÀr_t
+)();
+
+32 
+	t__kî√l_key_t
 ;
 
-29 
-__u32
- 
-	t__bôwi£
- 
-	t__À32
+33 
+	t__kî√l_mqd_t
 ;
 
-30 
-__u32
- 
-	t__bôwi£
- 
-	t__be32
-;
-
-31 
-__u64
- 
-	t__bôwi£
- 
-	t__À64
-;
-
-32 
-__u64
- 
-	t__bôwi£
- 
-	t__be64
-;
-
-34 
-__u16
- 
-	t__bôwi£
- 
-	t__sum16
-;
-
-35 
-__u32
- 
-	t__bôwi£
- 
-	t__wsum
-;
-
-46 
-	#__Æig√d_u64
- 
-__u64
- 
-	`__©åibuã__
-((
-	`Æig√d
-(8)))
-
-	)
-
-47 
-	#__Æig√d_be64
- 
-__be64
- 
-	`__©åibuã__
-((
-	`Æig√d
-(8)))
-
-	)
-
-48 
-	#__Æig√d_À64
- 
-__À64
- 
-	`__©åibuã__
-((
-	`Æig√d
-(8)))
-
-	)
+35 
+	~<asm/posix_ty≥s.h
+>
 
 	@/usr/include/linux/v4l2-common.h
 
@@ -33013,57 +36335,7 @@ l
 __END_DECLS
 
 
-	@/usr/include/linux/posix_types.h
-
-1 #i‚de‡
-_LINUX_POSIX_TYPES_H
-
-
-2 
-	#_LINUX_POSIX_TYPES_H
-
-
-	)
-
-4 
-	~<löux/°ddef.h
->
-
-21 #unde‡
-__FD_SETSIZE
-
-
-22 
-	#__FD_SETSIZE
- 1024
-
-	)
-
-25 
-	mfds_bôs
-[
-__FD_SETSIZE
- / (8 * ())];
-
-26 } 
-	t__kî√l_fd_£t
-;
-
-29 (*
-	t__kî√l_sigh™dÀr_t
-)();
-
-32 
-	t__kî√l_key_t
-;
-
-33 
-	t__kî√l_mqd_t
-;
-
-35 
-	~<asm/posix_ty≥s.h
->
+	@/usr/include/linux/stddef.h
 
 	@/usr/include/stdc-predef.h
 
@@ -33812,8 +37084,6 @@ size_t
  *
 úªvîsibÀ
 );
-
-	@/usr/include/linux/stddef.h
 
 	@/usr/include/wchar.h
 
@@ -37962,16 +41232,20 @@ __END_DECLS
 .
 1
 /usr/include
-33
-719
+36
+802
 header.h
 init.c
 init.h
+lab_v4l2_yuyv/v4l2grab.c
+lab_v4l2_yuyv/v4l2grab.h
+lab_v4l2_yuyv/v4l2grab_Anysize.c
 main.c
 video_capture.c
 video_capture.h
 /usr/include/errno.h
 /usr/include/fcntl.h
+/usr/include/linux/types.h
 /usr/include/linux/videodev2.h
 /usr/include/stdio.h
 /usr/include/stdlib.h
@@ -37983,17 +41257,16 @@ video_capture.h
 /usr/include/getopt.h
 /usr/include/libio.h
 /usr/include/linux/ioctl.h
-/usr/include/linux/types.h
+/usr/include/linux/posix_types.h
 /usr/include/linux/v4l2-common.h
 /usr/include/linux/v4l2-controls.h
 /usr/include/time.h
 /usr/include/xlocale.h
 /usr/include/_G_config.h
 /usr/include/ctype.h
-/usr/include/linux/posix_types.h
+/usr/include/linux/stddef.h
 /usr/include/stdc-predef.h
 /usr/include/endian.h
 /usr/include/gconv.h
-/usr/include/linux/stddef.h
 /usr/include/wchar.h
 /usr/include/wctype.h

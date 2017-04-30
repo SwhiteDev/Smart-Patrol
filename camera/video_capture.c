@@ -81,14 +81,14 @@ int yuyv_2_rgb888(void)
      
      pointer = buffers[0].start;
      
-     for(i=0;i<480;i++)
+     for(i=0;i<IMAGEHEIGHT;i++)
      {
-         for(j=0;j<320;j++)
+         for(j=0;j<IMAGEWIDTH/2;j++)
          {
-             y1 = *( pointer + (i*320+j)*4);
-             u  = *( pointer + (i*320+j)*4 + 1);
-             y2 = *( pointer + (i*320+j)*4 + 2);
-             v  = *( pointer + (i*320+j)*4 + 3);
+             y1 = *( pointer + (i*IMAGEWIDTH/2+j)*4);
+             u  = *( pointer + (i*IMAGEWIDTH/2+j)*4 + 1);
+             y2 = *( pointer + (i*IMAGEWIDTH/2+j)*4 + 2);
+             v  = *( pointer + (i*IMAGEWIDTH/2+j)*4 + 3);
              
              r1 = y1 + 1.042*(v-128);
              g1 = y1 - 0.34414*(u-128) - 0.71414*(v-128);
@@ -128,12 +128,12 @@ int yuyv_2_rgb888(void)
              else if(g2<0)
                  g2 = 0;        
                  
-             *(frame_buffer + ((480-1-i)*320+j)*6    ) = (unsigned char)b1;
-             *(frame_buffer + ((480-1-i)*320+j)*6 + 1) = (unsigned char)g1;
-             *(frame_buffer + ((480-1-i)*320+j)*6 + 2) = (unsigned char)r1;
-             *(frame_buffer + ((480-1-i)*320+j)*6 + 3) = (unsigned char)b2;
-             *(frame_buffer + ((480-1-i)*320+j)*6 + 4) = (unsigned char)g2;
-             *(frame_buffer + ((480-1-i)*320+j)*6 + 5) = (unsigned char)r2;
+             *(frame_buffer + ((IMAGEHEIGHT-1-i)*IMAGEWIDTH/2+j)*6    ) = (unsigned char)b1;
+             *(frame_buffer + ((IMAGEHEIGHT-1-i)*IMAGEWIDTH/2+j)*6 + 1) = (unsigned char)g1;
+             *(frame_buffer + ((IMAGEHEIGHT-1-i)*IMAGEWIDTH/2+j)*6 + 2) = (unsigned char)r1;
+             *(frame_buffer + ((IMAGEHEIGHT-1-i)*IMAGEWIDTH/2+j)*6 + 3) = (unsigned char)b2;
+             *(frame_buffer + ((IMAGEHEIGHT-1-i)*IMAGEWIDTH/2+j)*6 + 4) = (unsigned char)g2;
+             *(frame_buffer + ((IMAGEHEIGHT-1-i)*IMAGEWIDTH/2+j)*6 + 5) = (unsigned char)r2;
          }
      }
      printf("change to RGB OK \n");
