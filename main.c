@@ -22,6 +22,7 @@ int main(void)
 	int gprs_fd = -1;
 	int flag = 0;
 	sqlite3 *db;
+
 	int rc = sqlite3_open("./record_sql/record.db",&db);
 	if(rc)
 	{
