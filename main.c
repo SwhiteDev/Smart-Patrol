@@ -1,35 +1,38 @@
 #include "mycom.h"
+#include "record.h"
 
 extern DWORD num;
 extern unsigned char *cmd[];    //AT命令
 extern unsigned char *post[];    //post数据包
 extern BYTE gbuff[512];
 extern BYTE rbuff[512];
-
 const unsigned char *device_id = "&device=device007";     //每个终端(树莓派)固定的设备号
 
-/**************************************************
+/*******************************************
  *主函数 : main()
  *参数   : void
  *返回值 : int
- *功能   : 初始化rfid和gprs模块的接口  \
-		 循环读取rfid卡号，缓冲区有数据时调用gprs()
- ***************************************************/
+ *功能   : 初始化RFID、GPRS模块、创建数据库;
+		   循环读取rfid卡号;
+		   读到卡号时调用gprs()
+ *******************************************/
 int main(void)
 {
 	int rfid_fd = -1;
 	int gprs_fd = -1;
 	int flag = 0;
+	sqlite3 *db;
 
-	/*初始化操作*/
+	/*初始化RFID、GPRS、数据库*/
 	rfid_fd = rfid_init();
 	gprs_fd = gprs_init();
+	sql_create_table(db);
 
 
 	/*循环读卡*/
 	while(1)
 	{
-		flag = rfid(rfid_fd);
+		flag = rfid(rfid_fd, db);
 		if(flag > 0)
 		{
 			printf("\n\n等待GPRS执行模块......\n\n");
@@ -45,8 +48,8 @@ int main(void)
  *函数名 : gprs()
  *参数   : int fd
  *返回值 : void
- *功能   : 发送初始化指令(为了节省流量每次执行后都关
-		 闭TCP链接),建立TCP链接，发送POST数据包
+ *功能   : 发送初始化指令(为了节省流量每次执行后都
+ 		   关闭TCP链接),建立TCP链接，发送POST数据包
  *************************************************/
 void gprs(int fd)
 {
@@ -97,13 +100,14 @@ void gprs(int fd)
 }
 
 
-/**************************************************
+/**********************************************
  *函数名 : rfid()
- *功  能 : 读卡，将卡号打印出来
+ *功  能 : 读卡，将卡号打印出来;
+ 		   将刷卡时间、设备、卡号存入数据库
  *参  数 : int fd
  *返回值 : int型,卡号位数(用于辨别是否有读到卡)
- *************************************************/
-int rfid(int fd)
+ **********************************************/
+int rfid(int fd, sqlite3 *db)
 {
 	int ret;
 	int i,j;
@@ -117,13 +121,15 @@ int rfid(int fd)
 	printf("卡号：");
 
 
-	/*将卡号转换为字符串，并将地址存在指针id中*/
+	/*将卡号转换为字符串*/
 	for(j = 0;j < ret;j++)
 	{
 		tmp = (((int)rbuff[j])%3) + (48 + j%2);
 		rbuff[j] = tmp;
 	}
 
+	/*调用数据库函数*/
+	sql_insert(db, device_id, rbuff);
 
 	/*打印卡号,并将卡号填充到POST数据包*/
 	if(ret > 0)
@@ -140,7 +146,7 @@ int rfid(int fd)
 }
 
 
-/*********************************************
+/***********************************************
  *函数名 : card_to_post()
  *功能   : 将卡号填充到POST数据包
  *参数   : unsigned char card[]，卡号字符串数组地址
