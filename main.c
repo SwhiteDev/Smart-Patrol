@@ -22,10 +22,17 @@ int main(void)
 	int gprs_fd = -1;
 	int flag = 0;
 	sqlite3 *db;
+	int rc = sqlite3_open("./record_sql/record.db",&db);
+	if(rc)
+	{
+		fprintf(stderr, "can't open database: %s\n", sqlite3_errmsg(db));
+	}
 
-	/*初始化RFID、GPRS、数据库*/
+	/*初始化RFID、GPRS*/
 	rfid_fd = rfid_init();
 	gprs_fd = gprs_init();
+
+	/*建表，第二次运行程序就把这行注释了。。。。。。。。。。*/
 	sql_create_table(db);
 
 
