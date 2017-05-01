@@ -44,11 +44,11 @@ char *merg_sql(const unsigned char *device_id, unsigned char rbuff[])
 	char *my_time;
 
 	/*将参数拼接到sql语句中*/
-	strcpy(after_insert_sql, "INSERT INTO 'Record' VALUSE(");
+	strcpy(after_insert_sql, "INSERT INTO 'Record' VALUES(");
 	strcat(after_insert_sql, rbuff);
 	strcat(after_insert_sql, ",");
 	strcat(after_insert_sql, device_id);
-	strcat(after_insert_sql, ",");
+	strcat(after_insert_sql, ",\'");
 	my_time = asctime(gmtime(&timep));
 	strcat(after_insert_sql, my_time);
 	
@@ -61,7 +61,7 @@ char *merg_sql(const unsigned char *device_id, unsigned char rbuff[])
 		p = after_insert_sql;
 		after_insert_sql[length - 1] = '\0'; 
 	}
-	strcat(after_insert_sql, ");");
+	strcat(after_insert_sql, "\');");
 	
 	return after_insert_sql;
 	//sql = "INSERT INTO 'Record' VALUSE(NULL, 101, 12:00);";
@@ -79,6 +79,7 @@ void sql_insert(sqlite3 *db, const unsigned char *device_id, unsigned char rbuff
 	char *zerr;
 
 	sql = merg_sql(device_id, rbuff);
+	printf("%s\n", sql);
 	if(sqlite3_exec(db, sql, 0, 0, &zerr) != SQLITE_OK);
 	{
 		printf("insert failed : %s\n", zerr);
