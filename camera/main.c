@@ -54,8 +54,22 @@ int main(void)
 	printf("save YUV OK\n");
 
 	yuyv_2_rgb888();
-	fwrite(&bf, 14, 1, fp1);
-	fwrite(&bi, 40, 1, fp1);
+    fwrite(&bf.bfType, 2, 1, fp1);
+    fwrite(&bf.bfSize, 4, 1, fp1);
+    fwrite(&bf.bfReserved, 4, 1, fp1);
+    fwrite(&bf.bfOffBits, 4, 1, fp1);
+
+    fwrite(&bi.biSize, 4, 1, fp1);    
+    fwrite(&bi.biWidth, 4, 1, fp1);    
+    fwrite(&bi.biHeight, 4, 1, fp1);    
+    fwrite(&bi.biPlanes, 2, 1, fp1);    
+    fwrite(&bi.biBitCount, 2, 1, fp1);    
+    fwrite(&bi.biCompression, 4, 1, fp1);    
+    fwrite(&bi.biSizeImage, 4, 1, fp1);    
+    fwrite(&bi.biXPelsPerMeter, 4, 1, fp1);    
+    fwrite(&bi.biYPelsPerMeter, 4, 1, fp1);    
+    fwrite(&bi.biClrUsed, 4, 1, fp1);    
+    fwrite(&bi.biClrImportant, 4, 1, fp1);    
 	fwrite(frame_buffer, bi.biSizeImage, 1, fp1);
 	printf("save BMP OK\n");
 
