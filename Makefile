@@ -1,10 +1,11 @@
-cc = gcc -o
-src = main.c mycom.c init.c
+CC = gcc -g -o
+LIB = -lsqlite3
+SRC = main.c mycom.c init.c record.c
 
-all : Smart-Patrol record
+#all : Smart-Patrol record
 
-Smart-Patrol : $(src)
-	$(cc) Smart-Patrol $(src)
+Smart-Patrol : $(SRC)
+	$(CC) Smart-Patrol $(SRC) $(LIB)
 
-record : record.c
-	$(cc) record record.c -lsqlite3
+#record : record.c
+#	$(CC) record record.c $(LIB)
