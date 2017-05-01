@@ -1,4 +1,4 @@
-#include "mycom.h"
+#include "../com/mycom.h"
 
 unsigned char rbuff[512];   /*rfid读取缓冲区*/
 unsigned char gbuff[512];   /*gprs读取缓冲区*/
