@@ -1,5 +1,5 @@
-#include "mycom.h"
-#include "record.h"
+#include "./com/mycom.h"
+#include "./record_sql/record.h"
 
 extern DWORD num;
 extern unsigned char *cmd[];    //AT命令
@@ -42,7 +42,6 @@ int main(void)
 	}
 	return 0;
 }
-
 
 /*************************************************
  *函数名 : gprs()
