@@ -1,0 +1,88 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BITMAPFILEHEADER	v4l2grab.h	/^}BITMAPFILEHEADER;$/;"	t	typeref:struct:tagBITMAPFILEHEADER
+BITMAPINFOHEADER	v4l2grab.h	/^}BITMAPINFOHEADER;$/;"	t	typeref:struct:tagBITMAPINFOHEADER
+BMP	v4l2grab.c	18;"	d	file:
+BMP	v4l2grab_Anysize.c	18;"	d	file:
+BYTE	v4l2grab.h	/^typedef unsigned char  BYTE;$/;"	t
+DWORD	v4l2grab.h	/^typedef unsigned long  DWORD;$/;"	t
+FALSE	v4l2grab.c	15;"	d	file:
+FALSE	v4l2grab_Anysize.c	15;"	d	file:
+FILE_VIDEO	v4l2grab.c	17;"	d	file:
+FILE_VIDEO	v4l2grab_Anysize.c	17;"	d	file:
+FREE	v4l2grab.h	26;"	d
+IMAGEHEIGHT	v4l2grab.c	22;"	d	file:
+IMAGEHEIGHT	v4l2grab_Anysize.c	22;"	d	file:
+IMAGEWIDTH	v4l2grab.c	21;"	d	file:
+IMAGEWIDTH	v4l2grab_Anysize.c	21;"	d	file:
+RGBQUAD	v4l2grab.h	/^}RGBQUAD;$/;"	t	typeref:struct:tagRGBQUAD
+TRUE	v4l2grab.c	14;"	d	file:
+TRUE	v4l2grab_Anysize.c	14;"	d	file:
+WORD	v4l2grab.h	/^typedef unsigned short	WORD;$/;"	t
+YUV	v4l2grab.c	19;"	d	file:
+YUV	v4l2grab_Anysize.c	19;"	d	file:
+__V4LGRAB_H__	v4l2grab.h	9;"	d
+bfOffBits	v4l2grab.h	/^     DWORD    bfOffBits;             \/\/ must be 54$/;"	m	struct:tagBITMAPFILEHEADER
+bfReserved	v4l2grab.h	/^     DWORD    bfReserved;            \/\/ 0$/;"	m	struct:tagBITMAPFILEHEADER
+bfSize	v4l2grab.h	/^     DWORD    bfSize;                \/\/ size BMP file ,unit is bytes$/;"	m	struct:tagBITMAPFILEHEADER
+bfType	v4l2grab.h	/^     WORD	bfType;                \/\/ the flag of bmp, value is "BM"$/;"	m	struct:tagBITMAPFILEHEADER
+biBitCount	v4l2grab.h	/^     WORD		biBitCount;            \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biClrImportant	v4l2grab.h	/^     DWORD    biClrImportant;        \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biClrUsed	v4l2grab.h	/^     DWORD    biClrUsed;             \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biCompression	v4l2grab.h	/^     DWORD    biCompression;         \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biHeight	v4l2grab.h	/^     DWORD    biHeight;          \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biPlanes	v4l2grab.h	/^     WORD		biPlanes;          \/\/ must be 1$/;"	m	struct:tagBITMAPINFOHEADER
+biSize	v4l2grab.h	/^     DWORD    biSize;                \/\/ must be 0x28$/;"	m	struct:tagBITMAPINFOHEADER
+biSizeImage	v4l2grab.h	/^     DWORD    biSizeImage;       \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biWidth	v4l2grab.h	/^     DWORD    biWidth;           \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biXPelsPerMeter	v4l2grab.h	/^     DWORD    biXPelsPerMeter;   \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+biYPelsPerMeter	v4l2grab.h	/^     DWORD    biYPelsPerMeter;   \/\/$/;"	m	struct:tagBITMAPINFOHEADER
+buf	v4l2grab.c	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
+buf	v4l2grab_Anysize.c	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
+buffer	v4l2grab.c	/^struct buffer$/;"	s	file:
+buffer	v4l2grab_Anysize.c	/^struct buffer$/;"	s	file:
+buffers	v4l2grab.c	/^} * buffers;$/;"	v	typeref:struct:buffer
+buffers	v4l2grab_Anysize.c	/^} * buffers;$/;"	v	typeref:struct:buffer
+cap	v4l2grab.c	/^static   struct   v4l2_capability   cap;$/;"	v	typeref:struct:v4l2_capability	file:
+cap	v4l2grab_Anysize.c	/^static   struct   v4l2_capability   cap;$/;"	v	typeref:struct:v4l2_capability	file:
+close_v4l2	v4l2grab.c	/^int close_v4l2(void)$/;"	f
+close_v4l2	v4l2grab_Anysize.c	/^int close_v4l2(void)$/;"	f
+fd	v4l2grab.c	/^static   int      fd;$/;"	v	file:
+fd	v4l2grab_Anysize.c	/^static   int      fd;$/;"	v	file:
+fmt	v4l2grab.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
+fmt	v4l2grab_Anysize.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
+fmtack	v4l2grab.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
+fmtack	v4l2grab_Anysize.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
+fmtdesc	v4l2grab.c	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
+fmtdesc	v4l2grab_Anysize.c	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
+frame_buffer	v4l2grab.c	/^unsigned char frame_buffer[IMAGEWIDTH*IMAGEHEIGHT*3];$/;"	v
+frame_buffer	v4l2grab_Anysize.c	/^unsigned char frame_buffer[IMAGEWIDTH*IMAGEHEIGHT*3];$/;"	v
+init_v4l2	v4l2grab.c	/^int init_v4l2(void)$/;"	f
+init_v4l2	v4l2grab_Anysize.c	/^int init_v4l2(void)$/;"	f
+length	v4l2grab.c	/^	unsigned int length;$/;"	m	struct:buffer	file:
+length	v4l2grab_Anysize.c	/^	unsigned int length;$/;"	m	struct:buffer	file:
+main	v4l2grab.c	/^int main(void)$/;"	f
+main	v4l2grab_Anysize.c	/^int main(void)$/;"	f
+req	v4l2grab.c	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
+req	v4l2grab_Anysize.c	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
+rgbBlue	v4l2grab.h	/^     BYTE	rgbBlue;$/;"	m	struct:tagRGBQUAD
+rgbGreen	v4l2grab.h	/^     BYTE	rgbGreen;$/;"	m	struct:tagRGBQUAD
+rgbRed	v4l2grab.h	/^     BYTE	rgbRed;$/;"	m	struct:tagRGBQUAD
+rgbReserved	v4l2grab.h	/^     BYTE	rgbReserved;$/;"	m	struct:tagRGBQUAD
+setfps	v4l2grab.c	/^struct v4l2_streamparm setfps;  $/;"	v	typeref:struct:v4l2_streamparm
+setfps	v4l2grab_Anysize.c	/^struct v4l2_streamparm setfps;  $/;"	v	typeref:struct:v4l2_streamparm
+start	v4l2grab.c	/^	void * start;$/;"	m	struct:buffer	file:
+start	v4l2grab_Anysize.c	/^	void * start;$/;"	m	struct:buffer	file:
+tagBITMAPFILEHEADER	v4l2grab.h	/^typedef struct tagBITMAPFILEHEADER{$/;"	s
+tagBITMAPINFOHEADER	v4l2grab.h	/^typedef struct tagBITMAPINFOHEADER{$/;"	s
+tagRGBQUAD	v4l2grab.h	/^typedef struct tagRGBQUAD{$/;"	s
+type	v4l2grab.c	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
+type	v4l2grab_Anysize.c	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
+v4l2_grab	v4l2grab.c	/^int v4l2_grab(void)$/;"	f
+v4l2_grab	v4l2grab_Anysize.c	/^int v4l2_grab(void)$/;"	f
+yuyv_2_rgb888	v4l2grab.c	/^int yuyv_2_rgb888(void)$/;"	f
+yuyv_2_rgb888	v4l2grab_Anysize.c	/^int yuyv_2_rgb888(void)$/;"	f
