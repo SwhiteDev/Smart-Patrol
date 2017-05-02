@@ -118,7 +118,7 @@ int rfid(int fd, sqlite3 *db)
 {
 	int ret;
 	int i,j;
-	char tmp;
+	unsigned char tmp;
 
 
 	memset(rbuff, '\0', num);
@@ -131,7 +131,7 @@ int rfid(int fd, sqlite3 *db)
 	/*将卡号转换为字符串*/
 	for(j = 0;j < ret;j++)
 	{
-		tmp = (((int)rbuff[j])%3) + (48 + j%2);
+		tmp = (((long)rbuff[j])%7) + (((long)rbuff[j])%3) + 48;
 		rbuff[j] = tmp;
 	}
 
