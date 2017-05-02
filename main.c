@@ -23,8 +23,8 @@ int main(void)
 	int flag = 0;
 	sqlite3 *db;
 
-	int rc = sqlite3_open("./record_sql/record.db",&db);
-	if(rc)
+	int ret = sqlite3_open("./record_sql/record.db",&db);
+	if(ret)
 	{
 		fprintf(stderr, "can't open database: %s\n", sqlite3_errmsg(db));
 	}
@@ -33,7 +33,7 @@ int main(void)
 	rfid_fd = rfid_init();
 	gprs_fd = gprs_init();
 
-	/*建表，第二次运行程序就把这行注释了。。。。。。。。。。*/
+	/*建表，第二次运行程序就可以把这行注释了。。。。。。。。。。*/
 	sql_create_table(db);
 
 
@@ -135,12 +135,12 @@ int rfid(int fd, sqlite3 *db)
 		rbuff[j] = tmp;
 	}
 
-	/*调用数据库函数*/
-	sql_insert(db, device_id, rbuff);
 
 	/*打印卡号,并将卡号填充到POST数据包*/
 	if(ret > 0)
 	{
+		/*调用数据库函数*/
+		sql_insert(db, device_id, rbuff);
 		printf("%s\n",rbuff);
 		card_to_post(rbuff);
 	}
