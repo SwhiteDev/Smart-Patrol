@@ -22,32 +22,41 @@ void sql_create_table(sqlite3 *db)
 	char *sql;
 	char *zerr;
 
-	sql = "CREATE TABLE Record(ID INTEGER PRIMARY KEY,DeviceID,Time VARCHAR(12));";
+	sql = "CREATE TABLE Record(CardID VARCHAR(16) PRIMARY KEY,DeviceID VARCHAR(16),Time VARCHAR(16));";
 	if(sqlite3_exec(db, sql, 0, 0, &zerr) != SQLITE_OK)
 	{
 		printf("create failed : %s\n", zerr);
 	}
 }
 
-/*******************************************
+/**********************************************
  *函数名 : merg_sql()
- *功能   : 将设备号与卡号合并到sql插入语句中
+ *功能   : 将设备号与卡号、时间合并到sql插入语句中
  *参数   : const unsigned char *device_id，设备ID
  		   unsigned char rbuff[]，卡号
  *返回值 : char *，合并后的sql语句字符串地址
- *******************************************/
+ **********************************************/
 char *merg_sql(const unsigned char *device_id, unsigned char rbuff[])
 {
 	static char after_insert_sql[100];
-	time_t timep;
+	time_t timep; 
 	time(&timep);
 	char *my_time;
+	const char *tmp;    /*存储临时device_id*/
 
 	/*将参数拼接到sql语句中*/
-	strcpy(after_insert_sql, "INSERT INTO 'Record' VALUES(");
+	strcpy(after_insert_sql, "INSERT INTO 'Record' VALUES(\'");
 	strcat(after_insert_sql, rbuff);
-	strcat(after_insert_sql, ",");
-	strcat(after_insert_sql, device_id);
+	strcat(after_insert_sql, "\',\'");
+
+	/*
+	 *为了填充POST包方便，将device_id定义为"&device=device007"
+	 *所以要截取出"device007"
+	 */
+	tmp = &device_id[8];
+
+	strcat(after_insert_sql, tmp);
+	strcat(after_insert_sql, "\'");
 	strcat(after_insert_sql, ",\'");
 	my_time = asctime(gmtime(&timep));
 	strcat(after_insert_sql, my_time);
