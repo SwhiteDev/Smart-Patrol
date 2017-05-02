@@ -22,7 +22,7 @@ void sql_create_table(sqlite3 *db)
 	char *sql;
 	char *zerr;
 
-	sql = "CREATE TABLE Record(CardID VARCHAR(16) PRIMARY KEY,DeviceID VARCHAR(16),Time VARCHAR(16));";
+	sql = "CREATE TABLE Record(Time VARCHAR(16) PRIMARY KEY,DeviceID VARCHAR(16),CardID VARCHAR(16));";
 	if(sqlite3_exec(db, sql, 0, 0, &zerr) != SQLITE_OK)
 	{
 		printf("create failed : %s\n", zerr);
@@ -46,18 +46,6 @@ char *merg_sql(const unsigned char *device_id, unsigned char rbuff[])
 
 	/*将参数拼接到sql语句中*/
 	strcpy(after_insert_sql, "INSERT INTO 'Record' VALUES(\'");
-	strcat(after_insert_sql, rbuff);
-	strcat(after_insert_sql, "\',\'");
-
-	/*
-	 *为了填充POST包方便，将device_id定义为"&device=device007"
-	 *所以要截取出"device007"
-	 */
-	tmp = &device_id[8];
-
-	strcat(after_insert_sql, tmp);
-	strcat(after_insert_sql, "\'");
-	strcat(after_insert_sql, ",\'");
 	my_time = asctime(gmtime(&timep));
 	strcat(after_insert_sql, my_time);
 	
@@ -70,8 +58,18 @@ char *merg_sql(const unsigned char *device_id, unsigned char rbuff[])
 		p = after_insert_sql;
 		after_insert_sql[length - 1] = '\0'; 
 	}
+	strcat(after_insert_sql, "\',\'");
+
+	/*
+	 *为了填充POST包方便，将device_id定义为"&device=device007"
+	 *所以要截取出"device007"
+	 */
+	tmp = &device_id[8];
+	strcat(after_insert_sql, tmp);
+	strcat(after_insert_sql, "\',\'");
+	strcat(after_insert_sql, rbuff);
 	strcat(after_insert_sql, "\');");
-	
+
 	return after_insert_sql;
 	//sql = "INSERT INTO 'Record' VALUSE(NULL, 101, 12:00);";
 }
