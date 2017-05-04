@@ -5,7 +5,7 @@ int init_v4l2(void)
 	int i = 0;
 	int ret = 0;
 
-	//open dev
+	//打开设备
 	if((fd_video = open(FILE_VIDEO, O_RDWR)) == -1)
 	{
 		printf("open v4l interface failed!\n");
