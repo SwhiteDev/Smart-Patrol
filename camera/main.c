@@ -54,6 +54,8 @@ int main(void)
 	printf("save YUV OK\n");
 
 	yuyv_2_rgb888();
+
+	/*图片数据头*/
     fwrite(&bf.bfType, 2, 1, fp1);
     fwrite(&bf.bfSize, 4, 1, fp1);
     fwrite(&bf.bfReserved, 4, 1, fp1);
