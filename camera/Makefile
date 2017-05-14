@@ -1,3 +1,6 @@
-SRC = main.c init.c video_capture.c
-camera : $(SRC) *.h 
+SRC = capture.c
+camera : $(SRC) 
 	gcc -g -o camera $(SRC)
+
+clean :
+	rm camera
