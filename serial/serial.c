@@ -1,11 +1,11 @@
-#include "serail.h"
+#include "serial.h"
 
 
-int serail_open(const char *DEV)
+int serial_open(const char *DEV)
 {
 	int fd = -1;
 	if(-1 == (fd = open(DEV, O_RDWR | O_NOCTTY | O_NDELAY))){
-		perror("open serail error");
+		perror("open serial error");
 		return -1;
 	}
 	/*fcntcl(fd, F_SETFL, 0);  阻塞*/
@@ -13,7 +13,7 @@ int serail_open(const char *DEV)
 }
 
 
-int set_serail_attr(int fd, serail_attr *attr)
+int set_serial_attr(int fd, serial_attr *attr)
 {
 	struct termios opt;
 	if(fd < 0 || NULL == attr){
@@ -27,7 +27,7 @@ int set_serail_attr(int fd, serail_attr *attr)
 
 	/***********baudrate************/
 	printf("set baudrate %d\n", attr->baudrate);
-	switch(attr-baudrate){
+	switch(attr->baudrate){
 		case 9600:
 			cfsetispeed(&opt, B9600);
 			cfsetospeed(&opt, B9600);
@@ -40,7 +40,7 @@ int set_serail_attr(int fd, serail_attr *attr)
 			cfsetispeed(&opt, B115200);
 			cfsetospeed(&opt, B115200);
 		default:
-			printf("unsurported baudrate %d\n", attr-baudrate);
+			printf("unsurported baudrate %d\n", attr->baudrate);
 			return -1;
 			break;
 	}
@@ -111,7 +111,7 @@ int set_serail_attr(int fd, serail_attr *attr)
 
 
 	opt.c_iflag &= ~(ICRNL | INLCR);
-	opt.c_iflag &= ~(IXON | IXOFF | OXANY);
+	opt.c_iflag &= ~(IXON | IXOFF | IXANY);
 
 	tcflush(fd, TCIOFLUSH);
 	if(tcsetattr(fd, TCSANOW, &opt) < 0){
@@ -128,7 +128,7 @@ int set_serail_attr(int fd, serail_attr *attr)
  *param         : @fd @rbuff @nbytes
  *return        : 0 or -1
  */
-int serial_read(int fd, BYTE *rbuff, uint32_t nbytes)
+int serial_read(int fd, char *rbuff, unsigned int nbytes)
 {
 	if(fd < 0){
 		printf("fd error :fd = %d\n", fd);
@@ -152,7 +152,7 @@ int serial_read(int fd, BYTE *rbuff, uint32_t nbytes)
  *param         : @fd @wbuff @nbytes
  *return        : 0 or -1
  */
-int serial_write(int fd, BYTE *wbuff, uint32_t nbytes)
+int serial_write(int fd, char *wbuff, unsigned int nbytes)
 {
 	if(fd < 0){
 		printf("fd error :fd = %d\n", fd);

@@ -1,7 +1,7 @@
 #include "rfid.h"
 
 
-int rfid_init(const BYTE *DEV)
+int rfid_init(const char *DEV)
 {
 	int fd = serial_open(DEV);
 	if(-1 == fd){
@@ -25,7 +25,7 @@ int rfid_init(const BYTE *DEV)
 /*
  *card_check
  */
-static int card_check(const BYTE *card_buff)
+static int card_check(const char *card_buff)
 {
 	return (card_buff[0]^card_buff[1]^card_buff[2]^card_buff[3] == card_buff[4]);
 }
@@ -34,9 +34,9 @@ static int card_check(const BYTE *card_buff)
 /*
  *read rfid card_id
  */
-int rfid_read(int fd, BYTE *card_id)
+int rfid_read(int fd, char *card_id)
 {
-	BYTE card_buff[16];
+	char card_buff[16];
 	int ret = -1;
 	if(fd < 0 || NULL == card_id){
 		fprintf(stderr, "bad param\n");

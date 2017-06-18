@@ -4,180 +4,74 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-BITMAPFILEHEADER	camera/lab_v4l2_yuyv/v4l2grab.h	/^}BITMAPFILEHEADER;$/;"	t	typeref:struct:tagBITMAPFILEHEADER
-BITMAPFILE_HEADER	camera/header.h	/^}BITMAPFILE_HEADER;$/;"	t	typeref:struct:tagBITMAPFILE_HEADER
-BITMAPINFOHEADER	camera/lab_v4l2_yuyv/v4l2grab.h	/^}BITMAPINFOHEADER;$/;"	t	typeref:struct:tagBITMAPINFOHEADER
-BITMAPINFO_HEADER	camera/header.h	/^}BITMAPINFO_HEADER;$/;"	t	typeref:struct:tagBITMAPINFO_HEADER
-BMP	camera/init.h	18;"	d
-BMP	camera/lab_v4l2_yuyv/v4l2grab.c	18;"	d	file:
-BMP	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	18;"	d	file:
-BYTE	camera/header.h	/^typedef unsigned char BYTE;$/;"	t
-BYTE	camera/lab_v4l2_yuyv/v4l2grab.h	/^typedef unsigned char  BYTE;$/;"	t
-BYTE	com/mycom.h	/^typedef unsigned char BYTE;$/;"	t
+BITS_PARITY_EVEN	serial/serial.h	16;"	d
+BITS_PARITY_NONE	serial/serial.h	14;"	d
+BITS_PARITY_ODD	serial/serial.h	15;"	d
+BITS_STOP_1	serial/serial.h	18;"	d
+BITS_STOP_2	serial/serial.h	19;"	d
+BYTE	serial/serial.h	/^typedef unsigned char  BYTE;$/;"	t
 CC	Makefile	/^CC = gcc -g -o$/;"	m
-COMM_EVENPARITY	com/mycom.h	17;"	d
-COMM_NOPARITY	com/mycom.h	15;"	d
-COMM_ODDPARITY	com/mycom.h	16;"	d
-COMM_ONESTOPBIT	com/mycom.h	19;"	d
-COMM_TWOSTOPBITS	com/mycom.h	20;"	d
-DWORD	camera/header.h	/^typedef unsigned int DWORD;$/;"	t
-DWORD	camera/lab_v4l2_yuyv/v4l2grab.h	/^typedef unsigned long  DWORD;$/;"	t
-DWORD	com/mycom.h	/^typedef unsigned int DWORD;$/;"	t
-FALSE	camera/init.h	15;"	d
-FALSE	camera/lab_v4l2_yuyv/v4l2grab.c	15;"	d	file:
-FALSE	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	15;"	d	file:
-FALSE	camera/video_capture.h	15;"	d
-FALSE	com/mycom.h	12;"	d
-FILE_VIDEO	camera/init.h	17;"	d
-FILE_VIDEO	camera/lab_v4l2_yuyv/v4l2grab.c	17;"	d	file:
-FILE_VIDEO	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	17;"	d	file:
-FREE	camera/lab_v4l2_yuyv/v4l2grab.h	26;"	d
-IMAGEHEIGHT	camera/init.h	22;"	d
-IMAGEHEIGHT	camera/lab_v4l2_yuyv/v4l2grab.c	22;"	d	file:
-IMAGEHEIGHT	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	22;"	d	file:
-IMAGEHEIGHT	camera/video_capture.h	19;"	d
-IMAGEWIDTH	camera/init.h	21;"	d
-IMAGEWIDTH	camera/lab_v4l2_yuyv/v4l2grab.c	21;"	d	file:
-IMAGEWIDTH	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	21;"	d	file:
-IMAGEWIDTH	camera/video_capture.h	18;"	d
+CLEAR	camera/capture.c	28;"	d	file:
+CLEAR	camera/v4l2grab.c	26;"	d	file:
+DWORD	serial/serial.h	/^typedef unsigned int   DWORD;$/;"	t
+GPRS_H	gprs/gprs.h	2;"	d
+IO_METHOD_MMAP	camera/capture.c	/^	IO_METHOD_MMAP,$/;"	e	enum:io_method	file:
+IO_METHOD_READ	camera/capture.c	/^	IO_METHOD_READ,$/;"	e	enum:io_method	file:
+IO_METHOD_USERPTR	camera/capture.c	/^	IO_METHOD_USERPTR,$/;"	e	enum:io_method	file:
 LIB	Makefile	/^LIB = -lsqlite3$/;"	m
-LONG	camera/header.h	/^typedef signed int LONG;$/;"	t
-LONG	com/mycom.h	/^typedef signed int LONG;$/;"	t
-RGBQUAD	camera/lab_v4l2_yuyv/v4l2grab.h	/^}RGBQUAD;$/;"	t	typeref:struct:tagRGBQUAD
-SRC	Makefile	/^SRC = main.c mycom.c init.c record.c$/;"	m
-SRC	camera/Makefile	/^SRC = main.c init.c video_capture.c$/;"	m
-TRUE	camera/init.h	14;"	d
-TRUE	camera/lab_v4l2_yuyv/v4l2grab.c	14;"	d	file:
-TRUE	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	14;"	d	file:
-TRUE	camera/video_capture.h	14;"	d
-TRUE	com/mycom.h	13;"	d
-WORD	camera/header.h	/^typedef unsigned short WORD;$/;"	t
-WORD	camera/lab_v4l2_yuyv/v4l2grab.h	/^typedef unsigned short	WORD;$/;"	t
-WORD	com/mycom.h	/^typedef unsigned short WORD;$/;"	t
-YUV	camera/init.h	19;"	d
-YUV	camera/lab_v4l2_yuyv/v4l2grab.c	19;"	d	file:
-YUV	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	19;"	d	file:
-__V4LGRAB_H__	camera/lab_v4l2_yuyv/v4l2grab.h	9;"	d
-baudrate	com/mycom.h	/^	unsigned int baudrate;    \/*波特率*\/$/;"	m	struct:com_attr
-bfOffBits	camera/header.h	/^	DWORD bfOffBits;$/;"	m	struct:tagBITMAPFILE_HEADER
-bfOffBits	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    bfOffBits;             \/\/ must be 54$/;"	m	struct:tagBITMAPFILEHEADER
-bfReserved	camera/header.h	/^	DWORD bfReserved;$/;"	m	struct:tagBITMAPFILE_HEADER
-bfReserved	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    bfReserved;            \/\/ 0$/;"	m	struct:tagBITMAPFILEHEADER
-bfSize	camera/header.h	/^	DWORD bfSize;$/;"	m	struct:tagBITMAPFILE_HEADER
-bfSize	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    bfSize;                \/\/ size BMP file ,unit is bytes$/;"	m	struct:tagBITMAPFILEHEADER
-bfType	camera/header.h	/^	WORD  bfType;$/;"	m	struct:tagBITMAPFILE_HEADER
-bfType	camera/lab_v4l2_yuyv/v4l2grab.h	/^     WORD	bfType;                \/\/ the flag of bmp, value is "BM"$/;"	m	struct:tagBITMAPFILEHEADER
-biBitCount	camera/header.h	/^	WORD  biBitCount;$/;"	m	struct:tagBITMAPINFO_HEADER
-biBitCount	camera/lab_v4l2_yuyv/v4l2grab.h	/^     WORD		biBitCount;            \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biClrImportant	camera/header.h	/^	DWORD biClrImportant;$/;"	m	struct:tagBITMAPINFO_HEADER
-biClrImportant	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biClrImportant;        \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biClrUsed	camera/header.h	/^	DWORD biClrUsed;$/;"	m	struct:tagBITMAPINFO_HEADER
-biClrUsed	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biClrUsed;             \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biCompression	camera/header.h	/^	DWORD biCompression;$/;"	m	struct:tagBITMAPINFO_HEADER
-biCompression	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biCompression;         \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biHeight	camera/header.h	/^	DWORD biHeight;$/;"	m	struct:tagBITMAPINFO_HEADER
-biHeight	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biHeight;          \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biPlanes	camera/header.h	/^	WORD  biPlanes;$/;"	m	struct:tagBITMAPINFO_HEADER
-biPlanes	camera/lab_v4l2_yuyv/v4l2grab.h	/^     WORD		biPlanes;          \/\/ must be 1$/;"	m	struct:tagBITMAPINFOHEADER
-biSize	camera/header.h	/^	DWORD biSize;$/;"	m	struct:tagBITMAPINFO_HEADER
-biSize	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biSize;                \/\/ must be 0x28$/;"	m	struct:tagBITMAPINFOHEADER
-biSizeImage	camera/header.h	/^	DWORD biSizeImage;$/;"	m	struct:tagBITMAPINFO_HEADER
-biSizeImage	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biSizeImage;       \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biWidth	camera/header.h	/^	DWORD biWidth;$/;"	m	struct:tagBITMAPINFO_HEADER
-biWidth	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biWidth;           \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biXPelsPerMeter	camera/header.h	/^	DWORD biXPelsPerMeter;$/;"	m	struct:tagBITMAPINFO_HEADER
-biXPelsPerMeter	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biXPelsPerMeter;   \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-biYPelsPerMeter	camera/header.h	/^	DWORD biYPelsPerMeter;$/;"	m	struct:tagBITMAPINFO_HEADER
-biYPelsPerMeter	camera/lab_v4l2_yuyv/v4l2grab.h	/^     DWORD    biYPelsPerMeter;   \/\/$/;"	m	struct:tagBITMAPINFOHEADER
-buf	camera/lab_v4l2_yuyv/v4l2grab.c	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
-buf	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
-buf	camera/video_capture.h	/^struct v4l2_buffer buf;$/;"	v	typeref:struct:v4l2_buffer
-buffer	camera/lab_v4l2_yuyv/v4l2grab.c	/^struct buffer$/;"	s	file:
-buffer	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^struct buffer$/;"	s	file:
-buffer	camera/video_capture.h	/^struct buffer$/;"	s
-buffers	camera/lab_v4l2_yuyv/v4l2grab.c	/^} * buffers;$/;"	v	typeref:struct:buffer
-buffers	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^} * buffers;$/;"	v	typeref:struct:buffer
-buffers	camera/video_capture.h	/^} *buffers;$/;"	v	typeref:struct:buffer
-cap	camera/init.h	/^static struct v4l2_capability cap;    \/\/设备属性$/;"	v	typeref:struct:v4l2_capability
-cap	camera/lab_v4l2_yuyv/v4l2grab.c	/^static   struct   v4l2_capability   cap;$/;"	v	typeref:struct:v4l2_capability	file:
-cap	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^static   struct   v4l2_capability   cap;$/;"	v	typeref:struct:v4l2_capability	file:
-card_to_post	main.c	/^void card_to_post(unsigned char card[])$/;"	f
-close_v4l2	camera/init.c	/^int close_v4l2(void)$/;"	f
-close_v4l2	camera/lab_v4l2_yuyv/v4l2grab.c	/^int close_v4l2(void)$/;"	f
-close_v4l2	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^int close_v4l2(void)$/;"	f
-cmd	init/init.c	/^unsigned char *cmd[] = {$/;"	v
-com_attr	com/mycom.h	/^typedef struct com_attr       \/*串口属性结构*\/         $/;"	s
-com_attr	com/mycom.h	/^}com_attr;$/;"	t	typeref:struct:com_attr
-com_close	com/mycom.c	/^void com_close(int fd)$/;"	f
-com_open	com/mycom.c	/^int com_open(const char *dev)$/;"	f
-com_read	com/mycom.c	/^int com_read(int fd, BYTE *read_buff, DWORD nbytes)$/;"	f
-com_write	com/mycom.c	/^int com_write(int fd, BYTE *write_buff, DWORD nbytes)$/;"	f
-databits	com/mycom.h	/^	unsigned char databits;    \/*数据位*\/$/;"	m	struct:com_attr
-device_id	main.c	/^const unsigned char *device_id = "&device=device007";     \/\/每个终端(树莓派)固定的设备号$/;"	v
-fd	camera/lab_v4l2_yuyv/v4l2grab.c	/^static   int      fd;$/;"	v	file:
-fd	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^static   int      fd;$/;"	v	file:
-fd_video	camera/init.h	/^int fd_video;$/;"	v
-fmt	camera/init.h	/^struct v4l2_format fmt,fmtack;        $/;"	v	typeref:struct:v4l2_format
-fmt	camera/lab_v4l2_yuyv/v4l2grab.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
-fmt	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:v4l2_format
-fmtack	camera/init.h	/^struct v4l2_format fmt,fmtack;        $/;"	v	typeref:struct:
-fmtack	camera/lab_v4l2_yuyv/v4l2grab.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
-fmtack	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^struct v4l2_format fmt,fmtack;$/;"	v	typeref:struct:
-fmtdesc	camera/init.h	/^struct v4l2_fmtdesc fmtdesc;          \/\/帧格式$/;"	v	typeref:struct:v4l2_fmtdesc
-fmtdesc	camera/lab_v4l2_yuyv/v4l2grab.c	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
-fmtdesc	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^struct v4l2_fmtdesc fmtdesc;$/;"	v	typeref:struct:v4l2_fmtdesc
-frame_buffer	camera/init.h	/^unsigned char frame_buffer[IMAGEHEIGHT*IMAGEWIDTH*3];$/;"	v
-frame_buffer	camera/lab_v4l2_yuyv/v4l2grab.c	/^unsigned char frame_buffer[IMAGEWIDTH*IMAGEHEIGHT*3];$/;"	v
-frame_buffer	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^unsigned char frame_buffer[IMAGEWIDTH*IMAGEHEIGHT*3];$/;"	v
-gbuff	init/init.c	/^unsigned char gbuff[512];   \/*gprs读取缓冲区*\/$/;"	v
-get_com_attr	com/mycom.c	/^void get_com_attr(int fd)$/;"	f
-gprs	main.c	/^void gprs(int fd)$/;"	f
-gprs_init	init/init.c	/^int gprs_init()$/;"	f
-init_v4l2	camera/init.c	/^int init_v4l2(void)$/;"	f
-init_v4l2	camera/lab_v4l2_yuyv/v4l2grab.c	/^int init_v4l2(void)$/;"	f
-init_v4l2	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^int init_v4l2(void)$/;"	f
-length	camera/lab_v4l2_yuyv/v4l2grab.c	/^	unsigned int length;$/;"	m	struct:buffer	file:
-length	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^	unsigned int length;$/;"	m	struct:buffer	file:
-length	camera/video_capture.h	/^	unsigned int length;$/;"	m	struct:buffer
-main	camera/lab_v4l2_yuyv/v4l2grab.c	/^int main(void)$/;"	f
-main	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^int main(void)$/;"	f
-main	camera/main.c	/^int main(void)$/;"	f
-main	main.c	/^int main(void)$/;"	f
-merg_sql	record_sql/record.c	/^char *merg_sql(const unsigned char *device_id, unsigned char rbuff[])$/;"	f
-num	init/init.c	/^unsigned short num = 512;   \/*读取和写入字节*\/$/;"	v
-parity	com/mycom.h	/^	unsigned char parity;    \/*校验位*\/$/;"	m	struct:com_attr
-post	init/init.c	/^unsigned char *post[] = {$/;"	v
-rbuff	init/init.c	/^unsigned char rbuff[512];   \/*rfid读取缓冲区*\/$/;"	v
-req	camera/lab_v4l2_yuyv/v4l2grab.c	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
-req	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^struct v4l2_requestbuffers req;$/;"	v	typeref:struct:v4l2_requestbuffers
-req	camera/video_capture.h	/^struct v4l2_requestbuffers req;       \/\/申请缓冲区$/;"	v	typeref:struct:v4l2_requestbuffers
-rfid	main.c	/^int rfid(int fd, sqlite3 *db)$/;"	f
-rfid_init	init/init.c	/^int rfid_init(void)$/;"	f
-rgbBlue	camera/lab_v4l2_yuyv/v4l2grab.h	/^     BYTE	rgbBlue;$/;"	m	struct:tagRGBQUAD
-rgbGreen	camera/lab_v4l2_yuyv/v4l2grab.h	/^     BYTE	rgbGreen;$/;"	m	struct:tagRGBQUAD
-rgbRed	camera/lab_v4l2_yuyv/v4l2grab.h	/^     BYTE	rgbRed;$/;"	m	struct:tagRGBQUAD
-rgbReserved	camera/lab_v4l2_yuyv/v4l2grab.h	/^     BYTE	rgbReserved;$/;"	m	struct:tagRGBQUAD
-set_com_attr	com/mycom.c	/^int set_com_attr(int fd, com_attr *attr)$/;"	f
-setfps	camera/init.h	/^struct v4l2_streamparm setfps;$/;"	v	typeref:struct:v4l2_streamparm
-setfps	camera/lab_v4l2_yuyv/v4l2grab.c	/^struct v4l2_streamparm setfps;  $/;"	v	typeref:struct:v4l2_streamparm
-setfps	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^struct v4l2_streamparm setfps;  $/;"	v	typeref:struct:v4l2_streamparm
-sql_create_table	record_sql/record.c	/^void sql_create_table(sqlite3 *db)$/;"	f
-sql_insert	record_sql/record.c	/^void sql_insert(sqlite3 *db, const unsigned char *device_id, unsigned char rbuff[])$/;"	f
-start	camera/lab_v4l2_yuyv/v4l2grab.c	/^	void * start;$/;"	m	struct:buffer	file:
-start	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^	void * start;$/;"	m	struct:buffer	file:
-start	camera/video_capture.h	/^	void *start;$/;"	m	struct:buffer
-stopbits	com/mycom.h	/^	unsigned char stopbits;    \/*停止位*\/$/;"	m	struct:com_attr
-tagBITMAPFILEHEADER	camera/lab_v4l2_yuyv/v4l2grab.h	/^typedef struct tagBITMAPFILEHEADER{$/;"	s
-tagBITMAPFILE_HEADER	camera/header.h	/^typedef struct tagBITMAPFILE_HEADER$/;"	s
-tagBITMAPINFOHEADER	camera/lab_v4l2_yuyv/v4l2grab.h	/^typedef struct tagBITMAPINFOHEADER{$/;"	s
-tagBITMAPINFO_HEADER	camera/header.h	/^typedef struct tagBITMAPINFO_HEADER$/;"	s
-tagRGBQUAD	camera/lab_v4l2_yuyv/v4l2grab.h	/^typedef struct tagRGBQUAD{$/;"	s
-type	camera/lab_v4l2_yuyv/v4l2grab.c	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
-type	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
-type	camera/video_capture.h	/^enum v4l2_buf_type type;$/;"	v	typeref:enum:v4l2_buf_type
-v4l2_grab	camera/lab_v4l2_yuyv/v4l2grab.c	/^int v4l2_grab(void)$/;"	f
-v4l2_grab	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^int v4l2_grab(void)$/;"	f
-v4l2_grab	camera/video_capture.c	/^int v4l2_grab(void)$/;"	f
-yuyv_2_rgb888	camera/lab_v4l2_yuyv/v4l2grab.c	/^int yuyv_2_rgb888(void)$/;"	f
-yuyv_2_rgb888	camera/lab_v4l2_yuyv/v4l2grab_Anysize.c	/^int yuyv_2_rgb888(void)$/;"	f
-yuyv_2_rgb888	camera/video_capture.c	/^int yuyv_2_rgb888(void)$/;"	f
+LONG	serial/serial.h	/^typedef signed int     LONG;$/;"	t
+RFID_H	rfid/rfid.h	2;"	d
+SERIAL_H	serial/serial.h	2;"	d
+SRC	Makefile	/^SRC = main.c .\/com\/mycom.c .\/init\/init.c .\/record_sql\/record.c$/;"	m
+SRC	camera/Makefile	/^SRC = capture.c$/;"	m
+WORD	serial/serial.h	/^typedef unsigned short WORD;$/;"	t
+baudrate	serial/serial.h	/^	uint32_t baudrate;$/;"	m	struct:serial_attr
+buffer	camera/capture.c	/^struct buffer {$/;"	s	file:
+buffer	camera/v4l2grab.c	/^struct buffer {$/;"	s	file:
+buffers	camera/capture.c	/^struct buffer          *buffers;$/;"	v	typeref:struct:buffer
+card_check	rfid/rfid.c	/^static int card_check(const BYTE *card_buff)$/;"	f	file:
+close_device	camera/capture.c	/^static void close_device(void)$/;"	f	file:
+databits	serial/serial.h	/^	uint8_t  databits;$/;"	m	struct:serial_attr
+dev_name	camera/capture.c	/^static char            *dev_name;$/;"	v	file:
+errno_exit	camera/capture.c	/^static void errno_exit(const char *s)$/;"	f	file:
+fd	camera/capture.c	/^static int              fd = -1;$/;"	v	file:
+force_format	camera/capture.c	/^static int              force_format;$/;"	v	file:
+frame_count	camera/capture.c	/^static int              frame_count = 70;$/;"	v	file:
+init_device	camera/capture.c	/^static void init_device(void)$/;"	f	file:
+init_mmap	camera/capture.c	/^static void init_mmap(void)$/;"	f	file:
+init_read	camera/capture.c	/^static void init_read(unsigned int buffer_size)$/;"	f	file:
+init_userp	camera/capture.c	/^static void init_userp(unsigned int buffer_size)$/;"	f	file:
+io	camera/capture.c	/^static enum io_method   io = IO_METHOD_MMAP;$/;"	v	typeref:enum:io_method	file:
+io_method	camera/capture.c	/^enum io_method {$/;"	g	file:
+length	camera/capture.c	/^	size_t  length;$/;"	m	struct:buffer	file:
+length	camera/v4l2grab.c	/^	size_t length;$/;"	m	struct:buffer	file:
+long_options	camera/capture.c	/^long_options[] = {$/;"	v	typeref:struct:option	file:
+main	camera/capture.c	/^int main(int argc, char **argv)$/;"	f
+main	camera/v4l2grab.c	/^int main(int argc, char **argv)$/;"	f
+mainloop	camera/capture.c	/^static void mainloop(void)$/;"	f	file:
+n_buffers	camera/capture.c	/^static unsigned int     n_buffers;$/;"	v	file:
+open_device	camera/capture.c	/^static void open_device(void)$/;"	f	file:
+out_buf	camera/capture.c	/^static int              out_buf;$/;"	v	file:
+parity	serial/serial.h	/^	uint8_t  parity;$/;"	m	struct:serial_attr
+process_image	camera/capture.c	/^static void process_image(const void *p, int size)$/;"	f	file:
+read_frame	camera/capture.c	/^static int read_frame(void)$/;"	f	file:
+rfid_init	rfid/rfid.c	/^int rfid_init(const BYTE *DEV)$/;"	f
+rfid_read	rfid/rfid.c	/^int rfid_read(int fd, BYTE *card_id)$/;"	f
+serail_open	serial/serial.c	/^int serail_open(const char *DEV)$/;"	f
+serial_attr	serial/serial.h	/^typedef struct serial_attr{$/;"	s
+serial_attr	serial/serial.h	/^}serial_attr;$/;"	t	typeref:struct:serial_attr
+serial_close	serial/serial.c	/^int serial_close(int fd)$/;"	f
+serial_flushio	serial/serial.c	/^int serial_flushio(int fd)$/;"	f
+serial_read	serial/serial.c	/^int serial_read(int fd, BYTE *rbuff, uint32_t nbytes)$/;"	f
+serial_write	serial/serial.c	/^int serial_write(int fd, BYTE *wbuff, uint32_t nbytes)$/;"	f
+set_serail_attr	serial/serial.c	/^int set_serail_attr(int fd, serail_attr *attr)$/;"	f
+short_options	camera/capture.c	/^static const char short_options[] = "d:hmruofc:";$/;"	v	file:
+start	camera/capture.c	/^	void   *start;$/;"	m	struct:buffer	file:
+start	camera/v4l2grab.c	/^	void   *start;$/;"	m	struct:buffer	file:
+start_capturing	camera/capture.c	/^static void start_capturing(void)$/;"	f	file:
+stop_capturing	camera/capture.c	/^static void stop_capturing(void)$/;"	f	file:
+stopbits	serial/serial.h	/^	uint8_t  stopbits;$/;"	m	struct:serial_attr
+uninit_device	camera/capture.c	/^static void uninit_device(void)$/;"	f	file:
+usage	camera/capture.c	/^static void usage(FILE *fp, int argc, char **argv)$/;"	f	file:
+xioctl	camera/capture.c	/^static int xioctl(int fh, int request, void *arg)$/;"	f	file:
+xioctl	camera/v4l2grab.c	/^static void xioctl(int fh, int request, void *arg)$/;"	f	file:

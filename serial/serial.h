@@ -18,6 +18,10 @@
 #define BITS_STOP_1 1
 #define BITS_STOP_2 2
 
+#define BITS_DATA_5 5
+#define BITS_DATA_6 6
+#define BITS_DATA_7 7
+#define BITS_DATA_8 8
 
 typedef unsigned char  BYTE;
 typedef unsigned short WORD;
@@ -26,17 +30,17 @@ typedef signed int     LONG;
 
 
 typedef struct serial_attr{
-	uint32_t baudrate;
-	uint8_t  databits;
-	uint8_t  stopbits;
-	uint8_t  parity;
+	unsigned int baudrate;
+	unsigned char databits;
+	unsigned char stopbits;
+	unsigned char parity;
 }serial_attr;
 
 
 int serial_open(const char *DEV);
 int set_serial_attr(int fd, serial_attr *attr);
-int serial_read(int fd, BYTE *rbuff, uint32_t nbytes);
-int serial_write(int fd, BYTE *wbuff, uint32_t nbytes);
+int serial_read(int fd, char *rbuff, unsigned int nbytes);
+int serial_write(int fd, char *wbuff, unsigned int nbytes);
 int serial_close(int fd);
 int serial_flushio(int fd);
 
