@@ -4,7 +4,7 @@
 
 
 int rfid_init(const char *DEV);
-int rfid_read(int fd, BYTE *card_id);
+int rfid_read(int fd, char *card_id);
 
 
 #endif

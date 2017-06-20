@@ -67,6 +67,7 @@ int gprs_send(int fd, const char *key_id, const char *location_id, const char *d
 		fprintf(stderr, "bad param!\n");
 		return -1;
 	}
+	printf("%s %s %s\n",key_id, location_id, device_id);
 	
 	do{
 		/*TCP connect*/
@@ -85,6 +86,11 @@ int gprs_send(int fd, const char *key_id, const char *location_id, const char *d
 		sprintf(http_payload, post[4], key_id, location_id, device_id);
 		CLEAR(http_len);
 		sprintf(http_len, post[4], strlen(http_payload));
+		
+		/*
+		 *test
+		 */
+		printf("http_payload: %s http_len: %s\n", http_payload, http_len);
 
 		/*send http_len*/
 		if(-1 == gprs_send_string(fd, rbuff, http_len))
@@ -113,15 +119,17 @@ int gprs_run_cmd(int fd, char *rbuff, char *cmd)
 
 	CLEAR(rbuff);
 	if(-1 == (w_ret = serial_write(fd, cmd, strlen(cmd)))){
-		fprintf(stdout, "gprs write AT CMD: %s faild\n", cmd);
+		printf("gprs write AT CMD: %s faild\n", cmd);
 		return -1;
 	}
-	fprintf(stdout, "gprs write AT CMD: %s\twrite size: %d\n", cmd, w_ret);
+	printf("gprs write AT CMD: %s\n", cmd);
+	printf("write size: %d\n", w_ret);
 	usleep(150000);
 
 	if((r_ret = serial_read(fd, rbuff, GPRS_READ_BUFF_SIZE)) > 0){
 		rbuff[r_ret] = '\0';
-		fprintf(stdout, "GPRS return: %s\treturn size: %d\n", rbuff, r_ret);
+		printf("GPRS return: %s\t", rbuff);
+		printf("return size: %d\n", r_ret);
 		usleep(150000);
 	}
 	
@@ -134,16 +142,18 @@ int gprs_send_string(int fd, char *rbuff, char *str)
 
 	CLEAR(rbuff);
 	if(-1 == (w_ret = serial_write(fd, str, strlen(str)))){
-		fprintf(stdout, "GPRS write string: %s failed\n", str);
+		printf("GPRS write string: %s failed\n", str);
 		return -1;
 	}
-	fprintf(stdout, "GPRS write string: %s\twrite size: %d\n", str, w_ret);
+	printf("GPRS write string: %s\t", str);
+	printf("write size: %d\n", w_ret);
 	usleep(150000);
 
 	if(*str == 0x1a){
 		if((r_ret = serial_read(fd, rbuff, GPRS_READ_BUFF_SIZE)) > 0){
 			rbuff[r_ret] = '\0';
-			fprintf(stdout, "Web server return: %s\treturn size: %d\n", rbuff, r_ret);
+			printf("Web server return: %s\t", rbuff);
+			printf("return size: %d\n", r_ret);
 			usleep(150000);
 		}
 	}
