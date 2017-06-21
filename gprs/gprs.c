@@ -67,8 +67,7 @@ int gprs_send(int fd, const char *key_id, const char *location_id, const char *d
 		fprintf(stderr, "bad param!\n");
 		return -1;
 	}
-	printf("%s %s %s\n",key_id, location_id, device_id);
-	
+
 	do{
 		/*TCP connect*/
 		for(i = 7;i < 9;i++){
@@ -82,15 +81,11 @@ int gprs_send(int fd, const char *key_id, const char *location_id, const char *d
 			if(-1 == gprs_send_string(fd, rbuff, post[j]))
 				return -1;
 		}
+		
 		CLEAR(http_payload);
 		sprintf(http_payload, post[4], key_id, location_id, device_id);
 		CLEAR(http_len);
-		sprintf(http_len, post[4], strlen(http_payload));
-		
-		/*
-		 *test
-		 */
-		printf("http_payload: %s http_len: %s\n", http_payload, http_len);
+		sprintf(http_len, post[3], strlen(http_payload));
 
 		/*send http_len*/
 		if(-1 == gprs_send_string(fd, rbuff, http_len))

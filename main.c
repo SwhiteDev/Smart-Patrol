@@ -5,14 +5,14 @@
 
 unsigned char *device_id = "device007";   
 //full path
-#define RECORD_FILE_NAME "/home/swhite/IOT_LAB/Smart-Patrol/record_sql/record.db"
+#define RECORD_FILE_NAME "/home/swhite/Smart-Patrol/record_sql/record.db"
 #define RFID_DEV_NAME "/dev/ttyUSB0"
 #define GPRS_DEV_NAME "/dev/ttyUSB1"
 #define TABLE_NAME "record"
 #define KEY_ID "iot"
 
-#define RFID_DVR_NAME "cp210"
-#define GPRS_DVR_NAME "ch341"
+#define RFID_DVR_NAME "cp210x"
+#define GPRS_DVR_NAME "ch341-uart"
 
 
 //exec shell and ret results
@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 	sql_create_table(db, TABLE_NAME);
 	sleep(1);
 	if(parser_usb_dev(&rfid_dev_name, &gprs_dev_name) == -1){
-		printf("dev name parser error\n");
+		printf("dev name parser error:rfid:%s gprs:%s\n",rfid_dev_name, gprs_dev_name);
 		return -1;
 	}
 
