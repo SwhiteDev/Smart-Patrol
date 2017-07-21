@@ -68,7 +68,7 @@ int gprs_send(int fd, const char *key_id, const char *location_id, const char *d
 		return -1;
 	}
 
-	do{
+	//do{
 		/*TCP connect*/
 		for(i = 7;i < 9;i++){
 			serial_flushio(fd);
@@ -98,7 +98,7 @@ int gprs_send(int fd, const char *key_id, const char *location_id, const char *d
 		/*send over_flag*/
 		if(-1 == gprs_send_string(fd, rbuff, &over_flag))
 			return -1;
-	}while(gprs_2_web_ok(rbuff) && (++timeout) < TIMEOUT);
+//	}while(gprs_2_web_ok(rbuff) && (++timeout) < TIMEOUT);
 
 	if(-1 == gprs_run_cmd(fd, rbuff, cmd[9])){
 		fprintf(stdout, "close gprs failed!");
@@ -119,13 +119,13 @@ int gprs_run_cmd(int fd, char *rbuff, char *cmd)
 	}
 	printf("gprs write AT CMD: %s\n", cmd);
 	printf("write size: %d\n", w_ret);
-	usleep(150000);
+	sleep(2);
 
 	if((r_ret = serial_read(fd, rbuff, GPRS_READ_BUFF_SIZE)) > 0){
 		rbuff[r_ret] = '\0';
-		printf("GPRS return: %s\t", rbuff);
+		printf("GPRS return: %s\n", rbuff);
 		printf("return size: %d\n", r_ret);
-		usleep(150000);
+		sleep(2);
 	}
 	
 	return 0;
@@ -140,16 +140,16 @@ int gprs_send_string(int fd, char *rbuff, char *str)
 		printf("GPRS write string: %s failed\n", str);
 		return -1;
 	}
-	printf("GPRS write string: %s\t", str);
+	printf("GPRS write string: %s\n", str);
 	printf("write size: %d\n", w_ret);
 	usleep(150000);
 
 	if(*str == 0x1a){
 		if((r_ret = serial_read(fd, rbuff, GPRS_READ_BUFF_SIZE)) > 0){
 			rbuff[r_ret] = '\0';
-			printf("Web server return: %s\t", rbuff);
+			printf("Web server return: %s\n", rbuff);
 			printf("return size: %d\n", r_ret);
-			usleep(150000);
+			usleep(1);
 		}
 	}
 	return 0;

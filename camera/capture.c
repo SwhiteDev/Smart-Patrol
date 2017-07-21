@@ -66,8 +66,9 @@ static int xioctl(int fh, int request, void *arg)
 
 static void process_image(const void *p, int size)
 {
+	FILE *image_test = fopen("image_test", "w");
 	if (out_buf)
-		fwrite(p, size, 1, stdout);
+		fwrite(p, size, 1, image_test);
 
 	fflush(stderr);
 	fprintf(stderr, ".");
@@ -588,7 +589,7 @@ long_options[] = {
 
 int main(int argc, char **argv)
 {
-	dev_name = "/dev/video0";
+	dev_name = "/dev/video1";
 
 	for (;;) {
 		int idx;
