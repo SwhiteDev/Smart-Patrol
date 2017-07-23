@@ -1,11 +1,26 @@
-CC = gcc -g -o
+CC = gcc
+CFLAGS = -g 
 LIB = -lsqlite3
-SRC = main.c ./com/mycom.c ./init/init.c ./record_sql/record.c
 
-#all : Smart-Patrol record
+SRC = main.c
+SRC += ./serial/serial.c
+SRC += ./rfid/rfid.c
+SRC += ./gprs/gprs.c
+SRC += ./record_sql/record.c
 
-Smart-Patrol : $(SRC)
-	$(CC) Smart-Patrol $(SRC) $(LIB)
 
-#record : record.c
-#	$(CC) record record.c $(LIB)
+OBJ = $(patsubst %c, %o, $(SRC))
+
+
+all: Smart-Patrol
+
+
+Smart-Patrol: $(OBJ) 
+	$(CC) -o Smart-Patrol $(OBJ) $(LIB) $(CFLAGS)
+
+$(OBJ): %.o: %.c
+
+
+clean:
+	-rm $(OBJ) Smart-Patrol -rf
+
