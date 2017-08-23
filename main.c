@@ -1,4 +1,11 @@
-#include "./serial/serial.h"
+/*
+ *
+ *
+ *
+ *
+ *
+ *
+ */#include "./serial/serial.h"
 #include "./record_sql/record.h"
 #include "./gprs/gprs.h"
 #include "./rfid/rfid.h"
