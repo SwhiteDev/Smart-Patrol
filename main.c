@@ -5,7 +5,8 @@
  *
  *
  *
- */#include "./serial/serial.h"
+ */
+#include "./serial/serial.h"
 #include "./record_sql/record.h"
 #include "./gprs/gprs.h"
 #include "./rfid/rfid.h"
@@ -111,6 +112,7 @@ int main(int argc, char **argv)
 		flag = rfid_read(rfid_fd, card_id);
 		printf("waiting card...\n");
 		sleep(1);
+		printf("card_id:%s\n", card_id);
 		if(flag > 0)
 		{
 			printf("card_id:%s\n", card_id);
