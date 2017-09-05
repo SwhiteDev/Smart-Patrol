@@ -1,11 +1,12 @@
 /*
  *
  *
- *
+ * Smart-Patrol
  *
  *
  *
  */
+
 #include "./serial/serial.h"
 #include "./record_sql/record.h"
 #include "./gprs/socket.h"
@@ -79,13 +80,6 @@ int parser_usb_dev(char **rfid_dev_name, char **gprs_dev_name)
 	return -1;
 }
 
-int wvdial_run()
-{
-	if (parser_usb_dev(&rfid_dev_name, &gprs_dev_name) == -1) {
-		printf("dev name parser error: rfid:%s gprs:%s\n",rfid_dev_name, gprs_dev_name);
-		return -1;
-	}
-}
 int main(int argc, char **argv)
 {
 	int sock_fd = -1;
@@ -95,7 +89,6 @@ int main(int argc, char **argv)
 	char s_buffer[4096], r_buffer[4096];    /* socket recv buffer */
 	sqlite3 *db = NULL;
 	unsigned char card_id[16] = {0};
-	char *rfid_dev_name = NULL, *gprs_dev_name = NULL;
 
 	/*
 	 * sql init
@@ -115,7 +108,6 @@ int main(int argc, char **argv)
 		printf("dev name parser error:rfid:%s gprs:%s\n",rfid_dev_name, gprs_dev_name);
 		return -1;
 	}
-
 	printf("rfid_name:%s  gprs_name:%s\n", rfid_dev_name, gprs_dev_name);
 
 	/*

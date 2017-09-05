@@ -12,15 +12,18 @@ SRC += ./record_sql/record.c
 OBJ = $(patsubst %c, %o, $(SRC))
 
 
-all: Smart-Patrol
+all : Smart-Patrol configure
 
 
-Smart-Patrol: $(OBJ) 
+Smart-Patrol : $(OBJ) 
 	$(CC) -o Smart-Patrol $(OBJ) $(LIB) $(CFLAGS)
 
-$(OBJ): %.o: %.c
+configure :	configure.o
+	$(CC) -o configure configure.o $(CFLAGS)
+
+$(OBJ) : %.o: %.c
 
 
-clean:
+clean :
 	-rm $(OBJ) Smart-Patrol -rf
 
