@@ -8,7 +8,7 @@
  */
 #include "./serial/serial.h"
 #include "./record_sql/record.h"
-#include "./gprs/gprs.h"
+#include "./gprs/socket.h"
 #include "./rfid/rfid.h"
 
 unsigned char *device_id = "device007";   
@@ -22,6 +22,10 @@ unsigned char *device_id = "device007";
 #define RFID_DVR_NAME "cp210x"
 #define GPRS_DVR_NAME "ch341-uart"
 
+char *rfid_dev_name = NULL;
+char *gprs_dev_name = NULL;
+extern fd_set t_set1;
+extern struct timeval tv;
 
 //exec shell and ret results
 static int system_ret(char *ret_buffer, int size, char *cmd)
@@ -75,15 +79,27 @@ int parser_usb_dev(char **rfid_dev_name, char **gprs_dev_name)
 	return -1;
 }
 
-
+int wvdial_run()
+{
+	if (parser_usb_dev(&rfid_dev_name, &gprs_dev_name) == -1) {
+		printf("dev name parser error: rfid:%s gprs:%s\n",rfid_dev_name, gprs_dev_name);
+		return -1;
+	}
+}
 int main(int argc, char **argv)
 {
+	int sock_fd = -1;
 	int rfid_fd = -1;
-	int gprs_fd = -1;
 	int flag = 0;
+	int s_len, r_len;     /* socket recv & send length */
+	char s_buffer[4096], r_buffer[4096];    /* socket recv buffer */
 	sqlite3 *db = NULL;
 	unsigned char card_id[16] = {0};
 	char *rfid_dev_name = NULL, *gprs_dev_name = NULL;
+
+	/*
+	 * sql init
+	 */
 	int ret = sqlite3_open(RECORD_FILE_NAME, &db);
 	if(ret)
 	{
@@ -91,18 +107,26 @@ int main(int argc, char **argv)
 	}
 	sql_create_table(db, TABLE_NAME);
 	sleep(1);
+
+	/*
+	 * choose usb device
+	 */
 	if(parser_usb_dev(&rfid_dev_name, &gprs_dev_name) == -1){
 		printf("dev name parser error:rfid:%s gprs:%s\n",rfid_dev_name, gprs_dev_name);
 		return -1;
 	}
 
 	printf("rfid_name:%s  gprs_name:%s\n", rfid_dev_name, gprs_dev_name);
+
+	/*
+	 * rfid & socket init
+	 */
 	if((rfid_fd = rfid_init(rfid_dev_name)) < 0){
 		fprintf(stderr, "open rfid serial error\n");
 		goto rfid_error;
 	}
-	if((gprs_fd = gprs_init(gprs_dev_name)) < 0){
-		fprintf(stderr, "open gprs serial error\n");
+	if((sock_fd = socket_init()) < 0){
+		fprintf(stderr, "open socket serial error\n");
 		goto gprs_error;
 	}
 
@@ -120,16 +144,23 @@ int main(int argc, char **argv)
 				//fprintf(stderr, "insert error\n");
 				
 			}
-			printf("gprs_fd:%d\n", gprs_fd);
-			if(gprs_send(gprs_fd,KEY_ID, card_id, device_id) < 0){
+			printf("sock_fd:%d\n", sock_fd);
+			http_post_fill(s_buffer, KEY_ID, card_id, device_id);
+			if((s_len = socket_send(sock_fd, s_buffer)) == -1){
 				fprintf(stderr, "send error\n");
-				continue;
+				exit(0);
+			}
+			FD_ZERO(&t_set1);
+			FD_SET(sock_fd, &t_set1);
+			sleep(1);
+			if((r_len = socket_recv(sock_fd, r_buffer)) <= 0){
+				exit(0);
 			}
 		}
 	}
 
 gprs_error:
-	serial_close(gprs_fd);
+	serial_close(sock_fd);
 rfid_error:
 	serial_close(rfid_fd);
 	return 0;

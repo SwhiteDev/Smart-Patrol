@@ -5,7 +5,7 @@ LIB = -lsqlite3
 SRC = main.c
 SRC += ./serial/serial.c
 SRC += ./rfid/rfid.c
-SRC += ./gprs/gprs.c
+SRC += ./gprs/socket.c
 SRC += ./record_sql/record.c
 
 
