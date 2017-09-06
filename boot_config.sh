@@ -6,7 +6,7 @@ DIR="/home/swhite/Smart-Patrol"
 $DIR/configure
 
 
-wvdial --config=$DIR/wvdial.config > $DIR/wvdial.log &
+wvdial --config=$DIR/wvdial.config &
 
 #sleep 10
 
