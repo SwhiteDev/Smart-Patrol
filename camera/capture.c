@@ -1,12 +1,3 @@
-/*
- *  V4L2 video capture example
- *
- *  This program can be used and distributed without restrictions.
- *
- *      This program is provided with the V4L2 API
- * see https://linuxtv.org/docs.php for more information
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,6 +18,9 @@
 
 #define CLEAR(x) memset(&(x), 0, sizeof(x))
 
+/*
+ *三种读取帧的方法
+ */
 enum io_method {
 	IO_METHOD_READ,
 	IO_METHOD_MMAP,
@@ -39,13 +33,19 @@ struct buffer {
 };
 
 static char            *dev_name;
-static enum io_method   io = IO_METHOD_MMAP;
+static enum io_method   io = IO_METHOD_MMAP;    //默认为内存映射
 static int              fd = -1;
 struct buffer          *buffers;
 static unsigned int     n_buffers;
 static int              out_buf;
 static int              force_format;
-static int              frame_count = 70;
+static int              frame_count = 70;       //默认70帧
+
+/*
+ *将count帧数据输出到test.yuv
+ */
+FILE *fp;
+char *filename = "test.yuv\0";  
 
 static void errno_exit(const char *s)
 {
@@ -63,16 +63,17 @@ static int xioctl(int fh, int request, void *arg)
 
 	return r;
 }
-
+/*
+ *图像处理线程
+ */
 static void process_image(const void *p, int size)
 {
-	FILE *image_test = fopen("image_test", "w");
-	if (out_buf)
-		fwrite(p, size, 1, image_test);
+//	if (out_buf)
+		fwrite(p, size, 1, fp);
 
-	fflush(stderr);
-	fprintf(stderr, ".");
-	fflush(stdout);
+//	fflush(stderr);
+//	fprintf(stderr, ".");
+//	fflush(stdout);
 }
 
 static int read_frame(void)
@@ -346,7 +347,7 @@ static void init_mmap(void)
 		fprintf(stderr, "Out of memory\\n");
 		exit(EXIT_FAILURE);
 	}
-
+	
 	for (n_buffers = 0; n_buffers < req.count; ++n_buffers) {
 		struct v4l2_buffer buf;
 
@@ -487,7 +488,7 @@ static void init_device(void)
 		fmt.fmt.pix.width       = 640;
 		fmt.fmt.pix.height      = 480;
 		fmt.fmt.pix.pixelformat = V4L2_PIX_FMT_YUYV;
-		fmt.fmt.pix.field       = V4L2_FIELD_INTERLACED;
+		//fmt.fmt.pix.field       = V4L2_FIELD_INTERLACED;
 
 		if (-1 == xioctl(fd, VIDIOC_S_FMT, &fmt))
 			errno_exit("VIDIOC_S_FMT");
@@ -589,7 +590,7 @@ long_options[] = {
 
 int main(int argc, char **argv)
 {
-	dev_name = "/dev/video1";
+	dev_name = "/dev/video0";
 
 	for (;;) {
 		int idx;
@@ -649,7 +650,9 @@ int main(int argc, char **argv)
 	open_device();
 	init_device();
 	start_capturing();
+	fp = fopen(filename, "wa+");
 	mainloop();
+	fclose(fp);
 	stop_capturing();
 	uninit_device();
 	close_device();
