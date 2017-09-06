@@ -11,10 +11,24 @@
 #define GPRS_DEV_NAME "/dev/ttyUSB1"
 #define RFID_DVR_NAME "cp210x"
 #define GPRS_DVR_NAME "ch341-uart"
-#define WVDIAL_CONFIG "/home/swhite/Smart-Patrol/gprs/wvdial.config"
+#define WVDIAL_CONFIG "/home/swhite/Smart-Patrol/wvdial.config"
+#define WVDIAL_CONFIG_SYS "/etc/wvdial.conf"
 
 char *rfid_dev_name = NULL;
 char *gprs_dev_name = NULL;
+
+char *config[] = {
+					"[Dialer Defaults]\r\n",
+					"Modem=%s\r\n",
+					"Baud=9600\r\n",
+					"Phone=*99***1#\r\n",
+					"Init1=ATZ\r\n",
+					"Init2=AT+CGDCONT=1,\"IP\",\"CMNET\"\r\n",
+					"Init3=ATQ0 V1 E1 S0=0 &C1 &D2 S11=55 +FCLASS=0\r\n",
+					"Username=a\r\n",
+					"Password=a\r\n",
+					"New PPPD=1\r\n"
+				};
 
 //exec shell and ret results
 static int system_ret(char *ret_buffer, int size, char *cmd)
@@ -72,18 +86,27 @@ int main(int argc, char **argv)
 {
 	int fd = -1;
 	int ret;
+	int i = 0;
+	char temp[32] = {0};
+
 	if(parser_usb_dev(&rfid_dev_name, &gprs_dev_name) == -1){
 		printf("device name error!");
 		exit(0);
 	}
-	if((fd = open(WVDIAL_CONFIG, O_WRONLY)) < 0){
+	printf("gprs dev name: %s, rfid dev name: %s\n", gprs_dev_name, rfid_dev_name);
+	sprintf(temp, config[1], gprs_dev_name);
+	if((fd = open(WVDIAL_CONFIG, O_WRONLY | O_TRUNC)) < 0){
 		printf("open wvdial.config failed!\n");
 		return -1;
 	}
-	lseek(fd, 6, SEEK_SET);
-	if((ret = write(fd, gprs_dev_name, strlen(gprs_dev_name))< 0)){
-		printf("write device name failed!\n");
-		return -1;
+	write(fd, config[0], strlen(config[0]));
+	write(fd, temp, strlen(temp));
+	for(i = 2;i < 10;i++){
+		if((ret = write(fd, config[i], strlen(config[i])) < 0)){
+			printf("write config info failed!\n");
+			return -1;
+		}
 	}
+	printf("configure ok!\nnow you can run pppd to connect with ISP.\n");
 
 }

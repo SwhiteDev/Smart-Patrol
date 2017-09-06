@@ -25,5 +25,6 @@ $(OBJ) : %.o: %.c
 
 
 clean :
-	-rm $(OBJ) Smart-Patrol -rf
+	rm $(OBJ) Smart-Patrol -rf
+	rm configure.o configure -rf
 

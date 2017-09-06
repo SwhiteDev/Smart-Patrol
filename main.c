@@ -142,12 +142,12 @@ int main(int argc, char **argv)
 				fprintf(stderr, "send error\n");
 				exit(0);
 			}
-			FD_ZERO(&t_set1);
-			FD_SET(sock_fd, &t_set1);
-			sleep(1);
-			if((r_len = socket_recv(sock_fd, r_buffer)) <= 0){
-				exit(0);
-			}
+		//	FD_ZERO(&t_set1);
+		//	FD_SET(sock_fd, &t_set1);
+		//	sleep(1);
+		//	if((r_len = socket_recv(sock_fd, r_buffer)) <= 0){
+		//		exit(0);
+		//	}
 		}
 	}
 
