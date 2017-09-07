@@ -117,10 +117,6 @@ int main(int argc, char **argv)
 		fprintf(stderr, "open rfid serial error\n");
 		goto rfid_error;
 	}
-	if((sock_fd = socket_init()) < 0){
-		fprintf(stderr, "open socket serial error\n");
-		goto gprs_error;
-	}
 
 	while(1)
 	{
@@ -131,6 +127,10 @@ int main(int argc, char **argv)
 		printf("card_id:%s\n", card_id);
 		if(flag > 0)
 		{
+			if((sock_fd = socket_init()) < 0){
+				fprintf(stderr, "open socket serial error\n");
+				goto gprs_error;
+			}
 			printf("card_id:%s\n", card_id);
 			if(sql_insert(db,TABLE_NAME, card_id, device_id) < 0){
 				//fprintf(stderr, "insert error\n");
@@ -142,12 +142,13 @@ int main(int argc, char **argv)
 				fprintf(stderr, "send error\n");
 				exit(0);
 			}
-		//	FD_ZERO(&t_set1);
-		//	FD_SET(sock_fd, &t_set1);
-		//	sleep(1);
-		//	if((r_len = socket_recv(sock_fd, r_buffer)) <= 0){
-		//		exit(0);
-		//	}
+			FD_ZERO(&t_set1);
+			FD_SET(sock_fd, &t_set1);
+			sleep(2);
+			if((r_len = socket_recv(sock_fd, r_buffer)) <= 0){
+				exit(0);
+			}
+			close(sock_fd);
 		}
 	}
 
