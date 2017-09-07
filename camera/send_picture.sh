@@ -1,6 +1,6 @@
 DIR="/home/swhite/Smart-Patrol"
 
-$DIR/camera/camera
+$DIR/camera/camera --count 1
 
 sleep 1
 
