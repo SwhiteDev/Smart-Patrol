@@ -1,6 +1,6 @@
 #include "socket.h"
 
-#define  IPSTR "115.159.218.190"
+#define  IPSTR "182.254.244.212"
 #define  PORT 80
 #define  BUFSIZE 1024
 #define  CLEAR(X) memset(X, 0, sizeof(X))
@@ -10,7 +10,7 @@ socklen_t len;
 fd_set t_set1;
 struct timeval tv;
 
-unsigned char *post[] = {"POST /Xungeng/patrol/stageUpdate HTTP/1.1\r\nHost: www.jiangh.me\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: %d\r\n\r\n","key=%s&location=%s&device=%s"};
+unsigned char *post[] = {"POST /xg/index.php/admin/upload/record HTTP/1.1\r\nHost: www.hicoder.cn\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: %d\r\n\r\n","key=%s&location=%s&device=%s"};
 
 int socket_init(void)
 {
