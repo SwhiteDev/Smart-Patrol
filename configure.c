@@ -1,3 +1,6 @@
+/*
+ * 配置文件，用来判断用哪个USB设备进行PPP拨号
+ */
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,7 +33,9 @@ char *config[] = {
 					"New PPPD=1\r\n"
 				};
 
-//exec shell and ret results
+/*
+ * popen进程间通信,将执行命令的结果fgets入缓冲
+ */
 static int system_ret(char *ret_buffer, int size, char *cmd)
 {
 	FILE *fstream=NULL;    
@@ -53,7 +58,9 @@ static int system_ret(char *ret_buffer, int size, char *cmd)
     return 0;
 }
 
-//get /dev/ttyUSBx return two param 
+/*
+ * 获取USB名
+ */
 int parser_usb_dev(char **rfid_dev_name, char **gprs_dev_name)
 {
 	char buffer_usb0[1024];  
@@ -99,6 +106,8 @@ int main(int argc, char **argv)
 		printf("open wvdial.config failed!\n");
 		return -1;
 	}
+
+	/* 到此已判断好RFID & GPRS USB设备，写入wvdial.config */
 	write(fd, config[0], strlen(config[0]));
 	write(fd, temp, strlen(temp));
 	for(i = 2;i < 10;i++){

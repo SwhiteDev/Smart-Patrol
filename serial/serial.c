@@ -1,6 +1,8 @@
 #include "serial.h"
 
-
+/*
+ * 以非阻塞方式打开串口（为什么不用阻塞方式）
+ */
 int serial_open(const char *DEV)
 {
 	int fd = -1;
@@ -12,7 +14,9 @@ int serial_open(const char *DEV)
 	return fd;
 }
 
-
+/*
+ * 设置串口属性
+ */
 int set_serial_attr(int fd, serial_attr *attr)
 {
 	struct termios opt;
@@ -123,10 +127,7 @@ int set_serial_attr(int fd, serial_attr *attr)
 
 
 /*
- *function_name : serial_read
- *description   : read data from serial
- *param         : @fd @rbuff @nbytes
- *return        : 0 or -1
+ * 读串口
  */
 int serial_read(int fd, char *rbuff, unsigned int nbytes)
 {
@@ -147,10 +148,7 @@ int serial_read(int fd, char *rbuff, unsigned int nbytes)
 
 
 /*
- *function_name : serial_write
- *description   : write data to serial
- *param         : @fd @wbuff @nbytes
- *return        : 0 or -1
+ * 写串口
  */
 int serial_write(int fd, char *wbuff, unsigned int nbytes)
 {
@@ -171,10 +169,7 @@ int serial_write(int fd, char *wbuff, unsigned int nbytes)
 
 
 /*
- *function_name :serial_close
- *description   : close serial
- *param         : @fd
- *return        ; 0 or -1
+ * 关闭串口
  */
 int serial_close(int fd)
 {
@@ -187,7 +182,7 @@ int serial_close(int fd)
 
 
 /*
- *serial io flush
+ * 刷新缓冲IO(此处查一下tcflush函数用法)
  */
 int serial_flushio(int fd)
 {

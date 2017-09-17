@@ -1,6 +1,8 @@
 #include "rfid.h"
 
-
+/*
+ * RFID设备初始化
+ */
 int rfid_init(const char *DEV)
 {
 	int fd = serial_open(DEV);
@@ -8,7 +10,8 @@ int rfid_init(const char *DEV)
 		fprintf(stderr, "open rfid serial faild\n");
 		return -1;
 	}
-
+	
+	/* 设置串口波特率、数据位、校验位、停止位 */
 	serial_attr attr = {0};
 	attr.baudrate = 9600;
 	attr.databits = BITS_DATA_8;
@@ -23,7 +26,7 @@ int rfid_init(const char *DEV)
 
 
 /*
- *card_check
+ * 卡校验
  */
 static int card_check(const char *card_buff)
 {
@@ -32,7 +35,7 @@ static int card_check(const char *card_buff)
 
 
 /*
- *read rfid card_id
+ * 读卡
  */
 int rfid_read(int fd, char *card_id)
 {
@@ -42,7 +45,8 @@ int rfid_read(int fd, char *card_id)
 		fprintf(stderr, "bad param\n");
 		return -1;
 	}
-
+	
+	/* 读串口并得出卡号，然后填充到card_id */
 	memset(card_buff, 0xff, 8);
 	if((ret = serial_read(fd, card_buff, 16)) > 0){
 		if(!card_check(card_buff)){

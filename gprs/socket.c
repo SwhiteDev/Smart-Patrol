@@ -5,13 +5,18 @@
 #define  BUFSIZE 1024
 #define  CLEAR(X) memset(X, 0, sizeof(X))
 
+/* socket一些结构 */
 struct sockaddr_in servaddr;
 socklen_t len;
+/* select要用的 */
 fd_set t_set1;
 struct timeval tv;
 
 unsigned char *post[] = {"POST /xg/index.php/admin/upload/record HTTP/1.1\r\nHost: www.hicoder.cn\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: %d\r\n\r\n","key=%s&location=%s&device=%s"};
 
+/*
+ * socket初始化
+ */
 int socket_init(void)
 {
 	int sockfd = -1;
@@ -36,6 +41,9 @@ int socket_init(void)
 	return sockfd;
 }
 
+/*
+ * post表单填充：key、卡号、设备号
+ */
 void http_post_fill(char *buffer, const char *key_id, const char *location_id, const char *device_id)
 {
 	char http_post[256] = {0};
@@ -49,6 +57,9 @@ void http_post_fill(char *buffer, const char *key_id, const char *location_id, c
 	strcpy(buffer, http_post);
 }
 
+/*
+ * socket发送字符
+ */
 int socket_send(int sockfd, char *sbuff)
 {
 	int ret;
@@ -61,6 +72,9 @@ int socket_send(int sockfd, char *sbuff)
 	return ret;
 }
 
+/*
+ * 利用异步select进行socket接收处理
+ */
 int socket_recv(int sockfd, char *rbuff)
 {
 	int h, ret;

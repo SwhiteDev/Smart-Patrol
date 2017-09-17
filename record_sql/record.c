@@ -1,4 +1,3 @@
-
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -55,9 +54,9 @@ int  sql_create_table(sqlite3 *db, char *table_name)
 	return 0;
 }
 
-/**********************************************
- 
- **********************************************/
+/*
+ * 数据库插入操作 
+ */
 int sql_insert(sqlite3 *db,char *table_name,unsigned char *card_id, char *device_id)
 {
 	static char sql[128];

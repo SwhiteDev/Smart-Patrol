@@ -1,9 +1,6 @@
 /*
  *
- *
  * Smart-Patrol
- *
- *
  *
  */
 
@@ -13,7 +10,7 @@
 #include "./rfid/rfid.h"
 
 unsigned char *device_id = "device007";   
-//full path
+/* 绝对路径 */
 #define RECORD_FILE_NAME "/home/swhite/Smart-Patrol/record_sql/record.db"
 #define RFID_DEV_NAME "/dev/ttyUSB0"
 #define GPRS_DEV_NAME "/dev/ttyUSB1"
@@ -28,7 +25,6 @@ char *gprs_dev_name = NULL;
 extern fd_set t_set1;
 extern struct timeval tv;
 
-//exec shell and ret results
 static int system_ret(char *ret_buffer, int size, char *cmd)
 {
 	FILE *fstream=NULL;    
@@ -51,7 +47,6 @@ static int system_ret(char *ret_buffer, int size, char *cmd)
     return 0;
 }
 
-//get /dev/ttyUSBx return two param 
 int parser_usb_dev(char **rfid_dev_name, char **gprs_dev_name)
 {
 	char buffer_usb0[1024];  
@@ -84,14 +79,14 @@ int main(int argc, char **argv)
 {
 	int sock_fd = -1;
 	int rfid_fd = -1;
-	int flag = 0;
+	int flag = 0;       /* 判断是否有卡号读入的标志 */
 	int s_len, r_len;     /* socket recv & send length */
-	char s_buffer[4096], r_buffer[4096];    /* socket recv buffer */
+	char s_buffer[4096], r_buffer[4096];    /* socket buffer */
 	sqlite3 *db = NULL;
 	unsigned char card_id[16] = {0};
 
 	/*
-	 * sql init
+	 * 数据库 
 	 */
 	int ret = sqlite3_open(RECORD_FILE_NAME, &db);
 	if(ret)
@@ -102,7 +97,7 @@ int main(int argc, char **argv)
 	sleep(1);
 
 	/*
-	 * choose usb device
+	 * 选择USB设备，初始化
 	 */
 	if(parser_usb_dev(&rfid_dev_name, &gprs_dev_name) == -1){
 		printf("dev name parser error:rfid:%s gprs:%s\n",rfid_dev_name, gprs_dev_name);
@@ -110,14 +105,12 @@ int main(int argc, char **argv)
 	}
 	printf("rfid_name:%s  gprs_name:%s\n", rfid_dev_name, gprs_dev_name);
 
-	/*
-	 * rfid & socket init
-	 */
 	if((rfid_fd = rfid_init(rfid_dev_name)) < 0){
 		fprintf(stderr, "open rfid serial error\n");
 		goto rfid_error;
 	}
-
+	
+	/* 主循环，等待读卡，发送POST表单 */
 	while(1)
 	{
 		memset(card_id, 0x00, 16);
@@ -142,6 +135,8 @@ int main(int argc, char **argv)
 				fprintf(stderr, "send error\n");
 				exit(0);
 			}
+
+			/* 异步方式读取套接字 */
 			FD_ZERO(&t_set1);
 			FD_SET(sock_fd, &t_set1);
 			sleep(2);
